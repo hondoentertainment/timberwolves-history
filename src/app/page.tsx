@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 import { PageHeader } from "@/components/PageHeader";
-import { getCachedFranchiseSeasons } from "@/lib/nba/queries";
+import { getFranchiseSeasonsOrEmpty } from "@/lib/nba/queries";
 
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const seasons = await getCachedFranchiseSeasons();
+  const seasons = await getFranchiseSeasonsOrEmpty();
   const latest = seasons[seasons.length - 1];
 
   return (

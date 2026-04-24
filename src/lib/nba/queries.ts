@@ -121,6 +121,15 @@ export const getCachedFranchiseSeasons = unstable_cache(
   { revalidate: cacheHours, tags: ["nba-team-years"] },
 );
 
+/** Same cache as {@link getCachedFranchiseSeasons}, but never throws (empty on upstream failure). */
+export async function getFranchiseSeasonsOrEmpty(): Promise<FranchiseSeasonSummary[]> {
+  try {
+    return await getCachedFranchiseSeasons();
+  } catch {
+    return [];
+  }
+}
+
 export async function fetchTeamRoster(seasonId: string): Promise<NbaStatsJson> {
   return nbaStatsFetch(
     "commonteamroster",

@@ -10,7 +10,9 @@ type PageProps = { searchParams: Promise<{ q?: string }> };
 export default async function PlayersPage({ searchParams }: PageProps) {
   const { q } = await searchParams;
   const query = (q ?? "").trim().toLowerCase();
-  const players = await getCachedAllTimeWolvesPlayers();
+  const players = await getCachedAllTimeWolvesPlayers().catch(
+    () => [] as { playerId: number; name: string; seasons: string[] }[],
+  );
   const filtered = query
     ? players.filter((p) => p.name.toLowerCase().includes(query))
     : players;
@@ -21,6 +23,12 @@ export default async function PlayersPage({ searchParams }: PageProps) {
         title="All-time players"
         description={`${players.length} unique players have appeared on a Timberwolves regular-season roster (merged from season-by-season NBA.com roster feeds). Use search to filter by name.`}
       />
+      {!players.length ? (
+        <p className="mb-4 rounded-lg border border-amber-800/60 bg-amber-950/30 px-4 py-3 text-sm text-amber-100/90">
+          The merged roster index could not be built (NBA.com unreachable or timed out). Try again
+          later; the list fills once roster feeds respond.
+        </p>
+      ) : null}
       <form className="mb-6 flex max-w-md gap-2" action="/players" method="get">
         <label htmlFor="q" className="sr-only">
           Search players

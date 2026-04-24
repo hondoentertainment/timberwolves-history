@@ -12,7 +12,7 @@ import { coachNamesForSeason } from "@/lib/coaches";
 import { formatPlayoffNarrative } from "@/lib/playoff-summary";
 import {
   fetchTeamRoster,
-  getCachedFranchiseSeasons,
+  getFranchiseSeasonsOrEmpty,
   parseRoster,
 } from "@/lib/nba/queries";
 import { parseSeasonSlug } from "@/lib/nba/seasons";
@@ -41,13 +41,13 @@ export default async function SeasonDetailPage({ params }: PageProps) {
   if (!valid) notFound();
 
   const [franchiseRows, rosterJson] = await Promise.all([
-    getCachedFranchiseSeasons(),
-    fetchTeamRoster(valid),
+    getFranchiseSeasonsOrEmpty(),
+    fetchTeamRoster(valid).catch(() => null),
   ]);
   const summary = franchiseRows.find((r) => r.seasonLabel === valid);
-  const roster = parseRoster(rosterJson, valid).sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+  const roster = rosterJson
+    ? parseRoster(rosterJson, valid).sort((a, b) => a.name.localeCompare(b.name))
+    : [];
   const coachNames = coachNamesForSeason(valid);
   const story = getSeasonStory(valid);
 
