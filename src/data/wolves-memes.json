@@ -1,0 +1,95 @@
+{
+  "disclaimer": "Fan-culture shorthand, not official team content. Meant as affectionate internet lore around the franchise.",
+  "memes": [
+    {
+      "id": "kg-prime",
+      "title": "Wasted KG prime",
+      "era": "1995–2007",
+      "summary": "A long-running narrative that Minnesota never built a title team around Kevin Garnett despite his MVP-level peak—often exaggerated online, but rooted in real playoff frustration."
+    },
+    {
+      "id": "lottery-pain",
+      "title": "Draft lottery heartbreak",
+      "era": "1990s–2010s",
+      "summary": "Ping-pong ball reveals where the Wolves slid down the board (or narrowly missed the top pick) became a genre of reaction GIFs and 'of course' posts among fans."
+    },
+    {
+      "id": "maple-jordan",
+      "title": "Maple Jordan",
+      "era": "2014–2020",
+      "summary": "Nickname for Andrew Wiggins that started as hype and evolved into ironic commentary on flashes of brilliance versus consistency—one of the most recognizable Wolves-adjacent memes."
+    },
+    {
+      "id": "butler-practice",
+      "title": "Jimmy Butler practice run",
+      "era": "2018–2019",
+      "summary": "Reports of Butler dominating a scrimmage with deep reserves against starters turned into a standalone punchline about effort, culture, and locker-room drama—referenced well beyond Minnesota."
+    },
+    {
+      "id": "skipping-steps",
+      "title": "We're not skipping steps",
+      "era": "2016–2019",
+      "summary": "Tom Thibodeau's patient rebuild framing was clipped into a catchphrase fans reused whenever the roster zigzagged between youth minutes and win-now moves."
+    },
+    {
+      "id": "playoff-drought",
+      "title": "The long playoff drought",
+      "era": "2004–2018",
+      "summary": "Fourteen seasons without a postseason berth became a running clock, punchline, and badge of endurance for online Wolves communities—until the streak finally ended."
+    },
+    {
+      "id": "weird-wolves-twitter",
+      "title": "Weird Wolves Twitter",
+      "era": "2010s–present",
+      "summary": "Self-applied label for a corner of NBA Twitter that followed the team through thin years with gallows humor, stats deep cuts, and loyalty jokes."
+    },
+    {
+      "id": "offseason-champs",
+      "title": "Offseason champions",
+      "era": "2010s–present",
+      "summary": "Whenever Minnesota made splashy signings or trades, fans of other teams (and sometimes Wolves fans themselves) joked that the Wolves had already 'won the offseason' before a single game."
+    },
+    {
+      "id": "kat-trade-cycle",
+      "title": "KAT trade-rumor carousel",
+      "era": "2020–2024",
+      "summary": "Constant speculation screenshots and 'Woj loading' jokes whenever Karl-Anthony Towns' name trended—less about any single report than the exhausting loop of discourse."
+    },
+    {
+      "id": "ant-im-him",
+      "title": "Ant 'I'm Him'",
+      "era": "2020–present",
+      "summary": "Anthony Edwards' confident postgame and highlight-reel moments became celebratory reaction memes for Wolves fans—one of the brighter, newer-era templates."
+    },
+    {
+      "id": "glen-sale-saga",
+      "title": "Another Glen sale timeline",
+      "era": "1990s–2020s",
+      "summary": "Recurring news cycles about ownership changes or near-sales turned into a 'I'll believe it when the press conference starts' meme among long-time followers."
+    },
+    {
+      "id": "wiggins-contract",
+      "title": "The max-extension mood swing",
+      "era": "2017–2020",
+      "summary": "Debate over Wiggins' second contract produced before/after meme formats: hope about development versus sticker shock about cap sheets."
+    },
+    {
+      "id": "rubio-homecoming",
+      "title": "Ricky Rubio homecoming",
+      "era": "2009–2020",
+      "summary": "Every Rubio return or re-acquisition sparked 'dad came back from the store' style jokes—lighthearted shorthand for a fan favorite boomeranging to Minnesota."
+    },
+    {
+      "id": "2004-wcf-hangover",
+      "title": "2004 West Finals hangover",
+      "era": "2004–2010s",
+      "summary": "The lone conference-finals run under Flip became a nostalgic yardstick—'remember when we were one series from the Finals' used both sincerely and as a coping joke."
+    },
+    {
+      "id": "timberwolves-timeline",
+      "title": "Timberwolves timeline accounts",
+      "era": "2010s–present",
+      "summary": "This-day-in-history and 'what if' posts that mix real stats with deadpan humor—part archive, part meme engine, and a big part of how Wolves culture lives online."
+    }
+  ]
+}

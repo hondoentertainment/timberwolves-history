@@ -1,0 +1,65 @@
+{
+  "attribution": "Short editorial bios keyed by NBA.com player ID. Not from the NBA.",
+  "bios": {
+    "708": {
+      "paragraphs": [
+        "Kevin Garnett arrived as a skinny teenager drafted straight from high school and became the gravitational center of the franchise for more than a decade. His motor on defense, passing vision from the elbow, and emotional leadership defined what “Wolves basketball” meant to a generation of fans.",
+        "The 2003–04 MVP season and Western Conference finals run remain the club’s modern high-water mark; even after his return to Boston and later career chapters, Minnesota’s identity in league lore is inseparable from KG’s first act in the North."
+      ],
+      "sources": [
+        {
+          "label": "Basketball-Reference player page (context)",
+          "url": "https://www.basketball-reference.com/players/g/garneke01.html"
+        }
+      ]
+    },
+    "201567": {
+      "paragraphs": [
+        "Kevin Love brought rebounding volume and outlet passing that popped on highlight reels, pairing with Al Jefferson and later Ricky Rubio in eras that often flirted with relevance but rarely held it.",
+        "His Wolves tenure is remembered as much for counting stats and All-Star appearances as for the eventual trade demand that closed the chapter—part of the franchise’s long learning curve around roster construction."
+      ],
+      "sources": [
+        {
+          "label": "Basketball-Reference player page (context)",
+          "url": "https://www.basketball-reference.com/players/l/loveke01.html"
+        }
+      ]
+    },
+    "1626157": {
+      "paragraphs": [
+        "Karl-Anthony Towns carried scoring gravity from the center position while Minnesota cycled through identities around him—sometimes playoff-caliber, sometimes lottery-bound, always debated online.",
+        "Whether framed as loyalty or restlessness, his tenure is a bridge from the post-Garnett wilderness into the modern Ant-led Wolves: a reminder that talent and continuity are both required to matter in the West."
+      ],
+      "sources": [
+        {
+          "label": "Basketball-Reference player page (context)",
+          "url": "https://www.basketball-reference.com/players/t/townska01.html"
+        }
+      ]
+    },
+    "1630162": {
+      "paragraphs": [
+        "Anthony Edwards arrived with charisma and downhill scoring instincts that felt immediately televised: big games, big quotes, and a fan base eager for a star who wanted the smoke.",
+        "As the franchise stabilized under Chris Finch, Ant became the emotional shorthand for a Wolves team that could finally pair highlight culture with postseason substance."
+      ],
+      "sources": [
+        {
+          "label": "Basketball-Reference player page (context)",
+          "url": "https://www.basketball-reference.com/players/e/edwaran01.html"
+        }
+      ]
+    },
+    "201937": {
+      "paragraphs": [
+        "Ricky Rubio’s passing flair and fan-favorite status made him a rare through-line across multiple rebuilds—an arrival story, a trade, a return, and always a crowd that treated assists like art.",
+        "He symbolizes the romantic side of Wolves fandom: hope that beautiful basketball could be enough even when the standings disagreed."
+      ],
+      "sources": [
+        {
+          "label": "Basketball-Reference player page (context)",
+          "url": "https://www.basketball-reference.com/players/r/rubiori01.html"
+        }
+      ]
+    }
+  }
+}

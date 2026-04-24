@@ -1,0 +1,64 @@
+import type { MetadataRoute } from "next";
+
+import { getAllCoaches } from "@/lib/coaches";
+import { getAllEras } from "@/lib/eras";
+import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
+import { getWolvesSeasonIds } from "@/lib/nba/seasons";
+
+const base = () =>
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const root = base();
+  const staticRoutes: MetadataRoute.Sitemap = [
+    "",
+    "/seasons",
+    "/players",
+    "/coaches",
+    "/eras",
+    "/timeline",
+    "/about-data",
+    "/memes",
+  ].map((path) => ({
+    url: `${root}${path}`,
+    lastModified: new Date(),
+    changeFrequency: path === "" ? "weekly" : "daily",
+    priority: path === "" ? 1 : 0.8,
+  }));
+
+  const seasons = getWolvesSeasonIds().map((id) => ({
+    url: `${root}/seasons/${encodeURIComponent(id)}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const coaches = getAllCoaches().map((c) => ({
+    url: `${root}/coaches/${c.id}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly" as const,
+    priority: 0.4,
+  }));
+
+  const eraPages = getAllEras().map((e) => ({
+    url: `${root}/eras/${e.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.55,
+  }));
+
+  let playerPages: MetadataRoute.Sitemap = [];
+  try {
+    const players = await getCachedAllTimeWolvesPlayers();
+    playerPages = players.map((p) => ({
+      url: `${root}/players/${p.playerId}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    }));
+  } catch {
+    playerPages = [];
+  }
+
+  return [...staticRoutes, ...seasons, ...coaches, ...eraPages, ...playerPages];
+}

@@ -1,0 +1,25 @@
+{
+  "attribution": "Short editorial blurbs for select seasons. Not from the NBA.",
+  "stories": {
+    "1989-90": {
+      "blurb": "The expansion Timberwolves debuted with rookie Pooh Richardson and a young core learning NBA life in the Hubert H. Humphrey Metrodome—more about survival than wins, but the franchise clock started here.",
+      "updated": "2026-04-24"
+    },
+    "2003-04": {
+      "blurb": "The breakthrough year: Kevin Garnett’s MVP season powered Minnesota to the West’s top seed and the franchise’s only Western Conference finals trip—still the emotional high-water mark for a generation of fans.",
+      "updated": "2026-04-24"
+    },
+    "2014-15": {
+      "blurb": "Flip Saunders returned to the bench while the roster turned over; the season is remembered as much for leadership and loss—Saunders’ death in October 2015—as for the record on the floor.",
+      "updated": "2026-04-24"
+    },
+    "2017-18": {
+      "blurb": "The 14-year playoff drought ended with Jimmy Butler and a rugged identity under Tom Thibodeau—a cathartic return to the postseason after years of near-misses and lottery heartbreak.",
+      "updated": "2026-04-24"
+    },
+    "2024-25": {
+      "blurb": "Chris Finch’s Wolves leaned into two-way depth and star shot-making, carrying momentum from the prior postseason into another competitive West race—part of the modern “Ant era” identity.",
+      "updated": "2026-04-24"
+    }
+  }
+}

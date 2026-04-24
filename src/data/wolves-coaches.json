@@ -1,0 +1,133 @@
+{
+  "attribution": "Head coach register adapted from public Wikipedia summaries (April 2026). Not affiliated with the NBA.",
+  "coaches": [
+    {
+      "id": "bill-musselman",
+      "name": "Bill Musselman",
+      "tenures": [{ "from": "1989-90", "to": "1990-91", "gc": 164, "w": 51, "l": 113, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "jimmy-rodgers",
+      "name": "Jimmy Rodgers",
+      "tenures": [{ "from": "1991-92", "to": "1992-93", "gc": 111, "w": 21, "l": 90, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "sidney-lowe",
+      "name": "Sidney Lowe",
+      "tenures": [{ "from": "1992-93", "to": "1993-94", "gc": 135, "w": 33, "l": 102, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "bill-blair",
+      "name": "Bill Blair",
+      "tenures": [{ "from": "1994-95", "to": "1995-96", "gc": 102, "w": 27, "l": 75, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "flip-saunders",
+      "name": "Flip Saunders",
+      "bio": [
+        "Flip Saunders is the defining bench voice of the franchise’s competitive peak: a tactician who trusted Garnett, pushed pace when rosters allowed it, and returned years later as a stabilizing elder statesman.",
+        "Fans remember him as much for the 2004 run as for the human arc of his return and sudden death in 2015—a rare figure who tied multiple Wolves generations together."
+      ],
+      "tenures": [
+        {
+          "from": "1995-96",
+          "to": "2004-05",
+          "gc": 737,
+          "w": 411,
+          "l": 326,
+          "playoffGc": 47,
+          "playoffW": 17,
+          "playoffL": 30,
+          "note": "2003–04 Midwest Division championship"
+        },
+        {
+          "from": "2014-15",
+          "to": "2014-15",
+          "gc": 82,
+          "w": 16,
+          "l": 66,
+          "playoffGc": 0,
+          "playoffW": 0,
+          "playoffL": 0,
+          "note": "Died October 25, 2015; tenure ended during season."
+        }
+      ]
+    },
+    {
+      "id": "kevin-mchale-interim-1",
+      "name": "Kevin McHale",
+      "tenures": [
+        {
+          "from": "2004-05",
+          "to": "2004-05",
+          "gc": 31,
+          "w": 19,
+          "l": 12,
+          "playoffGc": 0,
+          "playoffW": 0,
+          "playoffL": 0,
+          "note": "Interim, end of 2004–05"
+        },
+        {
+          "from": "2008-09",
+          "to": "2008-09",
+          "gc": 63,
+          "w": 20,
+          "l": 43,
+          "playoffGc": 0,
+          "playoffW": 0,
+          "playoffL": 0,
+          "note": "Second interim stint"
+        }
+      ]
+    },
+    {
+      "id": "dwane-casey",
+      "name": "Dwane Casey",
+      "tenures": [{ "from": "2005-06", "to": "2006-07", "gc": 122, "w": 53, "l": 69, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "randy-wittman",
+      "name": "Randy Wittman",
+      "tenures": [{ "from": "2006-07", "to": "2008-09", "gc": 143, "w": 38, "l": 105, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "kurt-rambis",
+      "name": "Kurt Rambis",
+      "tenures": [{ "from": "2009-10", "to": "2010-11", "gc": 164, "w": 32, "l": 132, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "rick-adelman",
+      "name": "Rick Adelman",
+      "tenures": [{ "from": "2011-12", "to": "2013-14", "gc": 230, "w": 97, "l": 133, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "sam-mitchell",
+      "name": "Sam Mitchell",
+      "tenures": [{ "from": "2015-16", "to": "2015-16", "gc": 82, "w": 29, "l": 53, "playoffGc": 0, "playoffW": 0, "playoffL": 0, "note": "Succeeded Flip Saunders during 2015–16" }]
+    },
+    {
+      "id": "tom-thibodeau",
+      "name": "Tom Thibodeau",
+      "bio": [
+        "Tom Thibodeau brought a win-now defensive identity that snapped Minnesota’s long playoff drought—then became synonymous with heavy minutes and roster tension.",
+        "His tenure is remembered as a hinge: proof the Wolves could matter again in April, and a reminder that culture and fit matter as much as schemes."
+      ],
+      "tenures": [{ "from": "2016-17", "to": "2018-19", "gc": 204, "w": 97, "l": 107, "playoffGc": 5, "playoffW": 1, "playoffL": 4 }]
+    },
+    {
+      "id": "ryan-saunders",
+      "name": "Ryan Saunders",
+      "tenures": [{ "from": "2019-20", "to": "2020-21", "gc": 137, "w": 43, "l": 94, "playoffGc": 0, "playoffW": 0, "playoffL": 0 }]
+    },
+    {
+      "id": "chris-finch",
+      "name": "Chris Finch",
+      "bio": [
+        "Chris Finch arrived midstream and quickly earned trust for clear offensive principles and calm communication—traits that helped unlock Anthony Edwards’ stardom within a modern, movement-heavy attack.",
+        "His Wolves teams represent the franchise’s return to consistent relevance: postseason trips, deep runs, and a style fans could recognize on League Pass within a few possessions."
+      ],
+      "tenures": [{ "from": "2020-21", "to": "2025-26", "gc": 451, "w": 258, "l": 193, "playoffGc": 42, "playoffW": 21, "playoffL": 21, "note": "Totals per Wikipedia coach register (through April 2026)" }]
+    }
+  ]
+}

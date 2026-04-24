@@ -1,0 +1,32 @@
+{
+  "attribution": "Era hubs are editorial overviews. Stats and rosters still come from NBA.com pages on this site.",
+  "eras": [
+    {
+      "slug": "garnett",
+      "title": "Kevin Garnett era",
+      "yearsLabel": "1995–2007 (first Wolves stint)",
+      "intro": [
+        "This stretch is the franchise’s emotional spine: a teenager who became an MVP, a conference finals run, and years of fighting the West with rosters that were sometimes thin but rarely boring.",
+        "Use the links below to jump into seasons, the head coach most associated with the peak, and Garnett’s player profile with full career tables from NBA.com."
+      ],
+      "highlightSeasonIds": [
+        "1995-96",
+        "1996-97",
+        "2003-04",
+        "2004-05"
+      ],
+      "spotlightPlayers": [{ "playerId": 708, "label": "Kevin Garnett" }],
+      "relatedCoachIds": ["flip-saunders"],
+      "sources": [
+        {
+          "label": "Wikipedia — Minnesota Timberwolves (overview)",
+          "url": "https://en.wikipedia.org/wiki/Minnesota_Timberwolves"
+        },
+        {
+          "label": "Basketball-Reference — Kevin Garnett",
+          "url": "https://www.basketball-reference.com/players/g/garneke01.html"
+        }
+      ]
+    }
+  ]
+}
