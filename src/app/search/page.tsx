@@ -7,7 +7,7 @@ import { siteSearch } from "@/lib/site-search";
 export const metadata: Metadata = {
   title: "Search",
   description:
-    "Search Wolves History for players, coaches, eras, seasons, stories, and franchise figures.",
+    "Search Wolves History for players, coaches, eras, seasons, stories, and franchise figures. When your query lines up with graph tags, results can include season index theme filters that jump to /seasons?theme=… for that editorial lens. For curated, stable trails across the site, use /browse guided paths instead of relying on ad-hoc search alone.",
 };
 
 type PageProps = { searchParams: Promise<{ q?: string }> };
@@ -21,7 +21,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
     <>
       <PageHeader
         title="Search"
-        description="Matches player names (from the merged roster index), coaches, eras, flagship stories, figures, and season slugs. Stats tables themselves are not full-text indexed."
+        description="Matches player names (from the merged roster index), coaches, eras, flagship stories, figures, and season slugs. When a query lines up with graph tags, you may see season index theme filters that link to /seasons?theme=… for that lens. For stable, hand-picked paths through the archive, use /browse. Stats tables themselves are not full-text indexed."
       />
       <form className="mb-8 flex max-w-xl flex-col gap-3 sm:flex-row" action="/search" method="get">
         <label htmlFor="q" className="sr-only">
@@ -31,7 +31,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
           id="q"
           name="q"
           defaultValue={query}
-          placeholder="Try Garnett, 2003-04, Butler…"
+          placeholder="Try Garnett, 2003-04, Butler, mvp…"
           className="w-full flex-1 rounded-xl border border-zinc-700/90 bg-zinc-900/50 px-4 py-3 text-sm text-white shadow-inner shadow-black/20 placeholder:text-zinc-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/25"
         />
         <button

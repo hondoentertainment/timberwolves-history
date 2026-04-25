@@ -70,7 +70,7 @@ Status legend: `todo` · `doing` · `done` (update in this file or your tracker 
 - **PROF-003** `done` (MVP) — optional `bio[]` on entries in `wolves-coaches.json` (Flip, Thibs, Finch); rendered via `EditorialProse`.
 - **GRAPH / DISC / UX (MVP)** `done` (2026-04-25) — Typed **`ContentGraph`** + **`ContentGraphRelated`** on all era hubs (pilot `lastReviewed` on **butler-era**), pilot **`graph` / `graphPlayerLabels`** on two season blurbs, graph on flagship longread; **`/browse`**; **`/feed.xml`** + root RSS alternate; **corrections** mailto site-wide; era **Open Graph** / Twitter; longread **`lastReviewed`** + JSON-LD **`dateModified`**; **print** stylesheet for longreads.
 - **STORY-004 / STORY-006 / DISC-009 / PROF-005 / HIST-007 / STORY-008 / UX-001** `done` (2026-04-25 sweep) — **`mergedSeasonStoryGraph`** infers era links for **every** season blurb; **`getLongreadRelatedLinksForPlayer/Coach`** + **`getAllEraHubsForPlayer`** on profiles; **`/seasons`** query filters (`playoffs`, `era`); **`/players/leaders`**; home **`ThisWeekInWolvesHistory`** + timeline **`occursOn`**; **`/explore/2003-04-offseason`**; longread **read mode**; **`mergeContentGraphs`**; **`/sitemap.xml`** + **`/players/leaders`** `force-dynamic` for roster-index build budget.
-- **Agentic sweep (2026-04-25+)** `done` — **DISC-002** v2 (`site-search`: memes, themes, blurbs); **DISC-009** theme chips on **`/browse?theme=`**; **PROF-005** leaders enriched (`wolves-leaders-stats.ts`); **HIST-003/004** empty-state **`ProfileSection`** on seasons; second **`/explore/2017-18-playoff-return`**; **about-data** cache table + **STORY-007** policy; **DataFreshness** → **`#cache-windows`**; **`.github/workflows/ci.yml`**; **`site-search.test.ts`**.
+- **Agentic sweep (2026-04-25+)** `done` — **DISC-002** v2 (`site-search`: memes, season blurbs, **Theme** hits → **`/seasons?theme=…`**); **DISC-009** browse + season index facets; **PROF-005** leaders; **HIST-003/004** empty-state + curated JSON; **explore** vignettes; **about-data** cache table + **STORY-007** policy; **`.github/workflows/ci.yml`**; **`site-search.test.ts`**; playbook **`§6.1 Agentic execution`** (parallel ownership + merge order).
 
 ### Epic A — Historical depth (data + season experience)
 
@@ -181,8 +181,27 @@ Status legend: `todo` · `doing` · `done` (update in this file or your tracker 
 | Season graph inference | `src/lib/season-graph-infer.ts` | **`inferContentGraphForSeason`**, **`mergedSeasonStoryGraph`**. |
 | Profile graph links | `src/lib/profile-related-from-graph.ts` | Longread **`contentGraph`** → related reading on people pages. |
 | Week widget | `src/components/ThisWeekInWolvesHistory.tsx` | Uses **`getTimelineEventsInCurrentCalendarWeek`**. |
-| Offseason explorer | `src/app/explore/2003-04-offseason/*` | Static **STORY-008** shell. |
+| Offseason explorer | `src/app/explore/*` | Static **STORY-008** shells (e.g. `2003-04-offseason`, `2007-garnett-trade`, `2017-18-playoff-return`). |
 | Tenure leaders | `src/app/players/leaders/page.tsx` | **`force-dynamic`** (roster index cost). |
+| Guided paths | `src/data/guided-paths.json`, `src/lib/guided-paths.ts` | Curated URLs for `/browse` “guided paths.” |
+| Season theme facets | `src/lib/season-theme-facets.ts`, `src/app/seasons/page.tsx` | `?theme=` filters from merged season graphs. |
+
+### 6.1 Agentic execution (parallel agents)
+
+Use **disjoint ownership** so two writers never patch the same file in one pass. Typical split for a medium feature:
+
+| Worker | Owns | Avoid |
+|--------|------|--------|
+| **A — Data** | `src/data/*.json`, `src/data/changelog.json` entries | NBA fetch code, App Router pages |
+| **B — Server lib** | `src/lib/nba/*`, `unstable_cache` keys, small `src/lib/*.ts` helpers **not** imported by conflicting workers | `src/app/layout.tsx` while another worker touches shell |
+| **C — UI** | `src/app/**/page.tsx`, `src/components/*` | Same files as D |
+| **D — Tests** | `*.test.ts`, Vitest-only helpers | Production components another worker edits |
+
+**Merge order:** A → B → C → D → run **`npm run test`** and **`npm run build`** once on the integration branch.
+
+**Cursor Task tool:** use **`explore`** (read-only) to map; spawn one **`generalPurpose`** writer per disjoint path; **resume** only after the prior wave merges if two tasks would touch the same module (e.g. `queries.ts` + `SiteShell.tsx` + `DataFreshness.tsx` should ship in one wave or a single agent).
+
+**Integration:** one human or lead agent reconciles types, dedupes routes in `sitemap.ts` / nav, and updates **`cursor.md` §4 “Recently shipped”** when merging.
 
 ---
 
@@ -230,4 +249,4 @@ Status legend: `todo` · `doing` · `done` (update in this file or your tracker 
 
 ---
 
-*Last curated for the Wolves History Next.js app; extend backlog as new epics emerge. Updated 2026-04-25 — includes agentic sweep: search v2 (memes/themes/blurbs), browse theme facets, leaders enrichment, season empty-states, second explore route, about-data cache table + policy, CI workflow.*
+*Last curated for the Wolves History Next.js app; extend backlog as new epics emerge. Updated 2026-04-25 — includes agentic sweep: search v2 (memes/themes/blurbs), browse theme facets, leaders enrichment, season empty-states, explore routes, about-data cache table + policy, CI workflow, **§6.1 agentic execution** playbook.*

@@ -12,4 +12,15 @@ describe("siteSearch (DISC-002 v2)", () => {
     const hits = await siteSearch("garnett");
     expect(hits.some((h) => h.kind === "Season")).toBe(true);
   });
+
+  it("finds merged season graph themes by substring", async () => {
+    const hits = await siteSearch("mvp");
+    expect(hits.some((h) => h.kind === "Theme" && h.href.includes("theme="))).toBe(true);
+  });
+
+  it("titles inferred era-highlight theme hits readably", async () => {
+    const hits = await siteSearch("era-highlight");
+    const themeHit = hits.find((h) => h.kind === "Theme" && h.href.includes("era-highlight"));
+    expect(themeHit?.title).toMatch(/^Era highlight \(/);
+  });
 });

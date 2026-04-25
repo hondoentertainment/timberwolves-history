@@ -6,4 +6,4 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Wolves History
 
-For **roadmap, backlog, and Wolves-specific agent rules** (historical depth, storytelling, profiles), read **[cursor.md](./cursor.md)** in the repo root.
+For **roadmap, backlog, and Wolves-specific agent rules** (historical depth, storytelling, profiles), read **[cursor.md](./cursor.md)** in the repo root — including **§6.1 Agentic execution** when splitting work across parallel agents.

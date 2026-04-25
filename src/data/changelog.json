@@ -17,7 +17,8 @@
         "**DISC-009 (themes):** `/seasons?theme=…` stacked with playoffs/era; `ContentGraphRelated` theme chips link to season index; `/browse` guided paths from `guided-paths.json`.",
         "**HIST-006:** team-years `unstable_cache` bundle stores `fetchedAtIso`; footer shows last refresh when available.",
         "**PROF-005:** leaders add **best MIN RPG** (cache key v2); player profiles show playoff-era overlap vs franchise feed.",
-        "**Content + HIST-003/004:** 2007–08 draft rows + transaction note; season graphs for 1995–96, 2007–08, 2015–16; `/explore/2007-garnett-trade`."
+        "**Content + HIST-003/004:** 2007–08 draft rows + transaction note; season graphs for 1995–96, 2007–08, 2015–16; `/explore/2007-garnett-trade`.",
+        "**DISC-002:** `siteSearch` returns **Theme** hits linking to `/seasons?theme=…`; **cursor.md §6.1** documents parallel agent ownership and merge order."
       ]
     },
     {

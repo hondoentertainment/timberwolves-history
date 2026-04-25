@@ -4,6 +4,7 @@ import { getAllEras } from "@/lib/eras";
 import { getAllLongreads } from "@/lib/longreads";
 import { getWolvesMemes } from "@/lib/memes";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
+import { collectThemeFacetsForSeasons } from "@/lib/season-theme-facets";
 import { getSeasonStory } from "@/lib/season-stories";
 import { getWolvesSeasonIds } from "@/lib/nba/seasons";
 
@@ -13,6 +14,17 @@ export type SearchHit = {
   kind: string;
   snippet?: string;
 };
+
+function titleFromThemeSlug(themeSlug: string): string {
+  if (themeSlug.startsWith("era-highlight:")) {
+    const era = themeSlug.slice("era-highlight:".length);
+    return `Era highlight (${era.replace(/-/g, " ")})`;
+  }
+  return themeSlug
+    .split("-")
+    .map((w) => (w ? w[0]!.toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
 
 export async function siteSearch(raw: string): Promise<SearchHit[]> {
   const query = raw.trim().toLowerCase();
@@ -112,6 +124,19 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
           : undefined,
       });
     }
+  }
+
+  const themeSlugs = collectThemeFacetsForSeasons(getWolvesSeasonIds());
+  for (const themeSlug of themeSlugs) {
+    const slugHay = themeSlug.toLowerCase();
+    const spacedHay = slugHay.replace(/-/g, " ");
+    if (!slugHay.includes(query) && !spacedHay.includes(query)) continue;
+    hits.push({
+      title: titleFromThemeSlug(themeSlug),
+      href: `/seasons?theme=${encodeURIComponent(themeSlug)}`,
+      kind: "Theme",
+      snippet: "Filter the season index by this merged content-graph tag.",
+    });
   }
 
   const seen = new Set<string>();
