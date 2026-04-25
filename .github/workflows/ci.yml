@@ -15,7 +15,9 @@ jobs:
         with:
           node-version: "22"
           cache: "npm"
-      - run: npm ci
+      # npm ci fails on Linux when the lockfile omits nested optional deps
+      # (e.g. @rolldown/binding-wasm32-wasi → @emnapi/*) that Windows npm omits; npm install resolves them on the runner.
+      - run: npm install --no-audit --no-fund
       - run: npm run lint
       - run: npm run test
       - run: npm run build
