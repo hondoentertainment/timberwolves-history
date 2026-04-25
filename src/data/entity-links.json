@@ -1,0 +1,13 @@
+{
+  "attribution": "Cross-links between people and editorial stories. Curated; extend as new stories ship.",
+  "players": {
+    "708": { "storySlugs": ["weight-of-the-north"] },
+    "1626157": { "storySlugs": ["weight-of-the-north"] },
+    "1630162": { "storySlugs": ["weight-of-the-north"] }
+  },
+  "coaches": {
+    "flip-saunders": { "storySlugs": ["weight-of-the-north"] },
+    "tom-thibodeau": { "storySlugs": ["weight-of-the-north"] },
+    "chris-finch": { "storySlugs": ["weight-of-the-north"] }
+  }
+}

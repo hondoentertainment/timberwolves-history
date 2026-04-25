@@ -1,24 +1,152 @@
 {
-  "attribution": "Short editorial blurbs for select seasons. Not from the NBA.",
+  "attribution": "Season blurbs are editorial context for every franchise year on this site (1989–90 through the latest season slug in this file). They are not live NBA.com prose.",
   "stories": {
     "1989-90": {
       "blurb": "The expansion Timberwolves debuted with rookie Pooh Richardson and a young core learning NBA life in the Hubert H. Humphrey Metrodome—more about survival than wins, but the franchise clock started here.",
+      "updated": "2026-04-24"
+    },
+    "1990-91": {
+      "blurb": "A sophomore season of incremental roster learning—still deep in the lottery, still searching for a signature star to build around.",
+      "updated": "2026-04-24"
+    },
+    "1991-92": {
+      "blurb": "Sidney Lowe’s bench years continued the expansion hangover; Minnesota was still proving it could develop talent faster than the West left it behind.",
+      "updated": "2026-04-24"
+    },
+    "1992-93": {
+      "blurb": "Another lean campaign in the Metrodome era—wins were scarce, but the fan base was learning what loyalty meant in a cold-weather market.",
+      "updated": "2026-04-24"
+    },
+    "1993-94": {
+      "blurb": "Isaiah Rider’s scoring flair arrived as a rookie bright spot; the team remained lottery-bound but finally had a nightly bucket-getter worth the price of admission.",
+      "updated": "2026-04-24"
+    },
+    "1994-95": {
+      "blurb": "The pre-KG bridge: flashes of competence without a true centerpiece yet—the kind of season historians file as “before the storm.”",
+      "updated": "2026-04-24"
+    },
+    "1995-96": {
+      "blurb": "Kevin Garnett arrives straight from high school; the franchise’s emotional center of gravity shifts overnight toward a teenager with impossible motor.",
+      "updated": "2026-04-24"
+    },
+    "1996-97": {
+      "blurb": "KG’s first full season as a nightly force—still raw, already compulsive on defense, and already bending the team’s identity around him.",
+      "updated": "2026-04-24"
+    },
+    "1997-98": {
+      "blurb": "The lockout-shortened 50-game slate compressed standings chaos; Minnesota’s youth kept taking hard lessons against playoff-caliber West opponents.",
+      "updated": "2026-04-24"
+    },
+    "1998-99": {
+      "blurb": "Another truncated lockout schedule; Garnett was ascending into superstar usage while the roster around him still searched for reliable shot-making.",
+      "updated": "2026-04-24"
+    },
+    "1999-00": {
+      "blurb": "Stephon Marbury’s talent collided with organizational tension—wins ticked up at times, but the partnership with KG never stabilized into a long runway.",
+      "updated": "2026-04-24"
+    },
+    "2000-01": {
+      "blurb": "Terrell Brandon steadied the point guard spot; Minnesota returned to the playoffs as a lower seed, a small reward for a fan base tired of lottery math.",
+      "updated": "2026-04-24"
+    },
+    "2001-02": {
+      "blurb": "A first-round exit underscored how thin the margins were: Garnett’s brilliance could buy a postseason berth, but not automatic series wins in the West.",
+      "updated": "2026-04-24"
+    },
+    "2002-03": {
+      "blurb": "Another playoff appearance, another early exit—roster depth and half-court scoring remained the recurring questions beneath KG’s two-way dominance.",
       "updated": "2026-04-24"
     },
     "2003-04": {
       "blurb": "The breakthrough year: Kevin Garnett’s MVP season powered Minnesota to the West’s top seed and the franchise’s only Western Conference finals trip—still the emotional high-water mark for a generation of fans.",
       "updated": "2026-04-24"
     },
+    "2004-05": {
+      "blurb": "The hangover after the conference finals loss—roster questions, coaching transitions, and the first cracks in the KG-first window before the eventual rebuild trade.",
+      "updated": "2026-04-24"
+    },
+    "2005-06": {
+      "blurb": "Post-Sprewell/Cassell decay set in; what had been a conference finalist two years earlier slid back toward lottery obscurity despite Garnett’s nightly heroics.",
+      "updated": "2026-04-24"
+    },
+    "2006-07": {
+      "blurb": "Garnett’s final Minnesota act wore the weight of carrying every possession; the summer trade rumors that followed felt inevitable long before the headline dropped.",
+      "updated": "2026-04-24"
+    },
+    "2007-08": {
+      "blurb": "The first post-Garnett season: a roster learning new roles while the league quietly stopped treating Minnesota as a nightly headline.",
+      "updated": "2026-04-24"
+    },
+    "2008-09": {
+      "blurb": "McHale’s interim return and another lottery finish—symbolic of a franchise stuck between development curves and impatient expectations.",
+      "updated": "2026-04-24"
+    },
+    "2009-10": {
+      "blurb": "Kurt Rambis took over a young, uneven group; Jonny Flynn’s rookie year became a symbol of a front-office era fans would later roast in hindsight.",
+      "updated": "2026-04-24"
+    },
+    "2010-11": {
+      "blurb": "Darko Milicic minutes became a meme; beneath the jokes sat another year of searching for defensive backbone in a conference that punished softness.",
+      "updated": "2026-04-24"
+    },
+    "2011-12": {
+      "blurb": "Rubio’s delayed arrival finally gave Target Center a pass-first show—even as wins remained stubbornly hard to stack in the West.",
+      "updated": "2026-04-24"
+    },
+    "2012-13": {
+      "blurb": "Love’s counting stats popped while the defense lagged; the season is remembered as talent without enough team-level glue to climb the standings.",
+      "updated": "2026-04-24"
+    },
+    "2013-14": {
+      "blurb": "Near-miss energy under Adelman—close enough to taste relevance, far enough to land back in lottery discourse by spring.",
+      "updated": "2026-04-24"
+    },
     "2014-15": {
       "blurb": "Flip Saunders returned to the bench while the roster turned over; the season is remembered as much for leadership and loss—Saunders’ death in October 2015—as for the record on the floor.",
+      "updated": "2026-04-24"
+    },
+    "2015-16": {
+      "blurb": "Karl-Anthony Towns debuts as the No. 1 pick—a scoring big who immediately shifted how Wolves fans imagined spacing and late-game offense.",
+      "updated": "2026-04-24"
+    },
+    "2016-17": {
+      "blurb": "Thibodeau’s first season imported defensive vocabulary, but the roster still looked younger than its playoff dreams.",
       "updated": "2026-04-24"
     },
     "2017-18": {
       "blurb": "The 14-year playoff drought ended with Jimmy Butler and a rugged identity under Tom Thibodeau—a cathartic return to the postseason after years of near-misses and lottery heartbreak.",
       "updated": "2026-04-24"
     },
+    "2018-19": {
+      "blurb": "The Butler chapter unraveled publicly; Minnesota learned again that talent without trust rarely holds in the West spotlight.",
+      "updated": "2026-04-24"
+    },
+    "2019-20": {
+      "blurb": "Reset vibes under Ryan Saunders—development minutes, defensive questions, and another lottery finish while the league reorganized around perimeter shot-making.",
+      "updated": "2026-04-24"
+    },
+    "2020-21": {
+      "blurb": "Anthony Edwards’ rookie season televised charisma; Finch arrived midstream and the franchise began sounding like a modern defensive program again.",
+      "updated": "2026-04-24"
+    },
+    "2021-22": {
+      "blurb": "A competitive but uneven year—enough highlight moments to sell hope, enough inconsistency to keep the standings honest.",
+      "updated": "2026-04-24"
+    },
+    "2022-23": {
+      "blurb": "Playoff return energy with Finch’s schemes tightening; the West remained cruel, but Minnesota stopped feeling like a permanent lottery punchline.",
+      "updated": "2026-04-24"
+    },
+    "2023-24": {
+      "blurb": "Another postseason trip with Ant as the nightly headliner—defensive identity and shot-making volatility both turned up to eleven.",
+      "updated": "2026-04-24"
+    },
     "2024-25": {
       "blurb": "Chris Finch’s Wolves leaned into two-way depth and star shot-making, carrying momentum from the prior postseason into another competitive West race—part of the modern “Ant era” identity.",
+      "updated": "2026-04-24"
+    },
+    "2025-26": {
+      "blurb": "The current-season chapter—still writing itself on the floor. Use NBA.com-backed tables on this site for live numbers; this blurb will be revised as the arc becomes clearer.",
       "updated": "2026-04-24"
     }
   }

@@ -1,0 +1,37 @@
+{
+  "attribution": "Franchise figures are editorial capsules about non-player personas. Not affiliated with the NBA or team.",
+  "figures": [
+    {
+      "slug": "glen-taylor",
+      "title": "Glen Taylor (ownership era)",
+      "role": "Owner",
+      "yearsLabel": "1994–2021 (sale process thereafter)",
+      "paragraphs": [
+        "Taylor’s tenure as owner spans the Garnett peak, the post-KG rebuilds, arena debates, and the slow modernization of the franchise’s basketball operations. Fans often argue about decisions in the margins—coaching hires, patience with rebuilds, trade timing—while acknowledging that stability of ownership is its own kind of rarity in the NBA.",
+        "For historians, Taylor is less a statistic and more a backdrop: the person who signed the checks while Minnesota tried, failed, and occasionally succeeded at turning talent into postseason staying power."
+      ],
+      "sources": [
+        {
+          "label": "Wikipedia — Glen Taylor",
+          "url": "https://en.wikipedia.org/wiki/Glen_Taylor"
+        }
+      ]
+    },
+    {
+      "slug": "alan-horton",
+      "title": "Alan Horton (radio voice)",
+      "role": "Broadcast",
+      "yearsLabel": "Long-tenured Timberwolves radio",
+      "paragraphs": [
+        "For listeners, Horton’s call is part of the sensory memory of Wolves basketball—how a baseline drive or a buzzer-beater sounded when the team was irrelevant or dangerous. Broadcast voices rarely appear in stat tables, but they shape how fans remember games.",
+        "This capsule exists to remind the archive that “depth” includes the people who narrated the franchise in real time."
+      ],
+      "sources": [
+        {
+          "label": "Minnesota Timberwolves — official site (context)",
+          "url": "https://www.nba.com/timberwolves"
+        }
+      ]
+    }
+  ]
+}

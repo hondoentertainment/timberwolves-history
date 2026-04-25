@@ -45,7 +45,7 @@ export default function AboutDataPage() {
             <code className="text-zinc-300">CRON_SECRET</code>) calls{" "}
             <code className="text-zinc-300">revalidateTag</code> on Vercel Cron (see{" "}
             <code className="text-zinc-300">vercel.json</code>). Set the secret in your hosting
-            project environment; without it the route returns 501.
+            project environment; without it the route returns 401 (same as a bad secret).
           </p>
         </section>
         <section>
@@ -74,6 +74,30 @@ export default function AboutDataPage() {
             <li>
               <code className="text-zinc-300">src/data/franchise-timeline.json</code> — milestone
               timeline copy.
+            </li>
+            <li>
+              <code className="text-zinc-300">src/data/draft-picks-by-season.json</code> — curated
+              draft rows surfaced on season pages when present.
+            </li>
+            <li>
+              <code className="text-zinc-300">src/data/transactions-by-season.json</code> — curated
+              transaction notes for narrative context.
+            </li>
+            <li>
+              <code className="text-zinc-300">src/data/entity-links.json</code> — cross-links from
+              players/coaches to flagship stories.
+            </li>
+            <li>
+              <code className="text-zinc-300">src/data/wolves-figures.json</code> — non-player
+              franchise capsules (owners, broadcast, etc.).
+            </li>
+            <li>
+              <code className="text-zinc-300">src/data/changelog.json</code> — substantive site and
+              content updates for the public changelog.
+            </li>
+            <li>
+              Longreads ship as typed modules under{" "}
+              <code className="text-zinc-300">src/content/longreads/</code> (not live NBA data).
             </li>
           </ul>
         </section>

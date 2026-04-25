@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 
 import { getAllCoaches } from "@/lib/coaches";
+import { getAllFigures } from "@/lib/figures";
 import { getAllEras } from "@/lib/eras";
+import { getLongreadSlugs } from "@/lib/longreads";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 import { getWolvesSeasonIds } from "@/lib/nba/seasons";
 
@@ -19,6 +21,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/timeline",
     "/about-data",
     "/memes",
+    "/stories",
+    "/search",
+    "/trivia",
+    "/changelog",
+    "/figures",
   ].map((path) => ({
     url: `${root}${path}`,
     lastModified: new Date(),
@@ -47,6 +54,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.55,
   }));
 
+  const storyPages = getLongreadSlugs().map((slug) => ({
+    url: `${root}/stories/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  const figurePages = getAllFigures().map((f) => ({
+    url: `${root}/figures/${f.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly" as const,
+    priority: 0.35,
+  }));
+
   let playerPages: MetadataRoute.Sitemap = [];
   try {
     const players = await getCachedAllTimeWolvesPlayers();
@@ -60,5 +81,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     playerPages = [];
   }
 
-  return [...staticRoutes, ...seasons, ...coaches, ...eraPages, ...playerPages];
+  return [
+    ...staticRoutes,
+    ...seasons,
+    ...coaches,
+    ...eraPages,
+    ...storyPages,
+    ...figurePages,
+    ...playerPages,
+  ];
 }

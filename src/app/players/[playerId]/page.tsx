@@ -1,18 +1,21 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { EditorialProse } from "@/components/EditorialProse";
+import { PlayerHeadshot } from "@/components/PlayerHeadshot";
 import {
   ProfileHero,
   ProfileLayout,
   ProfileMetaGrid,
   ProfileSection,
 } from "@/components/profile";
+import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { StatTable } from "@/components/StatTable";
+import { getRelatedStoriesForPlayer } from "@/lib/entity-links";
 import { getEraHubLinkForPlayer } from "@/lib/eras";
 import { formatCareerStatRows } from "@/lib/player-format";
 import { getPlayerBio, playerBiosAttribution } from "@/lib/player-bios";
+import { computeWolvesHighlightBullets } from "@/lib/player-highlights";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 import {
   fetchCommonPlayerInfo,
@@ -62,6 +65,28 @@ export default async function PlayerPage({ params }: PageProps) {
   const indexRow = index.find((p) => p.playerId === id);
   const editorialBio = getPlayerBio(id);
   const eraHub = getEraHubLinkForPlayer(id);
+  const relatedStories = getRelatedStoriesForPlayer(id);
+
+  const highlightBullets =
+    editorialBio?.highlightBullets?.length && editorialBio.highlightBullets.length > 0
+      ? editorialBio.highlightBullets
+      : computeWolvesHighlightBullets(wolvesRows);
+
+  const relatedLinks: RelatedReadingLink[] = [];
+  if (eraHub) {
+    relatedLinks.push({
+      href: `/eras/${eraHub.slug}`,
+      label: eraHub.linkLabel,
+      hint: "Era hub",
+    });
+  }
+  for (const s of relatedStories) {
+    relatedLinks.push({
+      href: `/stories/${s.slug}`,
+      label: s.title,
+      hint: "Editorial essay",
+    });
+  }
 
   const jersey = String(info["JERSEY"] ?? "");
   const position = String(info["POSITION"] ?? "");
@@ -111,16 +136,7 @@ export default async function PlayerPage({ params }: PageProps) {
             the team abbreviation is MIN.
           </p>
         }
-        media={
-          <Image
-            src={`https://cdn.nba.com/headshots/nba/latest/1040x760/${id}.png`}
-            alt={`Headshot of ${name}`}
-            width={208}
-            height={156}
-            className="rounded-lg border border-zinc-800 bg-zinc-900 object-cover"
-            unoptimized
-          />
-        }
+        media={<PlayerHeadshot playerId={id} name={name} />}
       />
       {editorialBio ? (
         <ProfileSection
@@ -134,16 +150,23 @@ export default async function PlayerPage({ params }: PageProps) {
             paragraphs={editorialBio.paragraphs}
             sources={editorialBio.sources}
           />
-          {eraHub ? (
-            <p className="mt-4 text-sm text-zinc-500">
-              <Link
-                href={`/eras/${eraHub.slug}`}
-                className="text-emerald-400 outline-offset-2 hover:text-emerald-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500/80"
-              >
-                {eraHub.linkLabel} →
-              </Link>
-            </p>
-          ) : null}
+        </ProfileSection>
+      ) : null}
+      {highlightBullets.length ? (
+        <ProfileSection
+          id="highlights"
+          title="Wolves career highlights"
+          description={
+            editorialBio?.highlightBullets?.length
+              ? "Editorial bullets from player-bios.json (override)."
+              : "Derived from MIN per-game rows; not a complete advanced-stat audit."
+          }
+        >
+          <ul className="list-inside list-disc space-y-2 text-sm leading-relaxed text-zinc-300">
+            {highlightBullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
         </ProfileSection>
       ) : null}
       <ProfileSection id="vitals" title="Bio & vitals">
@@ -172,6 +195,11 @@ export default async function PlayerPage({ params }: PageProps) {
           emptyLabel="No career rows returned."
         />
       </ProfileSection>
+      {relatedLinks.length ? (
+        <ProfileSection id="related" title="Related reading" description="Era hubs and essays tied to this profile.">
+          <RelatedReading links={relatedLinks} title="" />
+        </ProfileSection>
+      ) : null}
       <p className="text-sm text-zinc-500">
         <Link href="/players" className="text-emerald-400 hover:text-emerald-300">
           ← All players

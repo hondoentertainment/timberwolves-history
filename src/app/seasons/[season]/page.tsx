@@ -9,6 +9,7 @@ import {
 } from "@/components/profile";
 import { StatTable } from "@/components/StatTable";
 import { coachNamesForSeason } from "@/lib/coaches";
+import { getDraftPicksForSeason } from "@/lib/draft-picks";
 import { formatPlayoffNarrative } from "@/lib/playoff-summary";
 import {
   fetchTeamRoster,
@@ -17,6 +18,7 @@ import {
 } from "@/lib/nba/queries";
 import { parseSeasonSlug } from "@/lib/nba/seasons";
 import { getSeasonStory } from "@/lib/season-stories";
+import { getTransactionsForSeason, transactionsAttribution } from "@/lib/transactions-season";
 import type { Metadata } from "next";
 
 export const revalidate = 3600;
@@ -50,6 +52,8 @@ export default async function SeasonDetailPage({ params }: PageProps) {
     : [];
   const coachNames = coachNamesForSeason(valid);
   const story = getSeasonStory(valid);
+  const draftPicks = getDraftPicksForSeason(valid);
+  const transactions = getTransactionsForSeason(valid);
 
   const playoffLine = summary
     ? formatPlayoffNarrative({
@@ -94,6 +98,13 @@ export default async function SeasonDetailPage({ params }: PageProps) {
     p.country || "—",
   ]);
 
+  const draftRows = draftPicks.map((d) => [
+    d.round,
+    d.pickOverall,
+    d.playerName,
+    d.note && d.note.length ? d.note : "—",
+  ]);
+
   return (
     <ProfileLayout>
       <ProfileHero title={`${valid} Timberwolves`} role="Season" intro={intro} />
@@ -114,6 +125,35 @@ export default async function SeasonDetailPage({ params }: PageProps) {
           {coachNames.length ? coachNames.join(", ") : "—"}
         </span>
       </div>
+      {draftPicks.length ? (
+        <ProfileSection
+          id="draft"
+          title="Draft class (curated)"
+          description="Static register excerpt for this season when available—not a complete league draft log."
+        >
+          <StatTable
+            caption={`Timberwolves draft selections ${valid}`}
+            columns={["Rd", "Pick", "Player", "Note"]}
+            rows={draftRows}
+          />
+        </ProfileSection>
+      ) : null}
+      {transactions.length ? (
+        <ProfileSection
+          id="transactions"
+          title="Notable transactions"
+          description={transactionsAttribution()}
+        >
+          <ul className="space-y-4 text-sm leading-relaxed text-zinc-300">
+            {transactions.map((t) => (
+              <li key={t.dateLabel + t.summary.slice(0, 24)} className="border-b border-zinc-800/60 pb-4 last:border-b-0">
+                <p className="font-medium text-zinc-200">{t.dateLabel}</p>
+                <p className="mt-1 text-zinc-400">{t.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </ProfileSection>
+      ) : null}
       <ProfileSection
         id="roster"
         title="Roster"

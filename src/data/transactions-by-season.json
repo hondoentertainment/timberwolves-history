@@ -1,0 +1,35 @@
+{
+  "attribution": "Notable transactions are editorial summaries for narrative context. They are not a complete league transaction log.",
+  "bySeason": {
+    "2003-04": [
+      {
+        "dateLabel": "Summer 2003",
+        "summary": "Retooled around Garnett’s MVP peak; roster moves aimed at spacing and veteran defense for a West finals push."
+      }
+    ],
+    "2007-08": [
+      {
+        "dateLabel": "2007 offseason",
+        "summary": "Kevin Garnett traded to Boston in a blockbuster rebuild trade—franchise identity shifts toward youth and assets."
+      }
+    ],
+    "2014-15": [
+      {
+        "dateLabel": "2014 draft",
+        "summary": "Selected Zach LaVine and traded for Andrew Wiggins as part of the Love deal return package."
+      }
+    ],
+    "2017-18": [
+      {
+        "dateLabel": "2017 offseason",
+        "summary": "Jimmy Butler acquired to pair with Towns and Wiggins; Wolves break a 14-year playoff drought."
+      }
+    ],
+    "2022-23": [
+      {
+        "dateLabel": "Deadline period",
+        "summary": "Roster consolidation moves around the Edwards–Towns core as the team pursued playoff seeding in a crowded West."
+      }
+    ]
+  }
+}

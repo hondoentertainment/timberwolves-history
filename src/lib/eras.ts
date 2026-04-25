@@ -12,6 +12,8 @@ export type EraRecord = {
   highlightSeasonIds: string[];
   spotlightPlayers: EraSpotlightPlayer[];
   relatedCoachIds: string[];
+  /** Optional links to `/stories/[slug]` editorial essays. */
+  relatedStorySlugs?: string[];
   sources: EraSource[];
 };
 
@@ -34,6 +36,13 @@ export function getEraHubLinkForPlayer(
     }
   }
   return undefined;
+}
+
+/** Eras that list this coach in `relatedCoachIds`. */
+export function getEraHubsForCoach(coachId: string): { slug: string; title: string }[] {
+  return getAllEras()
+    .filter((e) => e.relatedCoachIds.includes(coachId))
+    .map((e) => ({ slug: e.slug, title: e.title }));
 }
 
 export function erasAttribution(): string {

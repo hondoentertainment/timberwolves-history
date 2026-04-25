@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
-      <body className="min-h-full font-sans antialiased">
+      <body className="min-h-full font-sans antialiased selection:bg-emerald-500/25 selection:text-emerald-50">
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

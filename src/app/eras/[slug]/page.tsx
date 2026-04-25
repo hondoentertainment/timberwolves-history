@@ -2,8 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ProfileHero, ProfileLayout, ProfileSection } from "@/components/profile";
+import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { getCoachById } from "@/lib/coaches";
 import { erasAttribution, getEraBySlug } from "@/lib/eras";
+import { getLongreadBySlug } from "@/lib/longreads";
 import type { Metadata } from "next";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -22,6 +24,18 @@ export default async function EraPage({ params }: PageProps) {
   const { slug } = await params;
   const era = getEraBySlug(slug);
   if (!era) notFound();
+
+  const storyLinks: RelatedReadingLink[] = [];
+  for (const storySlug of era.relatedStorySlugs ?? []) {
+    const s = getLongreadBySlug(storySlug);
+    if (s) {
+      storyLinks.push({
+        href: `/stories/${s.slug}`,
+        label: s.title,
+        hint: "Flagship essay",
+      });
+    }
+  }
 
   return (
     <ProfileLayout>
@@ -57,7 +71,21 @@ export default async function EraPage({ params }: PageProps) {
           </Link>
         </p>
       </ProfileSection>
+      {storyLinks.length ? (
+        <ProfileSection id="essays" title="Essays" description="Longer editorial pieces that intersect with this era.">
+          <RelatedReading links={storyLinks} title="" />
+        </ProfileSection>
+      ) : null}
       <ProfileSection id="people" title="People" description="Spotlight profiles and coaches tied to this era.">
+        {era.spotlightPlayers.length === 0 ? (
+          <p className="text-sm text-zinc-500">
+            No spotlight players listed for this hub yet—browse the{" "}
+            <Link href="/players" className="text-emerald-400 hover:text-emerald-300">
+              all-time players index
+            </Link>{" "}
+            for roster lineage.
+          </p>
+        ) : null}
         <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           {era.spotlightPlayers.map((sp) => (
             <Link

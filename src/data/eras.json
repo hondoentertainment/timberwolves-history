@@ -2,6 +2,25 @@
   "attribution": "Era hubs are editorial overviews. Stats and rosters still come from NBA.com pages on this site.",
   "eras": [
     {
+      "slug": "expansion",
+      "title": "Expansion & Metrodome years",
+      "yearsLabel": "1989–1995",
+      "intro": [
+        "Minnesota entered the league as a curiosity: a northern market with a football stadium for a home court, expansion rules that tilted the talent math, and a fan base learning what professional basketball meant here.",
+        "These seasons are about first identities—coaches trying to install structure, rookies asked to play heavy minutes, and the slow work of building a vocabulary for Wolves basketball."
+      ],
+      "highlightSeasonIds": ["1989-90", "1990-91", "1991-92", "1994-95"],
+      "spotlightPlayers": [],
+      "relatedCoachIds": ["bill-musselman", "jimmy-rodgers"],
+      "relatedStorySlugs": ["weight-of-the-north"],
+      "sources": [
+        {
+          "label": "Wikipedia — Minnesota Timberwolves",
+          "url": "https://en.wikipedia.org/wiki/Minnesota_Timberwolves"
+        }
+      ]
+    },
+    {
       "slug": "garnett",
       "title": "Kevin Garnett era",
       "yearsLabel": "1995–2007 (first Wolves stint)",
@@ -9,14 +28,10 @@
         "This stretch is the franchise’s emotional spine: a teenager who became an MVP, a conference finals run, and years of fighting the West with rosters that were sometimes thin but rarely boring.",
         "Use the links below to jump into seasons, the head coach most associated with the peak, and Garnett’s player profile with full career tables from NBA.com."
       ],
-      "highlightSeasonIds": [
-        "1995-96",
-        "1996-97",
-        "2003-04",
-        "2004-05"
-      ],
+      "highlightSeasonIds": ["1995-96", "1996-97", "2003-04", "2004-05"],
       "spotlightPlayers": [{ "playerId": 708, "label": "Kevin Garnett" }],
       "relatedCoachIds": ["flip-saunders"],
+      "relatedStorySlugs": ["weight-of-the-north"],
       "sources": [
         {
           "label": "Wikipedia — Minnesota Timberwolves (overview)",
@@ -25,6 +40,69 @@
         {
           "label": "Basketball-Reference — Kevin Garnett",
           "url": "https://www.basketball-reference.com/players/g/garneke01.html"
+        }
+      ]
+    },
+    {
+      "slug": "post-kg-rebuild",
+      "title": "Post-KG rebuild",
+      "yearsLabel": "2007–2015",
+      "intro": [
+        "After Garnett’s first exit, Minnesota lived through lottery math, front-office churn, and flashes of individual brilliance that rarely hardened into sustained winning.",
+        "The Love–Rubio window is the emotional center of this arc: hope packaged as counting stats, near-misses, and the long wait for a defense-first identity to arrive."
+      ],
+      "highlightSeasonIds": ["2008-09", "2013-14", "2014-15"],
+      "spotlightPlayers": [
+        { "playerId": 201567, "label": "Kevin Love" },
+        { "playerId": 201937, "label": "Ricky Rubio" }
+      ],
+      "relatedCoachIds": ["rick-adelman", "flip-saunders"],
+      "relatedStorySlugs": ["weight-of-the-north"],
+      "sources": [
+        {
+          "label": "Basketball-Reference — franchise seasons",
+          "url": "https://www.basketball-reference.com/teams/MIN/"
+        }
+      ]
+    },
+    {
+      "slug": "butler-era",
+      "title": "Butler & the drought’s end",
+      "yearsLabel": "2016–2019",
+      "intro": [
+        "Jimmy Butler’s arrival compressed years of tension into a short, loud chapter: a playoff return after fourteen absent springs, followed by a very public fracture about what kind of team Minnesota wanted to be.",
+        "Historically, it matters because it proved the ceiling could move—and because it reminded fans how fragile chemistry is when stakes rise."
+      ],
+      "highlightSeasonIds": ["2017-18", "2018-19"],
+      "spotlightPlayers": [{ "playerId": 202704, "label": "Jimmy Butler" }],
+      "relatedCoachIds": ["tom-thibodeau"],
+      "relatedStorySlugs": ["weight-of-the-north"],
+      "sources": [
+        {
+          "label": "Wikipedia — Jimmy Butler",
+          "url": "https://en.wikipedia.org/wiki/Jimmy_Butler"
+        }
+      ]
+    },
+    {
+      "slug": "finch-modern",
+      "title": "Finch & the modern Wolves",
+      "yearsLabel": "2020–present",
+      "intro": [
+        "Chris Finch’s tenure is associated with clearer defensive schemes, playoff repetitions, and a star backcourt that finally feels televised and tenacious at the same time.",
+        "This hub is the forward-looking bookmark: less about myth-making than about documenting how a franchise stabilizes after decades of plot twists."
+      ],
+      "highlightSeasonIds": ["2023-24", "2024-25"],
+      "spotlightPlayers": [
+        { "playerId": 1630162, "label": "Anthony Edwards" },
+        { "playerId": 1626157, "label": "Karl-Anthony Towns" }
+      ],
+      "relatedCoachIds": ["chris-finch"],
+      "relatedStorySlugs": ["weight-of-the-north"],
+      "sources": [
+        {
+          "label": "NBA.com — Timberwolves team stats (live reference)",
+          "url": "https://www.nba.com/timberwolves"
         }
       ]
     }

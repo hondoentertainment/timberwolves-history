@@ -20,13 +20,24 @@ export function ProfileSection({ id, title, description, children }: ProfileSect
   const base = id ?? titleToSectionBase(title);
   const headingId = `${base}-heading`;
   return (
-    <section id={base} aria-labelledby={headingId}>
-      <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-        <h2 id={headingId} className="text-lg font-semibold text-white">
-          {title}
-        </h2>
+    <section id={base} aria-labelledby={headingId} className="scroll-mt-24">
+      <div className="mb-4 flex flex-col gap-2 border-b border-zinc-800/70 pb-4 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+        <div className="flex items-center gap-3">
+          <span
+            className="h-7 w-0.5 shrink-0 rounded-full bg-gradient-to-b from-emerald-400/80 to-teal-600/40 sm:h-8 sm:w-1"
+            aria-hidden
+          />
+          <h2
+            id={headingId}
+            className="text-xl font-semibold tracking-tight text-white sm:text-[1.35rem]"
+          >
+            {title}
+          </h2>
+        </div>
         {description ? (
-          <p className="text-xs text-zinc-500 sm:max-w-md sm:text-right">{description}</p>
+          <p className="max-w-xl text-pretty text-xs leading-relaxed text-zinc-500 sm:text-right sm:text-sm">
+            {description}
+          </p>
         ) : null}
       </div>
       {children}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
@@ -19,6 +20,17 @@ export default function MemesPage() {
         title="Wolves memes & fan lore"
         description={disclaimer}
       />
+      <p className="mb-8 max-w-3xl text-sm leading-relaxed text-zinc-500">
+        For broader historical framing (not jokes), see{" "}
+        <Link href="/eras" className="text-emerald-400 hover:text-emerald-300">
+          era hubs
+        </Link>{" "}
+        and the flagship essay{" "}
+        <Link href="/stories/weight-of-the-north" className="text-emerald-400 hover:text-emerald-300">
+          The weight of the North
+        </Link>
+        .
+      </p>
       <ul className="list-none space-y-5 p-0">
         {memes.map((m, i) => (
           <li

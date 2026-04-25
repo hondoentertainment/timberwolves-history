@@ -20,7 +20,7 @@ export default async function SeasonsPage() {
       <Link
         key={`season-${s.seasonLabel}`}
         href={`/seasons/${encodeURIComponent(s.seasonLabel)}`}
-        className="font-medium text-emerald-400 hover:text-emerald-300"
+        className="font-medium text-emerald-400/95 decoration-emerald-500/25 underline-offset-2 transition hover:text-emerald-300 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
       >
         {s.seasonLabel}
       </Link>,
@@ -41,7 +41,7 @@ export default async function SeasonsPage() {
         description="Franchise regular-season records and playoff game wins and losses from NBA.com team year-over-year stats. Coaching names are matched from a static head-coach register when seasons overlap."
       />
       {!seasons.length ? (
-        <p className="mb-4 rounded-lg border border-amber-800/60 bg-amber-950/30 px-4 py-3 text-sm text-amber-100/90">
+        <p className="mb-6 rounded-2xl border border-amber-500/25 bg-amber-950/25 px-5 py-4 text-sm leading-relaxed text-amber-100/95 ring-1 ring-amber-500/10">
           NBA.com team stats are temporarily unavailable (build or network). Retry shortly; cached
           pages fill once the feed responds.
         </p>

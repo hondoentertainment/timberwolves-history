@@ -1,0 +1,59 @@
+{
+  "attribution": "Draft selections are curated editorial summaries (not a live NBA draft API). Verify against official league records before citing elsewhere.",
+  "bySeason": {
+    "1989-90": [
+      {
+        "round": 1,
+        "pickOverall": 10,
+        "playerName": "Pooh Richardson",
+        "note": "Franchise’s first lottery selection."
+      },
+      {
+        "round": 2,
+        "pickOverall": 33,
+        "playerName": "Gary Leonard",
+        "note": ""
+      }
+    ],
+    "1995-96": [
+      {
+        "round": 1,
+        "pickOverall": 5,
+        "playerName": "Kevin Garnett",
+        "note": "Preps-to-pros landmark pick for the franchise."
+      }
+    ],
+    "2003-04": [
+      {
+        "round": 2,
+        "pickOverall": 31,
+        "playerName": "Ndudi Ebi",
+        "note": ""
+      }
+    ],
+    "2014-15": [
+      {
+        "round": 1,
+        "pickOverall": 13,
+        "playerName": "Zach LaVine",
+        "note": "Later became a centerpiece in trade packages."
+      }
+    ],
+    "2015-16": [
+      {
+        "round": 1,
+        "pickOverall": 1,
+        "playerName": "Karl-Anthony Towns",
+        "note": "No. 1 overall; anchor of the post-Love rebuild."
+      }
+    ],
+    "2020-21": [
+      {
+        "round": 1,
+        "pickOverall": 1,
+        "playerName": "Anthony Edwards",
+        "note": "No. 1 overall; perimeter scoring identity for the Finch era."
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "attribution": "Substantive site and content updates. Routine dependency bumps are omitted.",
+  "entries": [
+    {
+      "date": "2026-04-24",
+      "title": "Depth pass: stories, eras, drafts, transactions, search",
+      "items": [
+        "Added flagship longread route with Article JSON-LD and `/stories` index.",
+        "Expanded era hubs (expansion, Garnett, post-KG, Butler, Finch-modern) with cross-links to essays.",
+        "Season pages can show curated draft picks and transaction notes when JSON exists for that year.",
+        "Player profiles: Wolves highlight bullets (computed or JSON override), related reading, resilient headshots.",
+        "New `/figures` capsules, `/changelog`, `/search`, and data freshness note in the shell."
+      ]
+    }
+  ]
+}

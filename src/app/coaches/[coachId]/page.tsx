@@ -3,8 +3,11 @@ import { notFound } from "next/navigation";
 
 import { EditorialProse } from "@/components/EditorialProse";
 import { ProfileHero, ProfileLayout, ProfileSection } from "@/components/profile";
+import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { StatTable } from "@/components/StatTable";
 import { coachesFileAttribution, getCoachById } from "@/lib/coaches";
+import { getRelatedStoriesForCoach } from "@/lib/entity-links";
+import { getEraHubsForCoach } from "@/lib/eras";
 import type { Metadata } from "next";
 
 type PageProps = { params: Promise<{ coachId: string }> };
@@ -23,6 +26,14 @@ export default async function CoachDetailPage({ params }: PageProps) {
   const { coachId } = await params;
   const coach = getCoachById(coachId);
   if (!coach) notFound();
+
+  const relatedLinks: RelatedReadingLink[] = [];
+  for (const era of getEraHubsForCoach(coachId)) {
+    relatedLinks.push({ href: `/eras/${era.slug}`, label: era.title, hint: "Era hub" });
+  }
+  for (const s of getRelatedStoriesForCoach(coachId)) {
+    relatedLinks.push({ href: `/stories/${s.slug}`, label: s.title, hint: "Editorial essay" });
+  }
 
   const rows = coach.tenures.map((t) => [
     `${t.from}–${t.to}`,
@@ -56,6 +67,11 @@ export default async function CoachDetailPage({ params }: PageProps) {
             attribution={coachesFileAttribution()}
             paragraphs={coach.bio}
           />
+        </ProfileSection>
+      ) : null}
+      {relatedLinks.length ? (
+        <ProfileSection id="related" title="Related reading" description="Era hubs and essays tied to this coach.">
+          <RelatedReading links={relatedLinks} title="" />
         </ProfileSection>
       ) : null}
       <ProfileSection

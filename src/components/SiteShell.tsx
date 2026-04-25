@@ -1,82 +1,76 @@
 import Link from "next/link";
 
-const nav = [
-  { href: "/", label: "Home" },
-  { href: "/seasons", label: "Seasons" },
-  { href: "/players", label: "Players" },
-  { href: "/coaches", label: "Coaches" },
-  { href: "/eras", label: "Eras" },
-  { href: "/timeline", label: "Timeline" },
-  { href: "/memes", label: "Memes" },
-  { href: "/about-data", label: "Data" },
-];
+import { DataFreshness } from "@/components/DataFreshness";
+import { PrimaryNav } from "@/components/PrimaryNav";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-full flex-col bg-zinc-950 text-zinc-100">
+    <div className="flex min-h-full flex-col text-zinc-100">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-zinc-900"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-zinc-900 focus:shadow-lg"
       >
         Skip to content
       </a>
       <header
         aria-label="Site"
-        className="border-b border-zinc-800 bg-zinc-950/90 backdrop-blur"
+        className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/70 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150"
       >
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-4">
           <Link
             href="/"
-            className="group rounded-md outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500/80"
+            className="group shrink-0 rounded-lg outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
           >
-            <span className="block text-lg font-semibold tracking-tight text-white">
+            <span className="block bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-xl font-semibold tracking-tight text-transparent">
               Wolves History
             </span>
-            <span className="text-xs text-zinc-500 group-hover:text-zinc-400">
+            <span className="mt-0.5 block text-xs font-medium tracking-wide text-zinc-500 transition-colors group-hover:text-zinc-400">
               Minnesota Timberwolves franchise archive
             </span>
           </Link>
-          <nav aria-label="Primary" className="flex flex-wrap gap-2 sm:gap-4">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 outline-offset-2 hover:bg-zinc-800 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500/80"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <PrimaryNav />
         </div>
       </header>
-      <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
+      <main
+        id="main"
+        className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:py-14 md:py-16"
+      >
         {children}
       </main>
-      <footer className="mt-auto border-t border-zinc-800 bg-zinc-950 py-8 text-sm text-zinc-500">
-        <div className="mx-auto max-w-6xl space-y-3 px-4">
-          <p>
+      <footer className="mt-auto border-t border-zinc-800/80 bg-zinc-950/80 py-10 text-sm text-zinc-500">
+        <div className="mx-auto max-w-6xl space-y-4 px-4">
+          <DataFreshness />
+          <p className="max-w-3xl leading-relaxed">
             Player and team statistics are fetched server-side from{" "}
             <a
-              className="text-emerald-400 underline-offset-2 outline-offset-2 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500/80"
+              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
               href="https://www.nba.com/stats"
             >
               NBA.com Stats
             </a>{" "}
-            for personal, non-commercial reference. This site is not affiliated with the NBA
-            or the Minnesota Timberwolves.
+            for personal, non-commercial reference. This site is not affiliated with the NBA or
+            the Minnesota Timberwolves.
           </p>
-          <p>
-            Coaching summaries on coach pages combine NBA roster-era stats with a static
-            head-coach register derived from public sources (see each page).
+          <p className="max-w-3xl leading-relaxed">
+            Coaching summaries on coach pages combine NBA roster-era stats with a static head-coach
+            register derived from public sources (see each page).
           </p>
           <p>
             <Link
-              className="text-emerald-400 underline-offset-2 outline-offset-2 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500/80"
+              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
               href="/about-data"
             >
               About the data
-            </Link>{" "}
-            — sources, static JSON, caching, and limitations.
+            </Link>
+            <span className="text-zinc-600"> · </span>
+            <Link
+              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+              href="/changelog"
+            >
+              Changelog
+            </Link>
+            <span className="text-zinc-600"> — </span>
+            <span className="text-zinc-600">sources, static JSON, caching, and limitations.</span>
           </p>
         </div>
       </footer>

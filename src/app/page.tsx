@@ -1,6 +1,6 @@
-import Link from "next/link";
-
+import { FeatureCard } from "@/components/FeatureCard";
 import { PageHeader } from "@/components/PageHeader";
+import { getLongreadBySlug } from "@/lib/longreads";
 import { getFranchiseSeasonsOrEmpty } from "@/lib/nba/queries";
 
 export const revalidate = 3600;
@@ -8,6 +8,7 @@ export const revalidate = 3600;
 export default async function HomePage() {
   const seasons = await getFranchiseSeasonsOrEmpty();
   const latest = seasons[seasons.length - 1];
+  const flagship = getLongreadBySlug("weight-of-the-north");
 
   return (
     <>
@@ -15,122 +16,100 @@ export default async function HomePage() {
         title="Minnesota Timberwolves franchise history"
         description="Explore every season since the 1989 expansion, the full all-time roster lineage (from NBA.com team rosters), player profiles with career stats, era hubs, a franchise timeline, a head-coach register, and editorial layers documented on About the data."
       />
-      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Seasons</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            Regular-season wins, losses, playoff results, and year-by-year rosters.
-          </p>
-          <Link
-            href="/seasons"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Browse seasons →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Players</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            Search everyone who has appeared on a Timberwolves regular-season roster, with
-            profile pages and per-game career splits.
-          </p>
-          <Link
-            href="/players"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Browse players →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Coaches</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            Head coaches, tenures, and register-style win–loss summaries (static register +
-            NBA stats elsewhere on the site).
-          </p>
-          <Link
-            href="/coaches"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Browse coaches →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Eras</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            Pilot era hub for the Kevin Garnett years—links into seasons, profiles, and coaches.
-          </p>
-          <Link
-            href="/eras"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Browse eras →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Timeline</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            Expansion, KG, the 2004 run, rebuild arcs, and the modern resurgence—milestones in
-            one scroll.
-          </p>
-          <Link
-            href="/timeline"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Open timeline →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">About the data</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            What is live from NBA.com, what is static JSON, how caching and cron work, and known
-            limitations.
-          </p>
-          <Link
-            href="/about-data"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Read data notes →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Memes &amp; lore</h2>
-          <p className="mt-2 text-sm text-zinc-400">
-            Recurring jokes, nicknames, and internet shorthand Wolves fans recognize—curated
-            text list, not image macros.
-          </p>
-          <Link
-            href="/memes"
-            className="mt-4 inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            Browse memes →
-          </Link>
-        </section>
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-          <h2 className="text-lg font-semibold text-white">Latest snapshot</h2>
-          {latest ? (
-            <dl className="mt-3 space-y-2 text-sm text-zinc-300">
-              <div className="flex justify-between gap-4">
-                <dt className="text-zinc-500">Season</dt>
-                <dd className="font-medium text-white">{latest.seasonLabel}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-zinc-500">Record</dt>
-                <dd>
-                  {latest.wins}-{latest.losses}
-                  {latest.playoffWins + latest.playoffLosses > 0
-                    ? ` · Playoffs ${latest.playoffWins}-${latest.playoffLosses}`
-                    : ""}
-                </dd>
-              </div>
-            </dl>
-          ) : (
-            <p className="mt-2 text-sm text-zinc-500">Season data unavailable.</p>
-          )}
-          <p className="mt-4 text-xs text-zinc-500">
-            Figures refresh from NBA.com on a cache window; use Vercel Cron to invalidate
-            aggregates overnight.
-          </p>
-        </section>
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3">
+        {flagship ? (
+          <FeatureCard
+            accent="violet"
+            title={flagship.title}
+            description={flagship.dek}
+            href={`/stories/${flagship.slug}`}
+            cta="Read the flagship essay"
+          />
+        ) : null}
+        <FeatureCard
+          accent="sky"
+          title="Franchise figures"
+          description="Owners, broadcast voices, and other personas who shaped how the team felt off the court—editorial capsules, not stat profiles."
+          href="/figures"
+          cta="Browse figures"
+        />
+        <FeatureCard
+          accent="emerald"
+          title="Seasons"
+          description="Regular-season wins, losses, playoff results, and year-by-year rosters."
+          href="/seasons"
+          cta="Browse seasons"
+        />
+        <FeatureCard
+          accent="emerald"
+          title="Players"
+          description="Search everyone who has appeared on a Timberwolves regular-season roster, with profile pages and per-game career splits."
+          href="/players"
+          cta="Browse players"
+        />
+        <FeatureCard
+          accent="violet"
+          title="Coaches"
+          description="Head coaches, tenures, and register-style win–loss summaries (static register + NBA stats elsewhere on the site)."
+          href="/coaches"
+          cta="Browse coaches"
+        />
+        <FeatureCard
+          accent="emerald"
+          title="Eras"
+          description="Editorial era hubs—expansion, Garnett peak, post-KG rebuild, Butler chapter, and the modern Finch-led Wolves—with linked seasons and people."
+          href="/eras"
+          cta="Browse eras"
+        />
+        <FeatureCard
+          accent="sky"
+          title="Timeline"
+          description="Expansion, KG, the 2004 run, rebuild arcs, and the modern resurgence—milestones in one scroll."
+          href="/timeline"
+          cta="Open timeline"
+        />
+        <FeatureCard
+          accent="emerald"
+          title="About the data"
+          description="What is live from NBA.com, what is static JSON, how caching and cron work, and known limitations."
+          href="/about-data"
+          cta="Read data notes"
+        />
+        <FeatureCard
+          accent="violet"
+          title="Franchise trivia"
+          description="1,000+ multiple-choice prompts when stats load—pairwise season duels, chronology, blurbs, memes, coaches, eras, timeline, and more."
+          href="/trivia"
+          cta="Play trivia"
+        />
+        <FeatureCard
+          accent="amber"
+          title="Memes & lore"
+          description="Recurring jokes, nicknames, and internet shorthand Wolves fans recognize—curated text list, not image macros."
+          href="/memes"
+          cta="Browse memes"
+        />
+        <FeatureCard
+          accent="sky"
+          title="Latest snapshot"
+          description={
+            latest
+              ? `Most recent team year in the cache: ${latest.seasonLabel} at ${latest.wins}-${latest.losses}${
+                  latest.playoffWins + latest.playoffLosses > 0
+                    ? `, playoffs ${latest.playoffWins}-${latest.playoffLosses}`
+                    : ""
+                }.`
+              : "Season aggregates are not available right now (NBA.com may be unreachable). Try again shortly."
+          }
+          href="/seasons"
+          cta="View all seasons"
+          footer={
+            <span>
+              Figures refresh from NBA.com on a cache window; use Vercel Cron to invalidate
+              aggregates overnight.
+            </span>
+          }
+        />
       </div>
     </>
   );

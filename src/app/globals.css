@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
+  --background: #050506;
   --foreground: #fafafa;
+  --surface-elevated: rgb(24 24 27 / 0.55);
+  --border-subtle: rgb(63 63 70 / 0.45);
 }
 
 @theme inline {
@@ -12,7 +14,58 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
-  background: var(--background);
+  min-height: 100%;
+  background-color: var(--background);
   color: var(--foreground);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image:
+    radial-gradient(ellipse 140% 90% at 50% -25%, rgb(6 78 59 / 0.18), transparent 55%),
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(39 39 42 / 0.35), transparent 45%),
+    radial-gradient(ellipse 70% 50% at 0% 20%, rgb(24 24 27 / 0.5), transparent 40%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background-color: rgb(16 185 129 / 0.28);
+  color: rgb(236 253 245);
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgb(39 39 42) 0%,
+    rgb(63 63 70) 45%,
+    rgb(39 39 42) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: rgb(39 39 42);
+  }
 }
