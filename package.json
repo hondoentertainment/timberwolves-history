@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:data-loading": "vitest run src/lib/nba/data-loading.test.ts",
     "audit:seasons": "vitest run src/lib/season-content-coverage.test.ts",
-    "ci": "npm run lint && npm run typecheck && npm run test && npm run test:data-loading && npm run audit:seasons && npm run build"
+    "verify": "node scripts/check-no-bom-json.cjs && npm run lint && npm run typecheck && npm run test && npm run test:data-loading && npm run audit:seasons && npm run build",
+    "ci": "npm run verify"
   },
   "dependencies": {
     "next": "16.2.4",
