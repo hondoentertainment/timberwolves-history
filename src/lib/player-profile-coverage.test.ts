@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import allPlayersFile from "@/data/all-time-players.json";
+import draftPicksFile from "@/data/draft-picks-by-season.json";
 import entityLinksFile from "@/data/entity-links.json";
 import erasFile from "@/data/eras.json";
 import playerBiosFile from "@/data/player-bios.json";
@@ -12,12 +13,23 @@ type GraphLike = {
 };
 
 const allPlayerIds = new Set(allPlayersFile.players.map((p) => p.playerId));
+const mojibakePattern = /[├┼─│╛╜╢╤]/;
 
 function unknownPlayerIds(ids: number[]): number[] {
   return ids.filter((id) => !allPlayerIds.has(id));
 }
 
 describe("player profile coverage", () => {
+  it("keeps player-name fields free of mojibake encoding artifacts", () => {
+    const names = [
+      ...allPlayersFile.players.map((p) => p.name),
+      ...Object.values(draftPicksFile.bySeason).flatMap((picks) => picks.map((pick) => pick.playerName)),
+    ];
+
+    const corrupted = names.filter((name) => mojibakePattern.test(name));
+    expect(corrupted, `Fix mojibake player names: ${corrupted.join(", ")}`).toEqual([]);
+  });
+
   it("keeps every player bio keyed to an all-time Wolves player", () => {
     const bioIds = Object.keys(playerBiosFile.bios).map(Number);
 
