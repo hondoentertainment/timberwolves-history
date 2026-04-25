@@ -170,11 +170,7 @@ export default async function SeasonDetailPage({ params }: PageProps) {
             <code className="text-zinc-500">draft-picks-by-season.json</code> or{" "}
             <code className="text-zinc-500">transactions-by-season.json</code> for this season yet.
             Roster and standings above still come from NBA.com where available; add curated JSON when
-            you have sourced notes (see{" "}
-            <Link href="/about-data" className="text-emerald-400 hover:text-emerald-300">
-              About the data
-            </Link>
-            ).
+            you have sourced notes.
           </p>
         </ProfileSection>
       ) : null}

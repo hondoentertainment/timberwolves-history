@@ -7,6 +7,7 @@ import franchiseSeasonSnapshot from "@/data/franchise-seasons.json";
 
 import { NBA_LEAGUE_ID, WOLVES_TEAM_ID } from "./constants";
 import { nbaStatsFetch } from "./client";
+import { liveNbaStatsEnabled } from "./live";
 import { getResultSet, rowsToObjects } from "./parse";
 import type { NbaStatsJson, PlayerCareerSeasonRow, PlayerInfoRow, TeamYearRow } from "./types";
 
@@ -159,17 +160,19 @@ export function getFallbackFranchiseSeasons(): FranchiseSeasonSummary[] {
 }
 
 async function loadFranchiseSeasonsBundle(): Promise<FranchiseSeasonsBundle> {
-  try {
-    const seasons = parseFranchiseSeasons(await fetchTeamYearByYearJson());
-    if (seasons.length) {
-      return {
-        seasons,
-        fetchedAtIso: new Date().toISOString(),
-        source: "nba.com",
-      };
+  if (liveNbaStatsEnabled()) {
+    try {
+      const seasons = parseFranchiseSeasons(await fetchTeamYearByYearJson());
+      if (seasons.length) {
+        return {
+          seasons,
+          fetchedAtIso: new Date().toISOString(),
+          source: "nba.com",
+        };
+      }
+    } catch {
+      // NBA.com can hang or reject Vercel requests; keep franchise pages/API populated.
     }
-  } catch {
-    // NBA.com can hang or reject Vercel requests; keep franchise pages/API populated.
   }
   return {
     seasons: fallbackFranchiseSeasons,
@@ -178,7 +181,7 @@ async function loadFranchiseSeasonsBundle(): Promise<FranchiseSeasonsBundle> {
   };
 }
 
-const getCachedFranchiseSeasonsBundle = unstable_cache(loadFranchiseSeasonsBundle, ["wolves-franchise-seasons-v3"], {
+const getCachedFranchiseSeasonsBundle = unstable_cache(loadFranchiseSeasonsBundle, ["wolves-franchise-seasons-v4"], {
   revalidate: cacheHours,
   tags: ["nba-team-years"],
 });

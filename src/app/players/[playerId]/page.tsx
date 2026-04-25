@@ -18,6 +18,7 @@ import { formatCareerStatRows } from "@/lib/player-format";
 import { getPlayerBio, playerBiosAttribution } from "@/lib/player-bios";
 import { computeWolvesHighlightBullets } from "@/lib/player-highlights";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
+import { liveNbaStatsEnabled } from "@/lib/nba/live";
 import {
   fetchCommonPlayerInfo,
   fetchPlayerCareerStats,
@@ -37,9 +38,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { playerId: raw } = await params;
   const id = Number(raw);
   if (!Number.isFinite(id)) return { title: "Player" };
-  const infoJson = await fetchCommonPlayerInfo(id);
-  const row = parseCommonPlayerInfo(infoJson);
-  const name = row ? String(row["DISPLAY_FIRST_LAST"] ?? `Player ${id}`) : `Player ${id}`;
+  const [infoJson, index] = await Promise.all([
+    liveNbaStatsEnabled() ? fetchCommonPlayerInfo(id).catch(() => null) : Promise.resolve(null),
+    getCachedAllTimeWolvesPlayers().catch(() => []),
+  ]);
+  const row = infoJson ? parseCommonPlayerInfo(infoJson) : null;
+  const indexRow = index.find((p) => p.playerId === id);
+  const name = row ? String(row["DISPLAY_FIRST_LAST"] ?? indexRow?.name ?? `Player ${id}`) : (indexRow?.name ?? `Player ${id}`);
   return {
     title: name,
     description: `${name} — Minnesota Timberwolves career splits and NBA.com player profile.`,
@@ -51,22 +56,23 @@ export default async function PlayerPage({ params }: PageProps) {
   const id = Number(raw);
   if (!Number.isFinite(id)) notFound();
 
+  const live = liveNbaStatsEnabled();
   const [infoJson, careerJson, index, franchiseSeasons] = await Promise.all([
-    fetchCommonPlayerInfo(id),
-    fetchPlayerCareerStats(id),
-    getCachedAllTimeWolvesPlayers().catch(() => [] as { playerId: number; seasons: string[] }[]),
+    live ? fetchCommonPlayerInfo(id).catch(() => null) : Promise.resolve(null),
+    live ? fetchPlayerCareerStats(id).catch(() => null) : Promise.resolve(null),
+    getCachedAllTimeWolvesPlayers().catch(() => [] as { playerId: number; name: string; seasons: string[] }[]),
     getFranchiseSeasonsOrEmpty(),
   ]);
 
-  const info = parseCommonPlayerInfo(infoJson);
-  if (!info) notFound();
+  const info = infoJson ? parseCommonPlayerInfo(infoJson) : null;
+  const indexRow = index.find((p) => p.playerId === id);
+  if (!info && !indexRow) notFound();
 
-  const name = String(info["DISPLAY_FIRST_LAST"] ?? `Player ${id}`);
-  const careerRows = parseSeasonTotalsPerGame(careerJson);
+  const name = String(info?.["DISPLAY_FIRST_LAST"] ?? indexRow?.name ?? `Player ${id}`);
+  const careerRows = careerJson ? parseSeasonTotalsPerGame(careerJson) : [];
   const wolvesRows = filterWolvesSeasons(careerRows);
   const allRows = formatCareerStatRows(careerRows);
   const wolvesTable = formatCareerStatRows(wolvesRows);
-  const indexRow = index.find((p) => p.playerId === id);
   const editorialBio = getPlayerBio(id);
   const eraHubs = getAllEraHubsForPlayer(id);
   const relatedStories = getRelatedStoriesForPlayer(id);
@@ -100,15 +106,15 @@ export default async function PlayerPage({ params }: PageProps) {
     pushLink(l);
   }
 
-  const jersey = String(info["JERSEY"] ?? "");
-  const position = String(info["POSITION"] ?? "");
-  const height = String(info["HEIGHT"] ?? "");
-  const weight = String(info["WEIGHT"] ?? "");
-  const birth = String(info["BIRTHDATE"] ?? "");
-  const country = String(info["COUNTRY"] ?? "");
-  const school = String(info["SCHOOL"] ?? "");
-  const draftYear = String(info["DRAFT_YEAR"] ?? "");
-  const draftNum = String(info["DRAFT_NUMBER"] ?? "");
+  const jersey = String(info?.["JERSEY"] ?? "");
+  const position = String(info?.["POSITION"] ?? "");
+  const height = String(info?.["HEIGHT"] ?? "");
+  const weight = String(info?.["WEIGHT"] ?? "");
+  const birth = String(info?.["BIRTHDATE"] ?? "");
+  const country = String(info?.["COUNTRY"] ?? "");
+  const school = String(info?.["SCHOOL"] ?? "");
+  const draftYear = String(info?.["DRAFT_YEAR"] ?? "");
+  const draftNum = String(info?.["DRAFT_NUMBER"] ?? "");
 
   const metaRows = [
     { label: "Position", value: position },

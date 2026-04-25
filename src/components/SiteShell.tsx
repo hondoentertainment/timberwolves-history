@@ -63,13 +63,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           <p>
             <Link
               className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
-              href="/about-data"
-            >
-              About the data
-            </Link>
-            <span className="text-zinc-600"> · </span>
-            <Link
-              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
               href="/changelog"
             >
               Changelog

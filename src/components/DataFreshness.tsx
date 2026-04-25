@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 function formatFetchedAt(iso: string | null | undefined): string | null {
   if (!iso || typeof iso !== "string") return null;
   const d = new Date(iso);
@@ -38,14 +36,7 @@ export function DataFreshness({ franchiseStatsFetchedAtIso }: Props) {
       Dynamic routes such as <code className="text-zinc-600">/players/[id]</code> and{" "}
       <code className="text-zinc-600">/seasons/[year]</code> set{" "}
       <code className="text-zinc-600">revalidate = 3600</code> unless noted. Static JSON and editorial
-      routes ship with the app. See{" "}
-      <Link
-        href="/about-data"
-        className="text-emerald-500/90 underline decoration-emerald-600/30 underline-offset-2 hover:text-emerald-400"
-      >
-        About the data
-      </Link>{" "}
-      for sources and limitations.
+      routes ship with the app.
     </p>
   );
 }

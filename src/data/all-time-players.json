@@ -1,0 +1,29 @@
+{
+  "attribution": "Curated fallback roster index for fast page loads when NBA.com roster feeds are unavailable. Live roster feeds may be enabled with NBA_LIVE_STATS=1.",
+  "players": [
+    { "playerId": 708, "name": "Kevin Garnett", "seasons": ["1995-96", "1996-97", "1997-98", "1998-99", "1999-00", "2000-01", "2001-02", "2002-03", "2003-04", "2004-05", "2005-06", "2006-07", "2014-15", "2015-16"] },
+    { "playerId": 786, "name": "Doug West", "seasons": ["1989-90", "1990-91", "1991-92", "1992-93", "1993-94", "1994-95", "1995-96", "1996-97", "1997-98"] },
+    { "playerId": 1626157, "name": "Karl-Anthony Towns", "seasons": ["2015-16", "2016-17", "2017-18", "2018-19", "2019-20", "2020-21", "2021-22", "2022-23", "2023-24"] },
+    { "playerId": 201937, "name": "Ricky Rubio", "seasons": ["2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2020-21"] },
+    { "playerId": 203476, "name": "Gorgui Dieng", "seasons": ["2013-14", "2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20"] },
+    { "playerId": 1629675, "name": "Naz Reid", "seasons": ["2019-20", "2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"] },
+    { "playerId": 201567, "name": "Kevin Love", "seasons": ["2008-09", "2009-10", "2010-11", "2011-12", "2012-13", "2013-14"] },
+    { "playerId": 203952, "name": "Andrew Wiggins", "seasons": ["2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20"] },
+    { "playerId": 1630162, "name": "Anthony Edwards", "seasons": ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"] },
+    { "playerId": 1630183, "name": "Jaden McDaniels", "seasons": ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"] },
+    { "playerId": 202704, "name": "Jimmy Butler", "seasons": ["2017-18", "2018-19"] },
+    { "playerId": 203497, "name": "Rudy Gobert", "seasons": ["2022-23", "2023-24", "2024-25", "2025-26"] },
+    { "playerId": 201144, "name": "Mike Conley", "seasons": ["2022-23", "2023-24", "2024-25", "2025-26"] },
+    { "playerId": 1627736, "name": "Malik Beasley", "seasons": ["2019-20", "2020-21", "2021-22"] },
+    { "playerId": 1627774, "name": "Jake Layman", "seasons": ["2019-20", "2020-21", "2021-22"] },
+    { "playerId": 1629020, "name": "Jarred Vanderbilt", "seasons": ["2019-20", "2020-21", "2021-22"] },
+    { "playerId": 201147, "name": "Corey Brewer", "seasons": ["2007-08", "2008-09", "2009-10", "2013-14"] },
+    { "playerId": 201593, "name": "Nikola Pekovic", "seasons": ["2010-11", "2011-12", "2012-13", "2013-14", "2014-15", "2015-16"] },
+    { "playerId": 2743, "name": "Al Jefferson", "seasons": ["2007-08", "2008-09", "2009-10"] },
+    { "playerId": 2037, "name": "Chauncey Billups", "seasons": ["2000-01", "2001-02"] },
+    { "playerId": 208, "name": "Sam Cassell", "seasons": ["2003-04", "2004-05"] },
+    { "playerId": 84, "name": "Latrell Sprewell", "seasons": ["2003-04", "2004-05"] },
+    { "playerId": 1627823, "name": "Juancho Hernangomez", "seasons": ["2019-20", "2020-21"] },
+    { "playerId": 1626156, "name": "D'Angelo Russell", "seasons": ["2019-20", "2020-21", "2021-22", "2022-23"] }
+  ]
+}

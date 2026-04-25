@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const nav = [
   { href: "/", label: "Home" },
+  { href: "/at-a-glance", label: "At a Glance" },
   { href: "/browse", label: "Browse" },
   { href: "/seasons", label: "Seasons" },
   { href: "/players", label: "Players" },
@@ -16,8 +18,9 @@ const nav = [
   { href: "/stories", label: "Stories" },
   { href: "/trivia", label: "Trivia" },
   { href: "/search", label: "Search" },
-  { href: "/about-data", label: "Data" },
 ] as const;
+
+const adminNav = { href: "/admin", label: "Admin" } as const;
 
 function navItemActive(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
@@ -29,10 +32,37 @@ function navItemActive(pathname: string, href: string): boolean {
 
 export function PrimaryNav() {
   const pathname = usePathname() ?? "";
+  const [showAdmin, setShowAdmin] = useState(false);
+  const items = showAdmin ? [...nav, adminNav] : nav;
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch("/api/admin/me", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: unknown) => {
+        if (
+          !cancelled &&
+          data &&
+          typeof data === "object" &&
+          "isAdmin" in data &&
+          data.isAdmin === true
+        ) {
+          setShowAdmin(true);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setShowAdmin(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <nav aria-label="Primary" className="flex flex-wrap gap-1 sm:gap-1.5">
-      {nav.map((item) => {
+      {items.map((item) => {
         const active = navItemActive(pathname, item.href);
         return (
           <Link

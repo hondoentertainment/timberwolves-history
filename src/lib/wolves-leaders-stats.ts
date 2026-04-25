@@ -8,6 +8,7 @@ import {
   getFranchiseSeasonsOrEmpty,
   parseSeasonTotalsPerGame,
 } from "@/lib/nba/queries";
+import { liveNbaStatsEnabled } from "@/lib/nba/live";
 import type { PlayerCareerSeasonRow } from "@/lib/nba/types";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 
@@ -60,6 +61,19 @@ export const getCachedWolvesLeadersAugmented = unstable_cache(
     const sorted = [...index].sort((a, b) => b.seasons.length - a.seasons.length).slice(0, TOP_N);
     const out: WolvesLeaderAugmented[] = [];
 
+    if (!liveNbaStatsEnabled()) {
+      return sorted.map((p) => ({
+        playerId: p.playerId,
+        name: p.name,
+        franchiseSeasons: p.seasons.length,
+        bestMinPpg: null,
+        bestMinPpgSeason: null,
+        bestMinRpg: null,
+        bestMinRpgSeason: null,
+        playoffTeamSeasonOverlap: p.seasons.filter((s) => playoffSeasons.has(s)).length,
+      }));
+    }
+
     for (let i = 0; i < sorted.length; i += BATCH) {
       const chunk = sorted.slice(i, i + BATCH);
       const settled = await Promise.allSettled(
@@ -104,6 +118,6 @@ export const getCachedWolvesLeadersAugmented = unstable_cache(
 
     return out.sort((a, b) => b.franchiseSeasons - a.franchiseSeasons);
   },
-  ["wolves-leaders-augmented-v2"],
+  ["wolves-leaders-augmented-v3"],
   { revalidate: 86_400, tags: ["wolves-players", "nba-team-years"] },
 );

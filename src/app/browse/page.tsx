@@ -138,6 +138,12 @@ export default async function BrowsePage({ searchParams }: PageProps) {
           <h2 className="text-lg font-semibold text-white">Franchise spine</h2>
           <ul className="mt-4 list-inside list-disc space-y-2 text-sm text-zinc-400">
             <li>
+              <Link href="/at-a-glance" className="text-emerald-400 hover:text-emerald-300">
+                At a glance
+              </Link>{" "}
+              — franchise totals, playoff record, and archive coverage
+            </li>
+            <li>
               <Link href="/seasons" className="text-emerald-400 hover:text-emerald-300">
                 All seasons
               </Link>{" "}
@@ -183,11 +189,6 @@ export default async function BrowsePage({ searchParams }: PageProps) {
         <section className="rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-6 md:col-span-2">
           <h2 className="text-lg font-semibold text-white">Trust & updates</h2>
           <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <li>
-              <Link href="/about-data" className="text-emerald-400 hover:text-emerald-300">
-                About the data
-              </Link>
-            </li>
             <li>
               <Link href="/changelog" className="text-emerald-400 hover:text-emerald-300">
                 Changelog

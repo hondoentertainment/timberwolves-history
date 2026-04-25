@@ -17,12 +17,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const root = base();
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
+    "/at-a-glance",
     "/seasons",
     "/players",
     "/coaches",
     "/eras",
     "/timeline",
-    "/about-data",
     "/memes",
     "/stories",
     "/search",

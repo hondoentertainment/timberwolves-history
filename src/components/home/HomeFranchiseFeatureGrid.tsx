@@ -60,13 +60,6 @@ export async function HomeFranchiseFeatureGrid({ flagship }: { flagship: Longrea
         cta="Open timeline"
       />
       <FeatureCard
-        accent="emerald"
-        title="About the data"
-        description="What is live from NBA.com, what is static JSON, how caching and cron work, and known limitations."
-        href="/about-data"
-        cta="Read data notes"
-      />
-      <FeatureCard
         accent="violet"
         title="Franchise trivia"
         description="1,000+ multiple-choice prompts when stats load—pairwise season duels, chronology, blurbs, memes, coaches, eras, timeline, and more."

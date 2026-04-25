@@ -1,25 +1,38 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  full:
+    name: Full CI (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ["22", "24"]
+    env:
+      CI: "true"
+      NEXT_PUBLIC_SITE_URL: https://example.com
+      NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: ${{ matrix.node-version }}
           cache: "npm"
       # npm ci fails on Linux when the lockfile omits nested optional deps
       # (e.g. @rolldown/binding-wasm32-wasi → @emnapi/*) that Windows npm omits; npm install resolves them on the runner.
       - run: npm install --no-audit --no-fund
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: https://example.com
+      - run: npm run ci

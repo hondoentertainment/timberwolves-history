@@ -15,7 +15,7 @@ export default function HomePage() {
     <>
       <PageHeader
         title="Minnesota Timberwolves franchise history"
-        description="Explore every season since the 1989 expansion, the full all-time roster lineage (from NBA.com team rosters), player profiles with career stats, era hubs, a franchise timeline, a head-coach register, and editorial layers documented on About the data."
+        description="Explore every season since the 1989 expansion, the full all-time roster lineage (from NBA.com team rosters), player profiles with career stats, era hubs, a franchise timeline, and a head-coach register."
       />
       <div className="mb-10">
         <ThisWeekInWolvesHistory />
