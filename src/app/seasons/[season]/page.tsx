@@ -18,7 +18,11 @@ import {
 } from "@/lib/nba/queries";
 import { parseSeasonSlug } from "@/lib/nba/seasons";
 import { getSeasonStory } from "@/lib/season-stories";
-import { getTransactionsForSeason, transactionsAttribution } from "@/lib/transactions-season";
+import {
+  getTransactionsForSeason,
+  transactionKindLabel,
+  transactionsAttribution,
+} from "@/lib/transactions-season";
 import type { Metadata } from "next";
 
 export const revalidate = 3600;
@@ -54,6 +58,7 @@ export default async function SeasonDetailPage({ params }: PageProps) {
   const story = getSeasonStory(valid);
   const draftPicks = getDraftPicksForSeason(valid);
   const transactions = getTransactionsForSeason(valid);
+  const hasWaiverWireRows = transactions.some((t) => t.kind === "waiver");
 
   const playoffLine = summary
     ? formatPlayoffNarrative({
@@ -146,23 +151,37 @@ export default async function SeasonDetailPage({ params }: PageProps) {
       {transactions.length ? (
         <ProfileSection
           id="transactions"
-          title="Notable transactions"
+          title="Trades & waiver wire"
           description={transactionsAttribution()}
         >
           <ul className="space-y-4 text-sm leading-relaxed text-zinc-300">
             {transactions.map((t) => (
-              <li key={t.dateLabel + t.summary.slice(0, 24)} className="border-b border-zinc-800/60 pb-4 last:border-b-0">
-                <p className="font-medium text-zinc-200">{t.dateLabel}</p>
+              <li
+                key={`${t.kind ?? "transaction"}-${t.dateLabel}-${t.summary.slice(0, 24)}`}
+                className="border-b border-zinc-800/60 pb-4 last:border-b-0"
+              >
+                <p className="flex flex-wrap items-center gap-2 font-medium text-zinc-200">
+                  <span>{t.dateLabel}</span>
+                  <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 text-[0.68rem] uppercase tracking-wide text-emerald-200">
+                    {transactionKindLabel(t.kind)}
+                  </span>
+                </p>
                 <p className="mt-1 text-zinc-400">{t.summary}</p>
               </li>
             ))}
           </ul>
+          {!hasWaiverWireRows ? (
+            <p className="mt-4 rounded-xl border border-dashed border-zinc-800 bg-zinc-950/40 px-4 py-3 text-xs leading-relaxed text-zinc-500">
+              No sourced waiver-wire claim or release is listed for this season yet. Curated waiver
+              rows will appear here alongside trade and signing notes as coverage expands.
+            </p>
+          ) : null}
         </ProfileSection>
       ) : null}
       {!draftPicks.length && !transactions.length ? (
         <ProfileSection
           id="curated-draft-transactions"
-          title="Curated draft & transactions"
+          title="Curated draft, trades & waiver wire"
           description="Honest gap marker — not a substitute for league archives."
         >
           <p className="text-sm leading-relaxed text-zinc-400">

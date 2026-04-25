@@ -1,38 +1,49 @@
 {
-  "attribution": "Notable transactions are editorial summaries for narrative context. They are not a complete league transaction log.",
+  "attribution": "Trades and waiver-wire notes are curated editorial summaries for narrative context. They are not a complete league transaction log.",
   "bySeason": {
     "2003-04": [
       {
+        "kind": "trade",
         "dateLabel": "Summer 2003",
-        "summary": "Retooled around Garnett’s MVP peak; roster moves aimed at spacing and veteran defense for a West finals push."
+        "summary": "Retooled around Garnett’s MVP peak by adding veteran guards and wings, most notably Sam Cassell and Latrell Sprewell, for a West finals push."
       }
     ],
     "2007-08": [
       {
+        "kind": "trade",
         "dateLabel": "2007 offseason",
         "summary": "Kevin Garnett traded to Boston in a blockbuster rebuild trade—franchise identity shifts toward youth and assets."
       },
       {
+        "kind": "draft",
         "dateLabel": "June–July 2007",
         "summary": "Draft class (Brewer, Richard) landed in the same window as the megadeal—use the season hub for roster facts and the static explorer for a cited walkthrough."
       }
     ],
     "2014-15": [
       {
-        "dateLabel": "2014 draft",
+        "kind": "trade",
+        "dateLabel": "Summer 2014",
         "summary": "Selected Zach LaVine and traded for Andrew Wiggins as part of the Love deal return package."
       }
     ],
     "2017-18": [
       {
+        "kind": "trade",
         "dateLabel": "2017 offseason",
         "summary": "Jimmy Butler acquired to pair with Towns and Wiggins; Wolves break a 14-year playoff drought."
+      },
+      {
+        "kind": "signing",
+        "dateLabel": "2017 offseason",
+        "summary": "Veteran free-agent additions around the Butler trade changed the rotation’s age, defense, and late-game profile."
       }
     ],
     "2022-23": [
       {
+        "kind": "trade",
         "dateLabel": "Deadline period",
-        "summary": "Roster consolidation moves around the Edwards–Towns core as the team pursued playoff seeding in a crowded West."
+        "summary": "Deadline reshuffle around the Edwards–Towns core brought in steadier guard play and reset the late-season rotation as the team pursued playoff seeding in a crowded West."
       }
     ]
   }

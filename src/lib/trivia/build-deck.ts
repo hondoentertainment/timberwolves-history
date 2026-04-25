@@ -19,7 +19,7 @@ const NBA_TEAM_YEARS = "Derived from NBA.com team year-over-year stats on this s
 const STATIC_STORY = "Editorial season blurb from Wolves History.";
 const STATIC_COACH = "Head-coach register on Wolves History.";
 const STATIC_DRAFT = "Curated draft list on Wolves History.";
-const STATIC_TX = "Curated transactions list on Wolves History.";
+const STATIC_TX = "Curated trades and waiver-wire list on Wolves History.";
 const STATIC_ERA = "Era hub copy on Wolves History.";
 const STATIC_TIMELINE = "Franchise timeline on Wolves History.";
 
@@ -134,7 +134,7 @@ export function buildTriviaDeck(
       `tx-${seasonId}`,
       "deep",
       "transaction",
-      `Which season’s “notable transactions” note on this site begins:\n\n“${excerpt(sum, 100)}”`,
+      `Which season’s “trades & waiver wire” note on this site begins:\n\n“${excerpt(sum, 100)}”`,
       seasonId,
       seasonPool,
       seasonPool,

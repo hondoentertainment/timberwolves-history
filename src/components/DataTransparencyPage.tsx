@@ -80,7 +80,7 @@ export function DataTransparencyPage({
             </li>
             <li>
               <code className="text-zinc-300">src/data/transactions-by-season.json</code> — curated
-              transaction notes for narrative context.
+              trades and waiver-wire notes for narrative context.
             </li>
             <li>
               <code className="text-zinc-300">src/data/guided-paths.json</code> — curated URLs for
