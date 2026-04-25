@@ -1,4 +1,4 @@
-﻿{
+{
   "attribution": "All-time Minnesota Timberwolves player snapshot built from Basketball-Reference played-game register (311 players through 2025-26), with NBA.com Stats player IDs/seasons where available. Older historical entries without a stable NBA Stats ID use deterministic fallback IDs for local profile routing.",
   "players": [
     {
