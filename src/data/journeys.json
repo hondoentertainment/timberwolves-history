@@ -1,0 +1,95 @@
+{
+  "journeys": [
+    {
+      "id": "new-fan-start",
+      "title": "New fan? Start here",
+      "audience": "First visit",
+      "priority": 1,
+      "description": "A quick route through the franchise spine: snapshot, eras, the KG peak, and the modern Wolves.",
+      "href": "/start-here",
+      "tags": ["orientation", "starter", "franchise-spine"],
+      "relatedLinks": [
+        { "href": "/at-a-glance", "label": "At a glance" },
+        { "href": "/eras", "label": "Era hubs" },
+        { "href": "/stories/weight-of-the-north", "label": "Flagship essay" }
+      ]
+    },
+    {
+      "id": "kg-era-ten-minutes",
+      "title": "KG era in 10 minutes",
+      "audience": "Narrative reader",
+      "priority": 2,
+      "description": "Follow Kevin Garnett from franchise foundation to the 2004 conference-finals run.",
+      "href": "/seasons?theme=era-highlight:garnett",
+      "tags": ["garnett", "mvp", "west-finals"],
+      "relatedLinks": [
+        { "href": "/eras/garnett", "label": "Garnett era" },
+        { "href": "/explore/2003-04-offseason", "label": "2003-04 offseason" },
+        { "href": "/seasons/2003-04", "label": "2003-04 season" }
+      ]
+    },
+    {
+      "id": "playoff-drought",
+      "title": "The playoff drought",
+      "audience": "Context seeker",
+      "priority": 3,
+      "description": "Trace the long gap after the Garnett trade and the Butler-era return to the postseason.",
+      "href": "/seasons?theme=playoff-return",
+      "tags": ["playoff-return", "butler", "rebuild"],
+      "relatedLinks": [
+        { "href": "/eras/butler-era", "label": "Butler era" },
+        { "href": "/explore/2017-18-playoff-return", "label": "Playoff return explorer" },
+        { "href": "/seasons?theme=kg-trade-fallout", "label": "KG trade fallout" }
+      ]
+    },
+    {
+      "id": "ant-era-formed",
+      "title": "How the Ant era formed",
+      "audience": "Modern Wolves fan",
+      "priority": 4,
+      "description": "Jump into the Finch-led modern chapter, recent highlight seasons, and the current roster arc.",
+      "href": "/seasons?era=finch-modern",
+      "tags": ["modern", "finch", "anthony-edwards"],
+      "relatedLinks": [
+        { "href": "/eras/finch-modern", "label": "Modern era hub" },
+        { "href": "/players", "label": "Players index" },
+        { "href": "/players/leaders", "label": "Tenure leaders" }
+      ]
+    },
+    {
+      "id": "best-wolves-seasons",
+      "title": "Best Wolves seasons ranked",
+      "audience": "Stats browser",
+      "priority": 5,
+      "description": "Start with the record book, then compare the franchise's strongest regular seasons head to head.",
+      "href": "/record-book",
+      "tags": ["records", "rankings", "compare"],
+      "relatedLinks": [
+        { "href": "/compare/seasons", "label": "Compare seasons" },
+        { "href": "/seasons?playoffs=1", "label": "Playoff seasons" },
+        { "href": "/at-a-glance", "label": "At a glance" }
+      ]
+    }
+  ],
+  "explorers": [
+    {
+      "href": "/explore/2003-04-offseason",
+      "title": "2003-04 offseason",
+      "eyebrow": "Roster build",
+      "description": "Follow the moves that turned the Garnett peak into the franchise's first conference-finals run."
+    },
+    {
+      "href": "/explore/2007-garnett-trade",
+      "title": "2007 Garnett trade",
+      "eyebrow": "Franchise pivot",
+      "description": "Trace the exit of the franchise icon and the context that shaped the post-KG rebuild."
+    },
+    {
+      "href": "/explore/2017-18-playoff-return",
+      "title": "2017-18 playoff return",
+      "eyebrow": "Drought breaker",
+      "description": "Walk through the Butler-Towns-Wiggins season that ended the long postseason absence."
+    }
+  ],
+  "suggestedSearches": ["Garnett", "2003-04", "playoff return", "Butler", "mvp", "Finch"]
+}

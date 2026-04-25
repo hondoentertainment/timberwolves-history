@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const nav = [
   { href: "/", label: "Home", priority: "primary" },
+  { href: "/start-here", label: "Start Here", priority: "primary" },
   { href: "/browse", label: "Browse", priority: "primary" },
   { href: "/seasons", label: "Seasons", priority: "primary" },
   { href: "/players", label: "Players", priority: "primary" },
@@ -14,6 +15,7 @@ const nav = [
   { href: "/explore", label: "Explore", priority: "primary" },
   { href: "/search", label: "Search", priority: "cta" },
   { href: "/at-a-glance", label: "At a Glance", priority: "secondary" },
+  { href: "/record-book", label: "Records", priority: "secondary" },
   { href: "/players/leaders", label: "Leaders", priority: "secondary" },
   { href: "/coaches", label: "Coaches", priority: "secondary" },
   { href: "/timeline", label: "Timeline", priority: "secondary" },
@@ -76,7 +78,7 @@ export function PrimaryNav() {
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={[
-              "relative snap-start whitespace-nowrap rounded-xl px-3 py-2 text-sm font-semibold outline-offset-2 transition duration-200",
+              "relative min-h-11 touch-manipulation snap-start whitespace-nowrap rounded-xl px-3 py-2 text-sm font-semibold outline-offset-2 transition duration-200 active:translate-y-px",
               "focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70",
               active
                 ? "bg-emerald-400/15 text-emerald-50 shadow-[inset_0_0_0_1px_rgba(110,231,183,0.38),0_8px_22px_-16px_rgba(52,211,153,0.9)]"

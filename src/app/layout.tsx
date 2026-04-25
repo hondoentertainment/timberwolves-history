@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
@@ -38,6 +38,19 @@ export const metadata: Metadata = {
       "application/rss+xml": "/feed.xml",
     },
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Wolves History",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#050506",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

@@ -64,6 +64,14 @@ export default async function AtAGlancePage() {
       <PageHeader
         title="At a glance"
         description="A one-screen franchise snapshot: how many people and seasons the archive covers, the Wolves' cumulative regular-season and playoff records, and the fastest paths into deeper context."
+        actions={
+          <Link
+            href="/record-book"
+            className="inline-flex min-h-11 items-center rounded-xl border border-zinc-700/90 bg-zinc-950/40 px-4 py-2 text-sm font-semibold text-zinc-200 hover:border-zinc-600 hover:bg-zinc-900/70"
+          >
+            Open record book
+          </Link>
+        }
       />
 
       <section aria-labelledby="core-counts" className="space-y-5">
@@ -116,9 +124,14 @@ export default async function AtAGlancePage() {
 
       <section aria-labelledby="record-book" className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/25 p-6">
-          <h2 id="record-book" className="text-xl font-semibold text-white">
-            Franchise record
-          </h2>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 id="record-book" className="text-xl font-semibold text-white">
+              Franchise record
+            </h2>
+            <Link href="/record-book" className="text-sm font-semibold text-emerald-400 hover:text-emerald-300">
+              Full record book
+            </Link>
+          </div>
           <dl className="mt-6 grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-zinc-800/80 bg-zinc-950/35 p-4">
               <dt className="text-xs font-semibold uppercase tracking-wide text-zinc-500">

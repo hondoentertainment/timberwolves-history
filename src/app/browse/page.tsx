@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { ChipLink, SectionHeader, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { getAllEras } from "@/lib/eras";
 import { getGuidedPaths } from "@/lib/guided-paths";
+import { getAllExplorerPaths, getFeaturedJourneys } from "@/lib/journeys";
 
 export const metadata: Metadata = {
   title: "Browse the archive",
@@ -29,6 +30,8 @@ export default async function BrowsePage({ searchParams }: PageProps) {
   ).sort((a, b) => a.localeCompare(b));
 
   const guidedPaths = getGuidedPaths();
+  const journeys = getFeaturedJourneys(5);
+  const explorers = getAllExplorerPaths();
 
   return (
     <>
@@ -36,6 +39,35 @@ export default async function BrowsePage({ searchParams }: PageProps) {
         title="Browse the archive"
         description="Curated entry points for franchise history: eras, seasons, people, stories, interactives, and trust pages. Built for wandering, not only lookup."
       />
+      <section className="mb-10">
+        <SectionHeader
+          title="Start with a fan journey"
+          description="World-class archives do not make you know the answer before you arrive. Pick a lane and let the archive guide you."
+          action={
+            <Link href="/start-here" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+              Open Start Here
+            </Link>
+          }
+        />
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {journeys.map((journey) => (
+            <li key={journey.id}>
+              <SurfaceCard className="h-full p-4 text-sm transition hover:border-zinc-700/90 hover:bg-zinc-900/50">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-zinc-500">
+                  {journey.audience}
+                </p>
+                <Link
+                  href={journey.href}
+                  className={`mt-2 block font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}
+                >
+                  {journey.title}
+                </Link>
+                <p className="mt-1 text-xs leading-relaxed text-zinc-600">{journey.description}</p>
+              </SurfaceCard>
+            </li>
+          ))}
+        </ul>
+      </section>
       {themeTags.length ? (
         <nav
           aria-label="Browse by theme"
@@ -127,6 +159,19 @@ export default async function BrowsePage({ searchParams }: PageProps) {
               — franchise totals, playoff record, and archive coverage
             </li>
             <li>
+              <Link href="/record-book" className="text-emerald-400 hover:text-emerald-300">
+                Record book
+              </Link>
+              {" · "}
+              <Link href="/compare/seasons" className="text-emerald-400 hover:text-emerald-300">
+                Compare seasons
+              </Link>
+              {" · "}
+              <Link href="/compare/players" className="text-emerald-400 hover:text-emerald-300">
+                Compare players
+              </Link>
+            </li>
+            <li>
               <Link href="/seasons" className="text-emerald-400 hover:text-emerald-300">
                 All seasons
               </Link>{" "}
@@ -175,21 +220,13 @@ export default async function BrowsePage({ searchParams }: PageProps) {
             description="Static, cited explainers that turn a transaction arc or playoff return into a guided walkthrough."
           />
           <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-            <li>
-              <Link href="/explore/2003-04-offseason" className={`block rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
-                2003-04 offseason
-              </Link>
-            </li>
-            <li>
-              <Link href="/explore/2017-18-playoff-return" className={`block rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
-                2017-18 playoff return
-              </Link>
-            </li>
-            <li>
-              <Link href="/explore/2007-garnett-trade" className={`block rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
-                2007 Garnett trade
-              </Link>
-            </li>
+            {explorers.map((explorer) => (
+              <li key={explorer.href}>
+                <Link href={explorer.href} className={`block h-full rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
+                  {explorer.title}
+                </Link>
+              </li>
+            ))}
           </ul>
           <p className="mt-4">
             <Link href="/explore" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>

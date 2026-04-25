@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ContentGraphRelated } from "@/components/ContentGraphRelated";
 import { ProfileHero, ProfileLayout, ProfileSection } from "@/components/profile";
+import { SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { getCoachById } from "@/lib/coaches";
 import { erasAttribution, getEraBySlug } from "@/lib/eras";
@@ -73,6 +74,27 @@ export default async function EraPage({ params }: PageProps) {
           </div>
         }
       />
+      <SurfaceCard className="p-5">
+        <h2 className="text-lg font-semibold text-white">How to read this era</h2>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          Use the season chips for the statistical spine, people links for profile context, and
+          related essays for the editorial arc.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2 text-sm">
+          <Link
+            href={`/seasons?era=${encodeURIComponent(era.slug)}`}
+            className={`rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}
+          >
+            Filter seasons
+          </Link>
+          <Link
+            href="/start-here"
+            className={`rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 ${premiumLinkFocus}`}
+          >
+            Start Here
+          </Link>
+        </div>
+      </SurfaceCard>
       <ProfileSection id="seasons" title="Season snapshots" description="Jump into season pages with rosters and records.">
         <ul className="flex flex-wrap gap-2">
           {era.highlightSeasonIds.map((sid) => (

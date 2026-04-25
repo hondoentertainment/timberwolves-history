@@ -17,7 +17,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const root = base();
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
+    "/start-here",
     "/at-a-glance",
+    "/record-book",
+    "/compare/seasons",
+    "/compare/players",
     "/seasons",
     "/players",
     "/coaches",
@@ -30,6 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/changelog",
     "/figures",
     "/browse",
+    "/explore",
     "/players/leaders",
     "/explore/2003-04-offseason",
     "/explore/2017-18-playoff-return",

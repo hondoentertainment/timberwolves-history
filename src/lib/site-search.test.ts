@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { siteSearch } from "./site-search";
+import { groupSearchHits, siteSearch } from "./site-search";
 
 describe("siteSearch (DISC-002 v2)", () => {
   it("finds memes by summary keyword", async () => {
@@ -22,5 +22,19 @@ describe("siteSearch (DISC-002 v2)", () => {
     const hits = await siteSearch("era-highlight");
     const themeHit = hits.find((h) => h.kind === "Theme" && h.href.includes("era-highlight"));
     expect(themeHit?.title).toMatch(/^Era highlight \(/);
+  });
+
+  it("finds guided journeys", async () => {
+    const hits = await siteSearch("start here");
+    expect(hits.some((h) => h.kind === "Journey" && h.href === "/start-here")).toBe(true);
+  });
+
+  it("groups search hits in product-friendly order", () => {
+    const groups = groupSearchHits([
+      { kind: "Season", href: "/seasons/2003-04", title: "2003-04 season" },
+      { kind: "Journey", href: "/start-here", title: "New fan? Start here" },
+      { kind: "Player", href: "/players/1", title: "Player" },
+    ]);
+    expect(groups.map((g) => g.kind)).toEqual(["Journey", "Player", "Season"]);
   });
 });

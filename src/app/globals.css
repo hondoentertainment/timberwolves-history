@@ -38,6 +38,16 @@ body {
   background-attachment: fixed;
 }
 
+@media (max-width: 47.9375rem) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+.safe-area-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
 ::selection {
   background-color: rgb(16 185 129 / 0.28);
   color: rgb(236 253 245);

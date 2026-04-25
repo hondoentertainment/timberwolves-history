@@ -8,7 +8,7 @@ function cx(...classes: ClassValue[]) {
 }
 
 export const premiumLinkFocus =
-  "outline-offset-2 transition focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70";
+  "touch-manipulation outline-offset-2 transition active:translate-y-px focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70";
 
 type SurfaceCardProps = {
   children: ReactNode;
@@ -41,7 +41,7 @@ export function ChipLink({ href, children, active = false, className }: ChipLink
       href={href}
       aria-current={active ? "page" : undefined}
       className={cx(
-        "inline-flex min-h-9 items-center rounded-full border px-3 py-1.5 text-xs font-semibold capitalize tracking-wide transition",
+        "inline-flex min-h-11 touch-manipulation items-center rounded-full border px-4 py-2 text-xs font-semibold capitalize tracking-wide transition active:translate-y-px",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70",
         active
           ? "border-emerald-400/55 bg-emerald-400/12 text-emerald-50 shadow-[0_0_0_1px_rgba(52,211,153,0.08),0_10px_24px_-18px_rgba(52,211,153,0.9)]"
@@ -125,7 +125,7 @@ export function SearchForm({
       />
       <button
         type="submit"
-        className="min-h-12 rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/40 outline-offset-2 transition hover:from-emerald-400 hover:to-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300/80 active:translate-y-px"
+        className="min-h-12 touch-manipulation rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/40 outline-offset-2 transition hover:from-emerald-400 hover:to-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300/80 active:translate-y-px"
       >
         {submitLabel}
       </button>

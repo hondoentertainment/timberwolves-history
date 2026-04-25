@@ -2,8 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
-import { EmptyState, SearchForm, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
-import { siteSearch } from "@/lib/site-search";
+import { ChipLink, EmptyState, SearchForm, SectionHeader, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
+import { getFeaturedJourneys, getSuggestedSearches } from "@/lib/journeys";
+import { groupSearchHits, siteSearch } from "@/lib/site-search";
 
 export const metadata: Metadata = {
   title: "Search",
@@ -17,6 +18,9 @@ export default async function SearchPage({ searchParams }: PageProps) {
   const { q } = await searchParams;
   const query = (q ?? "").trim();
   const hits = query ? await siteSearch(query) : [];
+  const groupedHits = groupSearchHits(hits);
+  const journeys = getFeaturedJourneys(3);
+  const suggestedSearches = getSuggestedSearches();
 
   return (
     <>
@@ -32,42 +36,87 @@ export default async function SearchPage({ searchParams }: PageProps) {
         className="mb-8"
       />
       {!query ? (
-        <EmptyState
-          title="Search the full archive"
-          description="Try a player, season, era, coach, story title, or theme. Examples: Garnett, 2003-04, Butler, playoffs."
-          action={
-            <Link href="/browse" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
-              Browse curated paths
-            </Link>
-          }
-        />
+        <div className="space-y-8">
+          <section aria-labelledby="suggested-searches">
+            <SectionHeader
+              id="suggested-searches"
+              title="Suggested searches"
+              description="Start with a name, season, theme, or turning point."
+            />
+            <div className="flex flex-wrap gap-2">
+              {suggestedSearches.map((term) => (
+                <ChipLink key={term} href={`/search?q=${encodeURIComponent(term)}`}>
+                  {term}
+                </ChipLink>
+              ))}
+            </div>
+          </section>
+          <section aria-labelledby="search-journeys">
+            <SectionHeader
+              id="search-journeys"
+              title="Popular paths"
+              description="Not sure what to search? These guided trails are better starting points than a blank box."
+            />
+            <ul className="grid gap-3 md:grid-cols-3">
+              {journeys.map((journey) => (
+                <li key={journey.id}>
+                  <SurfaceCard className="h-full p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+                      {journey.audience}
+                    </p>
+                    <Link
+                      href={journey.href}
+                      className={`mt-2 block font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}
+                    >
+                      {journey.title}
+                    </Link>
+                    <p className="mt-1 text-xs leading-relaxed text-zinc-600">{journey.description}</p>
+                  </SurfaceCard>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       ) : hits.length ? (
-        <ul className="space-y-3">
-          {hits.map((h) => (
-            <li key={h.href}>
-              <SurfaceCard className="px-4 py-3 transition hover:border-zinc-700/90 hover:bg-zinc-900/50">
-              <div className="flex flex-wrap items-baseline gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">{h.kind}</span>
-                <Link
-                  href={h.href}
-                  className={`font-medium text-emerald-400/95 hover:text-emerald-300 ${premiumLinkFocus}`}
-                >
-                  {h.title}
-                </Link>
-              </div>
-              {h.snippet ? <p className="mt-1 text-sm text-zinc-500">{h.snippet}</p> : null}
-              </SurfaceCard>
-            </li>
+        <div className="space-y-8">
+          {groupedHits.map((group) => (
+            <section key={group.kind} aria-labelledby={`search-group-${group.kind.toLowerCase()}`}>
+              <SectionHeader
+                id={`search-group-${group.kind.toLowerCase()}`}
+                title={group.kind}
+                description={`${group.hits.length} result${group.hits.length === 1 ? "" : "s"}`}
+              />
+              <ul className="space-y-3">
+                {group.hits.map((h) => (
+                  <li key={h.href}>
+                    <SurfaceCard className="px-4 py-3 transition hover:border-zinc-700/90 hover:bg-zinc-900/50">
+                      <Link
+                        href={h.href}
+                        className={`font-medium text-emerald-400/95 hover:text-emerald-300 ${premiumLinkFocus}`}
+                      >
+                        {h.title}
+                      </Link>
+                      {h.snippet ? <p className="mt-1 text-sm text-zinc-500">{h.snippet}</p> : null}
+                    </SurfaceCard>
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </ul>
+        </div>
       ) : (
         <EmptyState
           title={`No matches for "${query}"`}
-          description="Try a shorter term, a season slug like 2003-04, or browse the curated paths."
+          description="Try a shorter term, a season slug like 2003-04, or start with one of the curated journeys."
           action={
-            <Link href="/browse" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
-              Open Browse
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/start-here" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+                Start Here
+              </Link>
+              <Link href="/browse" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+                Open Browse
+              </Link>
+            </div>
           }
         />
       )}

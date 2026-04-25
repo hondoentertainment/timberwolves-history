@@ -81,6 +81,13 @@ export async function HomeFranchiseFeatureGrid({ flagship }: { flagship: Longrea
         cta="Browse memes"
       />
       <FeatureCard
+        accent="amber"
+        title="Record book"
+        description="Rank the franchise's best seasons, playoff runs, coaching records, and longest roster tenures."
+        href="/record-book"
+        cta="Open records"
+      />
+      <FeatureCard
         accent="sky"
         title="Latest snapshot"
         description={

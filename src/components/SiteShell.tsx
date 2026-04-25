@@ -6,6 +6,13 @@ import { FranchiseStatsFreshness } from "@/components/FranchiseStatsFreshness";
 import { PrimaryNav } from "@/components/PrimaryNav";
 import { getCorrectionMailto } from "@/lib/corrections";
 
+const mobileQuickNav = [
+  { href: "/start-here", label: "Start" },
+  { href: "/browse", label: "Browse" },
+  { href: "/search", label: "Search" },
+  { href: "/explore", label: "Explore" },
+] as const;
+
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-full flex-col text-zinc-100">
@@ -57,10 +64,27 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </header>
       <main
         id="main"
-        className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:py-14 md:py-16"
+        className="mx-auto w-full max-w-6xl flex-1 px-4 pb-28 pt-12 sm:py-14 md:py-16"
       >
         {children}
       </main>
+      <nav
+        aria-label="Mobile quick navigation"
+        className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-zinc-950/92 px-3 py-2 shadow-[0_-18px_44px_-28px_rgba(0,0,0,0.95)] backdrop-blur-xl md:hidden"
+        style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
+      >
+        <div className="mx-auto grid max-w-md grid-cols-4 gap-2">
+          {mobileQuickNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex min-h-11 touch-manipulation items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] px-2 py-2 text-xs font-semibold text-zinc-300 outline-offset-2 transition hover:bg-white/[0.08] hover:text-white active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
       <footer className="site-footer mt-auto border-t border-zinc-800/80 bg-zinc-950/80 py-10 text-sm text-zinc-500">
         <div className="mx-auto max-w-6xl space-y-4 px-4">
           <Suspense fallback={<DataFreshness franchiseStatsFetchedAtIso={null} />}>

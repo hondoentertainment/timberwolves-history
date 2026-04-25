@@ -1,5 +1,6 @@
 import { getAllCoaches } from "@/lib/coaches";
 import { getAllFigures } from "@/lib/figures";
+import { getAllJourneys, journeyMatchesQuery } from "@/lib/journeys";
 import { getAllEras } from "@/lib/eras";
 import { getAllLongreads } from "@/lib/longreads";
 import { getWolvesMemes } from "@/lib/memes";
@@ -13,6 +14,11 @@ export type SearchHit = {
   href: string;
   kind: string;
   snippet?: string;
+};
+
+export type SearchHitGroup = {
+  kind: string;
+  hits: SearchHit[];
 };
 
 function titleFromThemeSlug(themeSlug: string): string {
@@ -31,6 +37,17 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
   if (!query) return [];
 
   const hits: SearchHit[] = [];
+
+  for (const journey of getAllJourneys()) {
+    if (journeyMatchesQuery(journey, query)) {
+      hits.push({
+        title: journey.title,
+        href: journey.href,
+        kind: "Journey",
+        snippet: `${journey.audience}: ${journey.description}`,
+      });
+    }
+  }
 
   const players = await getCachedAllTimeWolvesPlayers().catch(
     () => [] as { playerId: number; name: string; seasons: string[] }[],
@@ -148,4 +165,20 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
     if (deduped.length >= 60) break;
   }
   return deduped;
+}
+
+const groupOrder = ["Journey", "Player", "Season", "Story", "Era", "Theme", "Coach", "Figure", "Meme"];
+
+export function groupSearchHits(hits: SearchHit[]): SearchHitGroup[] {
+  const groups = new Map<string, SearchHit[]>();
+  for (const hit of hits) {
+    groups.set(hit.kind, [...(groups.get(hit.kind) ?? []), hit]);
+  }
+  return [...groups.entries()]
+    .sort((a, b) => {
+      const ai = groupOrder.indexOf(a[0]);
+      const bi = groupOrder.indexOf(b[0]);
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi) || a[0].localeCompare(b[0]);
+    })
+    .map(([kind, groupHits]) => ({ kind, hits: groupHits }));
 }

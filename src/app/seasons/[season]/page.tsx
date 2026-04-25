@@ -7,6 +7,7 @@ import {
   ProfileSection,
   SeasonStoryBlurb,
 } from "@/components/profile";
+import { SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { StatTable } from "@/components/StatTable";
 import { coachNamesForSeason } from "@/lib/coaches";
 import { getDraftPicksForSeason } from "@/lib/draft-picks";
@@ -141,6 +142,27 @@ export default async function SeasonDetailPage({ params }: PageProps) {
   return (
     <ProfileLayout navItems={pageNavItems}>
       <ProfileHero title={`${valid} Timberwolves`} role="Season" intro={intro} />
+      <SurfaceCard className="p-5">
+        <h2 className="text-lg font-semibold text-white">Why this season matters</h2>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          Season pages combine record, postseason context, curated roster notes, draft rows,
+          transactions, and the story graph so each year can stand on its own.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2 text-sm">
+          <Link
+            href={`/compare/seasons?a=${encodeURIComponent(valid)}`}
+            className={`rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}
+          >
+            Compare this season
+          </Link>
+          <Link
+            href="/record-book"
+            className={`rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 ${premiumLinkFocus}`}
+          >
+            See franchise records
+          </Link>
+        </div>
+      </SurfaceCard>
       {story ? (
         <SeasonStoryBlurb
           blurb={story.blurb}

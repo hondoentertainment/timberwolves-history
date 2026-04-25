@@ -9,6 +9,7 @@ import {
   ProfileMetaGrid,
   ProfileSection,
 } from "@/components/profile";
+import { SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { StatTable } from "@/components/StatTable";
 import { getRelatedStoriesForPlayer } from "@/lib/entity-links";
@@ -185,6 +186,27 @@ export default async function PlayerPage({ params }: PageProps) {
         }
         media={<PlayerHeadshot playerId={id} name={name} />}
       />
+      <SurfaceCard className="p-5">
+        <h2 className="text-lg font-semibold text-white">Why this profile matters</h2>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          This page connects roster tenure, Wolves-only stat rows, editorial context, and related
+          era/story links so a player profile works like a hub instead of a stat stub.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2 text-sm">
+          <Link
+            href={`/compare/players?a=${id}`}
+            className={`rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}
+          >
+            Compare this tenure
+          </Link>
+          <Link
+            href="/record-book"
+            className={`rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 ${premiumLinkFocus}`}
+          >
+            Open record book
+          </Link>
+        </div>
+      </SurfaceCard>
       {editorialBio ? (
         <ProfileSection
           id="story"

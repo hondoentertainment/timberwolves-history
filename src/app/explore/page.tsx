@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeader, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
+import { getAllExplorerPaths } from "@/lib/journeys";
 
 export const metadata: Metadata = {
   title: "Explore",
@@ -10,31 +11,9 @@ export const metadata: Metadata = {
     "Interactive, cited Wolves History explainers for franchise turning points and roster-building arcs.",
 };
 
-const explorers = [
-  {
-    href: "/explore/2003-04-offseason",
-    title: "2003-04 offseason",
-    eyebrow: "Roster build",
-    description:
-      "Follow the moves that turned the Garnett peak into the franchise's first conference-finals run.",
-  },
-  {
-    href: "/explore/2007-garnett-trade",
-    title: "2007 Garnett trade",
-    eyebrow: "Franchise pivot",
-    description:
-      "Trace the exit of the franchise icon and the context that shaped the post-KG rebuild.",
-  },
-  {
-    href: "/explore/2017-18-playoff-return",
-    title: "2017-18 playoff return",
-    eyebrow: "Drought breaker",
-    description:
-      "Walk through the Butler-Towns-Wiggins season that ended the long postseason absence.",
-  },
-] as const;
-
 export default function ExploreIndexPage() {
+  const explorers = getAllExplorerPaths();
+
   return (
     <>
       <PageHeader
