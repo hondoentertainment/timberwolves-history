@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { PageHeader } from "@/components/PageHeader";
 import { EmptyState, SearchForm, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
-import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
+import { getCachedAllTimeWolvesPlayers, getFallbackAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 
 export const revalidate = 86_400;
 
@@ -12,7 +12,7 @@ export default async function PlayersPage({ searchParams }: PageProps) {
   const { q } = await searchParams;
   const query = (q ?? "").trim().toLowerCase();
   const players = await getCachedAllTimeWolvesPlayers().catch(
-    () => [] as { playerId: number; name: string; seasons: string[] }[],
+    () => getFallbackAllTimeWolvesPlayers(),
   );
   const filtered = query
     ? players.filter((p) => p.name.toLowerCase().includes(query))
