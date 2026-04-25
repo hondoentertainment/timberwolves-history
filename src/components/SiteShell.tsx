@@ -1,17 +1,12 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
 import { DataFreshness } from "@/components/DataFreshness";
+import { FranchiseStatsFreshness } from "@/components/FranchiseStatsFreshness";
 import { PrimaryNav } from "@/components/PrimaryNav";
 import { getCorrectionMailto } from "@/lib/corrections";
 
-export function SiteShell({
-  children,
-  franchiseStatsFetchedAtIso,
-}: {
-  children: React.ReactNode;
-  /** ISO time when NBA.com team year-over-year stats were last cached (HIST-006). */
-  franchiseStatsFetchedAtIso?: string | null;
-}) {
+export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-full flex-col text-zinc-100">
       <a
@@ -47,7 +42,9 @@ export function SiteShell({
       </main>
       <footer className="site-footer mt-auto border-t border-zinc-800/80 bg-zinc-950/80 py-10 text-sm text-zinc-500">
         <div className="mx-auto max-w-6xl space-y-4 px-4">
-          <DataFreshness franchiseStatsFetchedAtIso={franchiseStatsFetchedAtIso} />
+          <Suspense fallback={<DataFreshness franchiseStatsFetchedAtIso={null} />}>
+            <FranchiseStatsFreshness />
+          </Suspense>
           <p className="max-w-3xl leading-relaxed">
             Player and team statistics are fetched server-side from{" "}
             <a

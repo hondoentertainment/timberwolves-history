@@ -1,6 +1,7 @@
 import "server-only";
 
 import { unstable_cache } from "next/cache";
+import { cache } from "react";
 
 import { NBA_LEAGUE_ID, WOLVES_TEAM_ID } from "./constants";
 import { nbaStatsFetch } from "./client";
@@ -133,27 +134,32 @@ const getCachedFranchiseSeasonsBundle = unstable_cache(loadFranchiseSeasonsBundl
   tags: ["nba-team-years"],
 });
 
+/** One bundle read per request when multiple call sites need franchise rows + fetchedAt (layout, pages). */
+const readFranchiseSeasonsBundle = cache(getCachedFranchiseSeasonsBundle);
+
 export async function getCachedFranchiseSeasons(): Promise<FranchiseSeasonSummary[]> {
-  return (await getCachedFranchiseSeasonsBundle()).seasons;
+  return (await readFranchiseSeasonsBundle()).seasons;
 }
 
 /** Last successful NBA.com team-years bundle refresh (same cache as franchise seasons). */
 export async function getFranchiseSeasonsFetchedAtIso(): Promise<string | null> {
   try {
-    return (await getCachedFranchiseSeasonsBundle()).fetchedAtIso;
+    return (await readFranchiseSeasonsBundle()).fetchedAtIso;
   } catch {
     return null;
   }
 }
 
-/** Same cache as {@link getCachedFranchiseSeasons}, but never throws (empty on upstream failure). */
-export async function getFranchiseSeasonsOrEmpty(): Promise<FranchiseSeasonSummary[]> {
+async function franchiseSeasonsOrEmptyUncached(): Promise<FranchiseSeasonSummary[]> {
   try {
     return await getCachedFranchiseSeasons();
   } catch {
     return [];
   }
 }
+
+/** Same cache as {@link getCachedFranchiseSeasons}, but never throws (empty on upstream failure). */
+export const getFranchiseSeasonsOrEmpty = cache(franchiseSeasonsOrEmptyUncached);
 
 export async function fetchTeamRoster(seasonId: string): Promise<NbaStatsJson> {
   return nbaStatsFetch(

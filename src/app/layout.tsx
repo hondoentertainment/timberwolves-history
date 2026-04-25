@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { SiteShell } from "@/components/SiteShell";
-import { getFranchiseSeasonsFetchedAtIso } from "@/lib/nba/queries";
 
 import "./globals.css";
 
@@ -40,17 +40,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const franchiseStatsFetchedAtIso = await getFranchiseSeasonsFetchedAtIso().catch(() => null);
-
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full font-sans antialiased selection:bg-emerald-500/25 selection:text-emerald-50">
-        <SiteShell franchiseStatsFetchedAtIso={franchiseStatsFetchedAtIso}>{children}</SiteShell>
+        <PerformanceMonitor />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

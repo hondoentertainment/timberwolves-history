@@ -44,13 +44,22 @@ export async function nbaStatsFetch(
   const controller = new AbortController();
   const t = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(url, {
+    // Do not combine `cache: "no-store"` with `next: { revalidate }` — Next ignores
+    // revalidate/tags when no-store is set, which bypasses the Data Cache and hammers upstream.
+    const fetchInit: RequestInit = {
       method: "GET",
       headers: browserLikeHeaders,
       signal: controller.signal,
-      cache: init.cache ?? "no-store",
-      ...(init.next ? { next: init.next } : {}),
-    } as RequestInit);
+    };
+    if (init.next) {
+      fetchInit.next = init.next;
+      if (init.cache !== undefined) {
+        fetchInit.cache = init.cache;
+      }
+    } else {
+      fetchInit.cache = init.cache ?? "no-store";
+    }
+    const res = await fetch(url, fetchInit);
     if (!res.ok) {
       throw new Error(`NBA stats HTTP ${res.status} for ${safeEndpoint}`);
     }
