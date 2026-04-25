@@ -1,4 +1,4 @@
-{
+﻿{
   "attribution": "All-time Minnesota Timberwolves player snapshot built from Basketball-Reference played-game register (311 players through 2025-26), with NBA.com Stats player IDs/seasons where available. Older historical entries without a stable NBA Stats ID use deterministic fallback IDs for local profile routing.",
   "players": [
     {
@@ -93,7 +93,7 @@
     },
     {
       "playerId": 900000115,
-      "name": "Andrés Guibert",
+      "name": "Andr├⌐s Guibert",
       "seasons": [
         "1993-94",
         "1994-95"
@@ -535,7 +535,7 @@
     },
     {
       "playerId": 204014,
-      "name": "Damjan Rudež",
+      "name": "Damjan Rude┼╛",
       "seasons": [
         "2015-16"
       ]
@@ -557,14 +557,14 @@
     },
     {
       "playerId": 203967,
-      "name": "Dario Šarić",
+      "name": "Dario ┼áari─ç",
       "seasons": [
         "2018-19"
       ]
     },
     {
       "playerId": 2545,
-      "name": "Darko Miličić",
+      "name": "Darko Mili─ìi─ç",
       "seasons": [
         "2009-10",
         "2010-11",
@@ -699,7 +699,7 @@
     },
     {
       "playerId": 1732,
-      "name": "Felipe López",
+      "name": "Felipe L├│pez",
       "seasons": [
         "2000-01",
         "2001-02"
@@ -818,7 +818,7 @@
     },
     {
       "playerId": 900000288,
-      "name": "Gundars Vētra",
+      "name": "Gundars V─ôtra",
       "seasons": [
         "1992-93"
       ]
@@ -832,7 +832,7 @@
     },
     {
       "playerId": 2080,
-      "name": "Igor Rakočević",
+      "name": "Igor Rako─ìevi─ç",
       "seasons": [
         "2002-03"
       ]
@@ -1134,7 +1134,7 @@
     },
     {
       "playerId": 1627823,
-      "name": "Juancho Hernangómez",
+      "name": "Juancho Hernang├│mez",
       "seasons": [
         "2019-20",
         "2020-21"
@@ -1506,7 +1506,7 @@
     },
     {
       "playerId": 2060,
-      "name": "Marko Jarić",
+      "name": "Marko Jari─ç",
       "seasons": [
         "2005-06",
         "2006-07",
@@ -1601,7 +1601,7 @@
     },
     {
       "playerId": 101153,
-      "name": "Mickaël Gelabale",
+      "name": "Micka├½l Gelabale",
       "seasons": [
         "2012-13"
       ]
@@ -1736,7 +1736,7 @@
     },
     {
       "playerId": 201593,
-      "name": "Nikola Peković",
+      "name": "Nikola Pekovi─ç",
       "seasons": [
         "2010-11",
         "2011-12",
@@ -1869,7 +1869,7 @@
     },
     {
       "playerId": 1725,
-      "name": "Rasho Nesterović",
+      "name": "Rasho Nesterovi─ç",
       "seasons": [
         "1998-99",
         "1999-00",
@@ -2056,7 +2056,7 @@
     },
     {
       "playerId": 2562,
-      "name": "Sasha Pavlović",
+      "name": "Sasha Pavlovi─ç",
       "seasons": [
         "2009-10"
       ]
@@ -2193,7 +2193,7 @@
     },
     {
       "playerId": 1037,
-      "name": "Stojko Vranković",
+      "name": "Stojko Vrankovi─ç",
       "seasons": [
         "1996-97"
       ]

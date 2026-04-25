@@ -10,12 +10,14 @@ import {
 import { StatTable } from "@/components/StatTable";
 import { coachNamesForSeason } from "@/lib/coaches";
 import { getDraftPicksForSeason } from "@/lib/draft-picks";
+import { getFallbackAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 import { formatPlayoffNarrative } from "@/lib/playoff-summary";
 import {
   fetchTeamRoster,
   getFranchiseSeasonsOrEmpty,
   parseRoster,
 } from "@/lib/nba/queries";
+import type { RosterEntry } from "@/lib/nba/queries";
 import { parseSeasonSlug } from "@/lib/nba/seasons";
 import { getSeasonStory } from "@/lib/season-stories";
 import {
@@ -28,6 +30,23 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 type PageProps = { params: Promise<{ season: string }> };
+
+function fallbackRosterForSeason(seasonId: string): RosterEntry[] {
+  return getFallbackAllTimeWolvesPlayers()
+    .filter((p) => p.seasons.includes(seasonId))
+    .map((p) => ({
+      playerId: p.playerId,
+      name: p.name,
+      number: "",
+      position: "",
+      height: "",
+      weight: "",
+      birthDate: "",
+      country: "",
+      seasonId,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { season: raw } = await params;
@@ -51,9 +70,11 @@ export default async function SeasonDetailPage({ params }: PageProps) {
     fetchTeamRoster(valid).catch(() => null),
   ]);
   const summary = franchiseRows.find((r) => r.seasonLabel === valid);
-  const roster = rosterJson
+  const liveRoster = rosterJson
     ? parseRoster(rosterJson, valid).sort((a, b) => a.name.localeCompare(b.name))
     : [];
+  const roster = liveRoster.length ? liveRoster : fallbackRosterForSeason(valid);
+  const rosterSource = liveRoster.length ? "NBA.com common team roster" : "local all-time roster snapshot";
   const coachNames = coachNamesForSeason(valid);
   const story = getSeasonStory(valid);
   const draftPicks = getDraftPicksForSeason(valid);
@@ -139,7 +160,7 @@ export default async function SeasonDetailPage({ params }: PageProps) {
         <ProfileSection
           id="draft"
           title="Draft class (curated)"
-          description="Static register excerpt for this season when available—not a complete league draft log."
+          description="Wolves draft-history rows from the team’s official historical register—not a complete league draft log."
         >
           <StatTable
             caption={`Timberwolves draft selections ${valid}`}
@@ -147,7 +168,17 @@ export default async function SeasonDetailPage({ params }: PageProps) {
             rows={draftRows}
           />
         </ProfileSection>
-      ) : null}
+      ) : (
+        <ProfileSection
+          id="draft"
+          title="Draft class (curated)"
+          description="Coverage is complete for this season in the Wolves draft-history register."
+        >
+          <p className="text-sm leading-relaxed text-zinc-400">
+            No Wolves draft selections are listed for this season.
+          </p>
+        </ProfileSection>
+      )}
       {transactions.length ? (
         <ProfileSection
           id="transactions"
@@ -178,25 +209,24 @@ export default async function SeasonDetailPage({ params }: PageProps) {
           ) : null}
         </ProfileSection>
       ) : null}
-      {!draftPicks.length && !transactions.length ? (
+      {!transactions.length ? (
         <ProfileSection
-          id="curated-draft-transactions"
-          title="Curated draft, trades & waiver wire"
-          description="Honest gap marker — not a substitute for league archives."
+          id="curated-transactions"
+          title="Curated trades & waiver wire"
+          description="Honest gap marker for transaction context — not a substitute for league archives."
         >
           <p className="text-sm leading-relaxed text-zinc-400">
             There are no static editorial rows in{" "}
-            <code className="text-zinc-500">draft-picks-by-season.json</code> or{" "}
             <code className="text-zinc-500">transactions-by-season.json</code> for this season yet.
-            Roster and standings above still come from NBA.com where available; add curated JSON when
-            you have sourced notes.
+            Roster and standings above still come from NBA.com where available, and draft coverage is
+            handled separately from the official Wolves draft-history register.
           </p>
         </ProfileSection>
       ) : null}
       <ProfileSection
         id="roster"
         title="Roster"
-        description="Opening-night style listing from NBA.com common team roster for this season."
+        description={`Player coverage from ${rosterSource}. Blank vitals mean the fallback player snapshot is being used.`}
       >
         <StatTable
           caption={`Timberwolves roster ${valid}`}

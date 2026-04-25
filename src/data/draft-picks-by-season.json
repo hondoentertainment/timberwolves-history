@@ -1,5 +1,5 @@
 {
-  "attribution": "Draft selections are curated editorial summaries (not a live NBA draft API). Verify against official league records before citing elsewhere.",
+  "attribution": "Draft selections are sourced from the official Timberwolves all-time draft history page. Empty arrays mark seasons where that register lists no Wolves draft selections.",
   "bySeason": {
     "1989-90": [
       {
@@ -10,8 +10,96 @@
       },
       {
         "round": 2,
-        "pickOverall": 33,
+        "pickOverall": 34,
         "playerName": "Gary Leonard",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 38,
+        "playerName": "Doug West",
+        "note": ""
+      }
+    ],
+    "1990-91": [
+      {
+        "round": 1,
+        "pickOverall": 6,
+        "playerName": "Felton Spencer",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 20,
+        "playerName": "Gerald Glass",
+        "note": ""
+      }
+    ],
+    "1991-92": [
+      {
+        "round": 1,
+        "pickOverall": 7,
+        "playerName": "Luc Longley",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 34,
+        "playerName": "Myron Brown",
+        "note": ""
+      }
+    ],
+    "1992-93": [
+      {
+        "round": 1,
+        "pickOverall": 3,
+        "playerName": "Christian Laettner",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 28,
+        "playerName": "Marlon Maxey",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 34,
+        "playerName": "Chris Smith",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 51,
+        "playerName": "Tim Burroughs",
+        "note": ""
+      }
+    ],
+    "1993-94": [
+      {
+        "round": 1,
+        "pickOverall": 5,
+        "playerName": "Isaiah Rider",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 29,
+        "playerName": "Sherron Mills",
+        "note": ""
+      }
+    ],
+    "1994-95": [
+      {
+        "round": 1,
+        "pickOverall": 4,
+        "playerName": "Donyell Marshall",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 30,
+        "playerName": "Howard Eisley",
         "note": ""
       }
     ],
@@ -21,13 +109,159 @@
         "pickOverall": 5,
         "playerName": "Kevin Garnett",
         "note": "Preps-to-pros landmark pick for the franchise."
+      },
+      {
+        "round": 2,
+        "pickOverall": 48,
+        "playerName": "Mark Davis",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 49,
+        "playerName": "Jerome Allen",
+        "note": ""
+      }
+    ],
+    "1996-97": [
+      {
+        "round": 1,
+        "pickOverall": 5,
+        "playerName": "Ray Allen",
+        "note": ""
+      }
+    ],
+    "1997-98": [
+      {
+        "round": 1,
+        "pickOverall": 20,
+        "playerName": "Paul Grant",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 44,
+        "playerName": "Gordon Malone",
+        "note": ""
+      }
+    ],
+    "1998-99": [
+      {
+        "round": 1,
+        "pickOverall": 17,
+        "playerName": "Rasho Nesterovic",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 46,
+        "playerName": "Andrae Patterson",
+        "note": ""
+      }
+    ],
+    "1999-00": [
+      {
+        "round": 1,
+        "pickOverall": 6,
+        "playerName": "Wally Szczerbiak",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 14,
+        "playerName": "William Avery",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 42,
+        "playerName": "Louis Bullock",
+        "note": ""
+      }
+    ],
+    "2000-01": [
+      {
+        "round": 2,
+        "pickOverall": 51,
+        "playerName": "Igor Rakocevic",
+        "note": ""
+      }
+    ],
+    "2001-02": [
+      {
+        "round": 2,
+        "pickOverall": 46,
+        "playerName": "Loren Woods",
+        "note": ""
+      }
+    ],
+    "2002-03": [
+      {
+        "round": 2,
+        "pickOverall": 52,
+        "playerName": "Marcus Taylor",
+        "note": ""
       }
     ],
     "2003-04": [
       {
-        "round": 2,
-        "pickOverall": 31,
+        "round": 1,
+        "pickOverall": 26,
         "playerName": "Ndudi Ebi",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 55,
+        "playerName": "Rick Rickert",
+        "note": ""
+      }
+    ],
+    "2004-05": [
+      {
+        "round": 2,
+        "pickOverall": 58,
+        "playerName": "Blake Stepp",
+        "note": ""
+      }
+    ],
+    "2005-06": [
+      {
+        "round": 1,
+        "pickOverall": 14,
+        "playerName": "Rashad McCants",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 47,
+        "playerName": "Bracey Wright",
+        "note": ""
+      }
+    ],
+    "2006-07": [
+      {
+        "round": 1,
+        "pickOverall": 6,
+        "playerName": "Brandon Roy",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 36,
+        "playerName": "Craig Smith",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 37,
+        "playerName": "Bobby Jones",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 57,
+        "playerName": "Loukas Mavrokefalidis",
         "note": ""
       }
     ],
@@ -39,10 +273,148 @@
         "note": "Lottery wing from Florida; later packaged as teams cycled through post-KG identities."
       },
       {
-        "round": 1,
-        "pickOverall": 31,
+        "round": 2,
+        "pickOverall": 41,
         "playerName": "Chris Richard",
-        "note": "Second first-round slot that summer—part of the asset picture after the Garnett trade."
+        "note": ""
+      }
+    ],
+    "2008-09": [
+      {
+        "round": 1,
+        "pickOverall": 3,
+        "playerName": "O.J. Mayo",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 31,
+        "playerName": "Nikola Pekovic",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 34,
+        "playerName": "Mario Chalmers",
+        "note": ""
+      }
+    ],
+    "2009-10": [
+      {
+        "round": 1,
+        "pickOverall": 5,
+        "playerName": "Ricky Rubio",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 6,
+        "playerName": "Jonny Flynn",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 18,
+        "playerName": "Ty Lawson",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 28,
+        "playerName": "Wayne Ellington",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 45,
+        "playerName": "Nick Calathes",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 47,
+        "playerName": "Henk Norel",
+        "note": ""
+      }
+    ],
+    "2010-11": [
+      {
+        "round": 1,
+        "pickOverall": 4,
+        "playerName": "Wesley Johnson",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 16,
+        "playerName": "Luke Babbitt",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 23,
+        "playerName": "Trevor Booker",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 45,
+        "playerName": "Paulo Prestes",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 56,
+        "playerName": "Hamady Ndiaye",
+        "note": ""
+      }
+    ],
+    "2011-12": [
+      {
+        "round": 1,
+        "pickOverall": 2,
+        "playerName": "Derrick Williams",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 20,
+        "playerName": "Donatas Motiejunas",
+        "note": ""
+      }
+    ],
+    "2012-13": [
+      {
+        "round": 2,
+        "pickOverall": 58,
+        "playerName": "Robbie Hummel",
+        "note": ""
+      }
+    ],
+    "2013-14": [
+      {
+        "round": 1,
+        "pickOverall": 9,
+        "playerName": "Trey Burke",
+        "note": ""
+      },
+      {
+        "round": 1,
+        "pickOverall": 26,
+        "playerName": "Andre Roberson",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 52,
+        "playerName": "Lorenzo Brown",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 59,
+        "playerName": "Bojan Dubljevic",
+        "note": ""
       }
     ],
     "2014-15": [
@@ -51,6 +423,24 @@
         "pickOverall": 13,
         "playerName": "Zach LaVine",
         "note": "Later became a centerpiece in trade packages."
+      },
+      {
+        "round": 2,
+        "pickOverall": 40,
+        "playerName": "Glenn Robinson III",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 44,
+        "playerName": "Markel Brown",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 53,
+        "playerName": "Alessandro Gentile",
+        "note": ""
       }
     ],
     "2015-16": [
@@ -59,6 +449,62 @@
         "pickOverall": 1,
         "playerName": "Karl-Anthony Towns",
         "note": "No. 1 overall; anchor of the post-Love rebuild."
+      },
+      {
+        "round": 2,
+        "pickOverall": 31,
+        "playerName": "Cedi Osman",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 36,
+        "playerName": "Rakeem Christmas",
+        "note": ""
+      }
+    ],
+    "2016-17": [
+      {
+        "round": 1,
+        "pickOverall": 5,
+        "playerName": "Kris Dunn",
+        "note": ""
+      }
+    ],
+    "2017-18": [
+      {
+        "round": 1,
+        "pickOverall": 7,
+        "playerName": "Lauri Markkanen",
+        "note": ""
+      }
+    ],
+    "2018-19": [
+      {
+        "round": 1,
+        "pickOverall": 20,
+        "playerName": "Josh Okogie",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 48,
+        "playerName": "Keita Bates-Diop",
+        "note": ""
+      }
+    ],
+    "2019-20": [
+      {
+        "round": 1,
+        "pickOverall": 11,
+        "playerName": "Cameron Johnson",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 43,
+        "playerName": "Jaylen Nowell",
+        "note": ""
       }
     ],
     "2020-21": [
@@ -67,6 +513,81 @@
         "pickOverall": 1,
         "playerName": "Anthony Edwards",
         "note": "No. 1 overall; perimeter scoring identity for the Finch era."
+      },
+      {
+        "round": 1,
+        "pickOverall": 17,
+        "playerName": "Aleksej Pokusevski",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 33,
+        "playerName": "Daniel Oturu",
+        "note": ""
+      }
+    ],
+    "2021-22": [],
+    "2022-23": [
+      {
+        "round": 1,
+        "pickOverall": 19,
+        "playerName": "Jake LaRavia",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 40,
+        "playerName": "Bryce McGowens",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 48,
+        "playerName": "Kendall Brown",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 50,
+        "playerName": "Matteo Spagnolo",
+        "note": ""
+      }
+    ],
+    "2023-24": [
+      {
+        "round": 2,
+        "pickOverall": 53,
+        "playerName": "Jaylen Clark",
+        "note": ""
+      }
+    ],
+    "2024-25": [
+      {
+        "round": 1,
+        "pickOverall": 27,
+        "playerName": "Terrence Shannon Jr.",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 37,
+        "playerName": "Bobi Klintman",
+        "note": ""
+      }
+    ],
+    "2025-26": [
+      {
+        "round": 1,
+        "pickOverall": 17,
+        "playerName": "Joan Beringer",
+        "note": ""
+      },
+      {
+        "round": 2,
+        "pickOverall": 31,
+        "playerName": "Rasheer Fleming",
+        "note": ""
       }
     ]
   }

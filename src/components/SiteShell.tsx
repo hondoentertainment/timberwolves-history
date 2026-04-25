@@ -17,41 +17,35 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </a>
       <header
         aria-label="Site"
-        className="site-header sticky top-0 z-50 border-b border-white/10 bg-zinc-950/82 shadow-[0_18px_50px_-28px_rgba(0,0,0,0.95)] backdrop-blur-2xl backdrop-saturate-150"
+        className="site-header sticky top-0 z-50 border-b border-white/10 bg-zinc-950/90 shadow-[0_12px_40px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl backdrop-saturate-150"
       >
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent"
         />
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="flex items-center justify-between gap-4 border-b border-white/[0.08] py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-zinc-500">
-            <span className="hidden text-emerald-300/85 sm:inline">Minnesota Timberwolves archive</span>
-            <span className="text-zinc-500">1989 to today</span>
-            <Link
-              className="rounded-full border border-emerald-400/20 px-2.5 py-1 text-[0.65rem] text-emerald-200/90 outline-offset-2 transition hover:border-emerald-300/45 hover:bg-emerald-400/10 hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
-              href="/about-data"
-            >
-              Data notes
-            </Link>
+        <div className="mx-auto max-w-6xl px-4 sm:px-5">
+          <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-zinc-500">
+            <span className="min-w-0 truncate text-emerald-400/90">Minnesota Timberwolves archive</span>
+            <span className="shrink-0 tabular-nums text-zinc-500">1989–today</span>
           </div>
-          <div className="grid gap-4 py-4 lg:grid-cols-[minmax(15rem,1fr)_auto] lg:items-center">
+          <div className="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-5">
             <Link
               href="/"
-              className="group flex min-w-0 items-center gap-3 rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+              className="group flex min-w-0 shrink-0 items-center gap-3 rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-emerald-300/25 bg-gradient-to-br from-emerald-300/20 via-zinc-900 to-sky-400/10 text-sm font-black tracking-tight text-emerald-100 shadow-lg shadow-emerald-950/30 transition group-hover:border-emerald-300/45">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-emerald-300/30 bg-gradient-to-br from-emerald-300/18 via-zinc-900 to-sky-400/10 text-xs font-black tracking-tight text-emerald-100 shadow-md shadow-emerald-950/25 transition group-hover:border-emerald-300/50 sm:h-11 sm:w-11 sm:rounded-2xl sm:text-sm">
                 WH
               </span>
               <span className="min-w-0">
-                <span className="block bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-xl font-semibold tracking-tight text-transparent sm:text-2xl">
+                <span className="block bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-lg font-semibold tracking-tight text-transparent sm:text-xl md:text-2xl">
                   Wolves History
                 </span>
-                <span className="mt-0.5 block truncate text-xs font-medium tracking-wide text-zinc-500 transition-colors group-hover:text-zinc-400 sm:text-sm">
-                  Seasons, profiles, eras, stories, and franchise context
+                <span className="mt-0.5 block text-xs font-medium leading-snug tracking-wide text-zinc-500 transition-colors group-hover:text-zinc-400 sm:text-sm">
+                  Seasons, players, eras, stories and timeline
                 </span>
               </span>
             </Link>
-            <div className="-mx-4 overflow-x-auto px-4 pb-1 lg:mx-0 lg:overflow-visible lg:px-0 lg:pb-0">
+            <div className="-mx-4 min-w-0 overflow-x-auto px-4 pb-0.5 lg:mx-0 lg:max-w-none lg:flex-1 lg:overflow-visible lg:px-0 lg:pb-0">
               <PrimaryNav />
             </div>
           </div>
@@ -104,8 +98,14 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             >
               Suggest a correction
             </a>
-            <span className="text-zinc-600"> — </span>
-            <span className="text-zinc-600">sources, static JSON, caching, and limitations.</span>
+            <span className="text-zinc-600"> · </span>
+            <Link
+              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+              href="/about-data"
+            >
+              About the data
+            </Link>
+            <span className="text-zinc-600"> — caching, sources, and limitations.</span>
           </p>
         </div>
       </footer>

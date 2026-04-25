@@ -76,7 +76,11 @@ export function DataTransparencyPage({
             </li>
             <li>
               <code className="text-zinc-300">src/data/draft-picks-by-season.json</code> — curated
-              draft rows surfaced on season pages when present.
+              draft rows for every season, including explicit empty years.
+            </li>
+            <li>
+              <code className="text-zinc-300">src/data/all-time-players.json</code> — complete
+              all-time roster fallback used for player discovery and season-page roster fallback.
             </li>
             <li>
               <code className="text-zinc-300">src/data/transactions-by-season.json</code> — curated
@@ -117,8 +121,9 @@ export function DataTransparencyPage({
               overlap in odd interim years.
             </li>
             <li>
-              The merged all-time player index walks many seasons; the first cold build can be
-              slow—cached afterward.
+              Season rosters prefer NBA.com live roster rows. If a roster feed times out or returns
+              empty, the page falls back to the all-time player snapshot for that season, with blank
+              vitals where the snapshot does not carry jersey, height, weight, or country.
             </li>
           </ul>
         </section>

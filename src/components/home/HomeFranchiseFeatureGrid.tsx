@@ -78,7 +78,7 @@ export async function HomeFranchiseFeatureGrid({ flagship }: { flagship: Longrea
         title="Latest snapshot"
         description={
           latest
-            ? `Most recent team year in the cache: ${latest.seasonLabel} at ${latest.wins}-${latest.losses}${
+            ? `Most recent season in the index: ${latest.seasonLabel} at ${latest.wins}-${latest.losses}${
                 latest.playoffWins + latest.playoffLosses > 0
                   ? `, playoffs ${latest.playoffWins}-${latest.playoffLosses}`
                   : ""
@@ -87,12 +87,6 @@ export async function HomeFranchiseFeatureGrid({ flagship }: { flagship: Longrea
         }
         href="/seasons"
         cta="View all seasons"
-        footer={
-          <span>
-            Figures refresh from NBA.com on a cache window; use Vercel Cron to invalidate aggregates
-            overnight.
-          </span>
-        }
       />
     </div>
   );

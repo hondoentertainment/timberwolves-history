@@ -16,15 +16,15 @@ export function ThisWeekInWolvesHistory() {
   return (
     <section
       aria-labelledby="week-wolves-heading"
-      className="rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-6 ring-1 ring-white/[0.04]"
+      className="rounded-2xl border border-zinc-800/70 bg-gradient-to-b from-zinc-900/50 to-zinc-950/40 p-6 shadow-lg shadow-black/20 ring-1 ring-white/[0.05] sm:p-7"
     >
       <h2
         id="week-wolves-heading"
-        className="text-lg font-semibold tracking-tight text-white"
+        className="text-lg font-semibold tracking-tight text-white sm:text-xl"
       >
         {usingWeek ? "This week in Wolves history" : "Featured milestones"}
       </h2>
-      <p className="mt-2 text-xs leading-relaxed text-zinc-500">
+      <p className="mt-2.5 max-w-2xl text-xs leading-relaxed text-zinc-500 sm:text-sm">
         {usingWeek
           ? "Anniversaries from the franchise timeline whose month/day falls in your current calendar week (local time)."
           : "No anniversaries matched this week—here are recent timeline anchors instead."}{" "}

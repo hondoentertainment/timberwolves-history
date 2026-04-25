@@ -15,3 +15,7 @@ export function getDraftPicksForSeason(seasonId: string): DraftPickRow[] {
   const map = draftFile.bySeason as Record<string, DraftPickRow[]>;
   return map[seasonId] ?? [];
 }
+
+export function hasDraftPickCoverageForSeason(seasonId: string): boolean {
+  return Object.prototype.hasOwnProperty.call(draftFile.bySeason, seasonId);
+}
