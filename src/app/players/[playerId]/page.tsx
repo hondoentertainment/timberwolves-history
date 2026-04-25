@@ -138,7 +138,7 @@ export default async function PlayerPage({ params }: PageProps) {
   const tenureNote = indexRow ? (
     <>
       <p>
-        Appeared on a Wolves roster in{" "}
+        Appeared for the Wolves in{" "}
         <span className="text-zinc-200">{indexRow.seasons.length}</span> tracked seasons:{" "}
         <span className="text-zinc-300">{indexRow.seasons.join(", ")}</span>
       </p>
@@ -209,7 +209,7 @@ export default async function PlayerPage({ params }: PageProps) {
       <ProfileSection id="vitals" title="Bio & vitals">
         <ProfileMetaGrid rows={metaRows} />
       </ProfileSection>
-      <ProfileSection id="tenure" title="Wolves roster index" description="Merged season rosters.">
+      <ProfileSection id="tenure" title="Wolves seasons" description="Tracked regular-season appearances.">
         <div className="text-sm leading-relaxed text-zinc-400">{tenureNote}</div>
       </ProfileSection>
       <ProfileSection

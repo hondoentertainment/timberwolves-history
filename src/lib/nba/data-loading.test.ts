@@ -47,7 +47,7 @@ describe("snapshot-backed data loading", () => {
   it("keeps the all-time players index populated without roster feed fan-out", async () => {
     const { elapsed, value } = await measure(() => buildAllTimeWolvesPlayerIndex());
 
-    expect(value.length).toBeGreaterThanOrEqual(20);
+    expect(value).toHaveLength(311);
     expect(value.some((p) => p.name === "Kevin Garnett" && p.seasons.length > 10)).toBe(true);
     expect(value.some((p) => p.name === "Anthony Edwards")).toBe(true);
     expect(elapsed).toBeLessThan(FAST_SNAPSHOT_MS);
@@ -70,7 +70,7 @@ describe("snapshot-backed data loading", () => {
     const players = getFallbackAllTimeWolvesPlayers();
 
     expect(seasons.length).toBeGreaterThanOrEqual(35);
-    expect(players.length).toBeGreaterThanOrEqual(20);
+    expect(players).toHaveLength(311);
     expect(new Set(players.map((p) => p.playerId)).size).toBe(players.length);
     expect(players.every((p) => p.name && p.seasons.length > 0)).toBe(true);
   });

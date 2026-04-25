@@ -21,7 +21,7 @@ export default async function PlayersPage({ searchParams }: PageProps) {
     <>
       <PageHeader
         title="All-time players"
-        description={`${players.length} unique players have appeared on a Timberwolves regular-season roster (merged from season-by-season NBA.com roster feeds). Use search to filter by name.`}
+        description={`${players.length} players have appeared in at least one Timberwolves regular-season game. Use search to filter by name.`}
       />
       {!players.length ? (
         <p className="mb-6 rounded-2xl border border-amber-500/25 bg-amber-950/25 px-5 py-4 text-sm leading-relaxed text-amber-100/95 ring-1 ring-amber-500/10">

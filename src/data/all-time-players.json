@@ -1,29 +1,2501 @@
 {
-  "attribution": "Curated fallback roster index for fast page loads when NBA.com roster feeds are unavailable. Live roster feeds may be enabled with NBA_LIVE_STATS=1.",
+  "attribution": "All-time Minnesota Timberwolves player snapshot built from Basketball-Reference played-game register (311 players through 2025-26), with NBA.com Stats player IDs/seasons where available. Older historical entries without a stable NBA Stats ID use deterministic fallback IDs for local profile routing.",
   "players": [
-    { "playerId": 708, "name": "Kevin Garnett", "seasons": ["1995-96", "1996-97", "1997-98", "1998-99", "1999-00", "2000-01", "2001-02", "2002-03", "2003-04", "2004-05", "2005-06", "2006-07", "2014-15", "2015-16"] },
-    { "playerId": 786, "name": "Doug West", "seasons": ["1989-90", "1990-91", "1991-92", "1992-93", "1993-94", "1994-95", "1995-96", "1996-97", "1997-98"] },
-    { "playerId": 1626157, "name": "Karl-Anthony Towns", "seasons": ["2015-16", "2016-17", "2017-18", "2018-19", "2019-20", "2020-21", "2021-22", "2022-23", "2023-24"] },
-    { "playerId": 201937, "name": "Ricky Rubio", "seasons": ["2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2020-21"] },
-    { "playerId": 203476, "name": "Gorgui Dieng", "seasons": ["2013-14", "2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20"] },
-    { "playerId": 1629675, "name": "Naz Reid", "seasons": ["2019-20", "2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"] },
-    { "playerId": 201567, "name": "Kevin Love", "seasons": ["2008-09", "2009-10", "2010-11", "2011-12", "2012-13", "2013-14"] },
-    { "playerId": 203952, "name": "Andrew Wiggins", "seasons": ["2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20"] },
-    { "playerId": 1630162, "name": "Anthony Edwards", "seasons": ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"] },
-    { "playerId": 1630183, "name": "Jaden McDaniels", "seasons": ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"] },
-    { "playerId": 202704, "name": "Jimmy Butler", "seasons": ["2017-18", "2018-19"] },
-    { "playerId": 203497, "name": "Rudy Gobert", "seasons": ["2022-23", "2023-24", "2024-25", "2025-26"] },
-    { "playerId": 201144, "name": "Mike Conley", "seasons": ["2022-23", "2023-24", "2024-25", "2025-26"] },
-    { "playerId": 1627736, "name": "Malik Beasley", "seasons": ["2019-20", "2020-21", "2021-22"] },
-    { "playerId": 1627774, "name": "Jake Layman", "seasons": ["2019-20", "2020-21", "2021-22"] },
-    { "playerId": 1629020, "name": "Jarred Vanderbilt", "seasons": ["2019-20", "2020-21", "2021-22"] },
-    { "playerId": 201147, "name": "Corey Brewer", "seasons": ["2007-08", "2008-09", "2009-10", "2013-14"] },
-    { "playerId": 201593, "name": "Nikola Pekovic", "seasons": ["2010-11", "2011-12", "2012-13", "2013-14", "2014-15", "2015-16"] },
-    { "playerId": 2743, "name": "Al Jefferson", "seasons": ["2007-08", "2008-09", "2009-10"] },
-    { "playerId": 2037, "name": "Chauncey Billups", "seasons": ["2000-01", "2001-02"] },
-    { "playerId": 208, "name": "Sam Cassell", "seasons": ["2003-04", "2004-05"] },
-    { "playerId": 84, "name": "Latrell Sprewell", "seasons": ["2003-04", "2004-05"] },
-    { "playerId": 1627823, "name": "Juancho Hernangomez", "seasons": ["2019-20", "2020-21"] },
-    { "playerId": 1626156, "name": "D'Angelo Russell", "seasons": ["2019-20", "2020-21", "2021-22", "2022-23"] }
+    {
+      "playerId": 1630639,
+      "name": "A.J. Lawson",
+      "seasons": [
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 201985,
+      "name": "A.J. Price",
+      "seasons": [
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 201166,
+      "name": "Aaron Brooks",
+      "seasons": [
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 203940,
+      "name": "Adreian Payne",
+      "seasons": [
+        "2014-15",
+        "2015-16",
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 900000027,
+      "name": "Adrian Branch",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 2744,
+      "name": "Al Jefferson",
+      "seasons": [
+        "2007-08",
+        "2008-09",
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 201169,
+      "name": "Alando Tucker",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 203144,
+      "name": "Alexey Shved",
+      "seasons": [
+        "2012-13",
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 203459,
+      "name": "Allen Crabbe",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 1754,
+      "name": "Andrae Patterson",
+      "seasons": [
+        "1998-99",
+        "1999-00"
+      ]
+    },
+    {
+      "playerId": 1889,
+      "name": "Andre Miller",
+      "seasons": [
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 1905,
+      "name": "Andrei Kirilenko",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 900000115,
+      "name": "Andrés Guibert",
+      "seasons": [
+        "1993-94",
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 900000157,
+      "name": "Andrew Lang",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 203952,
+      "name": "Andrew Wiggins",
+      "seasons": [
+        "2014-15",
+        "2015-16",
+        "2016-17",
+        "2017-18",
+        "2018-19",
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 203461,
+      "name": "Anthony Bennett",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 1626148,
+      "name": "Anthony Brown",
+      "seasons": [
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 1853,
+      "name": "Anthony Carter",
+      "seasons": [
+        "2004-05",
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 1630162,
+      "name": "Anthony Edwards",
+      "seasons": [
+        "2020-21",
+        "2021-22",
+        "2022-23",
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 924,
+      "name": "Anthony Goldwire",
+      "seasons": [
+        "2003-04"
+      ]
+    },
+    {
+      "playerId": 324,
+      "name": "Anthony Peeler",
+      "seasons": [
+        "1997-98",
+        "1998-99",
+        "1999-00",
+        "2000-01",
+        "2001-02",
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 201576,
+      "name": "Anthony Randolph",
+      "seasons": [
+        "2010-11",
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 201229,
+      "name": "Anthony Tolliver",
+      "seasons": [
+        "2010-11",
+        "2011-12",
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 952,
+      "name": "Antoine Walker",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 202620,
+      "name": "Arinze Onuaku",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 1630204,
+      "name": "Ashton Hagans",
+      "seasons": [
+        "2020-21"
+      ]
+    },
+    {
+      "playerId": 900000147,
+      "name": "Askia Jones",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 203085,
+      "name": "Austin Rivers",
+      "seasons": [
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 1630245,
+      "name": "Ayo Dosunmu",
+      "seasons": [
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 223,
+      "name": "Bill Curley",
+      "seasons": [
+        "1997-98",
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 900000178,
+      "name": "Bob McCann",
+      "seasons": [
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 900000280,
+      "name": "Bob Thornton",
+      "seasons": [
+        "1990-91"
+      ]
+    },
+    {
+      "playerId": 201628,
+      "name": "Bobby Brown",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 1517,
+      "name": "Bobby Jackson",
+      "seasons": [
+        "1998-99",
+        "1999-00"
+      ]
+    },
+    {
+      "playerId": 1630538,
+      "name": "Bones Hyland",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 101152,
+      "name": "Bracey Wright",
+      "seasons": [
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 900000164,
+      "name": "Brad Lohaus",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 1802,
+      "name": "Brad Miller",
+      "seasons": [
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 900000256,
+      "name": "Brad Sellers",
+      "seasons": [
+        "1989-90",
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 200750,
+      "name": "Brandon Roy",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 201575,
+      "name": "Brandon Rush",
+      "seasons": [
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 2073,
+      "name": "Brian Cardinal",
+      "seasons": [
+        "2008-09",
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 900000064,
+      "name": "Brian Davis",
+      "seasons": [
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 967,
+      "name": "Brian Evans",
+      "seasons": [
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 1627854,
+      "name": "Bryn Forbes",
+      "seasons": [
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 203710,
+      "name": "C.J. Williams",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 1916,
+      "name": "Calvin Booth",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 900000232,
+      "name": "Cameron Reynolds",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 900000258,
+      "name": "Charles Shackleford",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 900000263,
+      "name": "Charles Smith",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 201978,
+      "name": "Chase Budinger",
+      "seasons": [
+        "2012-13",
+        "2013-14",
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 1497,
+      "name": "Chauncey Billups",
+      "seasons": [
+        "2000-01",
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 685,
+      "name": "Cherokee Parks",
+      "seasons": [
+        "1996-97",
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 713,
+      "name": "Chris Carr",
+      "seasons": [
+        "1996-97",
+        "1997-98",
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 202419,
+      "name": "Chris Johnson",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 201181,
+      "name": "Chris Richard",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 1629735,
+      "name": "Chris Silva",
+      "seasons": [
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 900000264,
+      "name": "Chris Smith",
+      "seasons": [
+        "1992-93",
+        "1993-94",
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 900000156,
+      "name": "Christian Laettner",
+      "seasons": [
+        "1992-93",
+        "1993-94",
+        "1994-95",
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 900000217,
+      "name": "Chuck Person",
+      "seasons": [
+        "1992-93",
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 32,
+      "name": "Clifford Rozier",
+      "seasons": [
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 202332,
+      "name": "Cole Aldrich",
+      "seasons": [
+        "2016-17",
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 201147,
+      "name": "Corey Brewer",
+      "seasons": [
+        "2007-08",
+        "2008-09",
+        "2009-10",
+        "2010-11",
+        "2013-14",
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 900000301,
+      "name": "Corey Williams",
+      "seasons": [
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 200783,
+      "name": "Craig Smith",
+      "seasons": [
+        "2006-07",
+        "2007-08",
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 1626156,
+      "name": "D'Angelo Russell",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 1630227,
+      "name": "Daishen Nix",
+      "seasons": [
+        "2023-24",
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 2863,
+      "name": "Damien Wilkins",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 204014,
+      "name": "Damjan Rudež",
+      "seasons": [
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 900000107,
+      "name": "Dan Godfread",
+      "seasons": [
+        "1990-91"
+      ]
+    },
+    {
+      "playerId": 201967,
+      "name": "Dante Cunningham",
+      "seasons": [
+        "2012-13",
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 203967,
+      "name": "Dario Šarić",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 2545,
+      "name": "Darko Miličić",
+      "seasons": [
+        "2009-10",
+        "2010-11",
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 239,
+      "name": "Darrick Martin",
+      "seasons": [
+        "1994-95",
+        "1995-96",
+        "2003-04"
+      ]
+    },
+    {
+      "playerId": 1051,
+      "name": "Dean Garrett",
+      "seasons": [
+        "1996-97",
+        "1998-99",
+        "1999-00",
+        "2000-01",
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 1545,
+      "name": "DeJuan Wheat",
+      "seasons": [
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 192,
+      "name": "Dennis Scott",
+      "seasons": [
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 201565,
+      "name": "Derrick Rose",
+      "seasons": [
+        "2017-18",
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 202682,
+      "name": "Derrick Williams",
+      "seasons": [
+        "2011-12",
+        "2012-13",
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 900000246,
+      "name": "Donald Royal",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 1628978,
+      "name": "Donte DiVincenzo",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 900000172,
+      "name": "Donyell Marshall",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 28,
+      "name": "Doug West",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92",
+        "1992-93",
+        "1993-94",
+        "1994-95",
+        "1995-96",
+        "1996-97",
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 202334,
+      "name": "Ed Davis",
+      "seasons": [
+        "2020-21"
+      ]
+    },
+    {
+      "playerId": 2204,
+      "name": "Eddie Griffin",
+      "seasons": [
+        "2004-05",
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 1642402,
+      "name": "Enrique Freeman",
+      "seasons": [
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 900000237,
+      "name": "Eric Riley",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 911,
+      "name": "Ervin Johnson",
+      "seasons": [
+        "2003-04",
+        "2004-05"
+      ]
+    },
+    {
+      "playerId": 1732,
+      "name": "Felipe López",
+      "seasons": [
+        "2000-01",
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 900000269,
+      "name": "Felton Spencer",
+      "seasons": [
+        "1990-91",
+        "1991-92",
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 697,
+      "name": "Fred Hoiberg",
+      "seasons": [
+        "2003-04",
+        "2004-05"
+      ]
+    },
+    {
+      "playerId": 900000162,
+      "name": "Gary Leonard",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 202390,
+      "name": "Gary Neal",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 718,
+      "name": "Gary Trent",
+      "seasons": [
+        "2001-02",
+        "2002-03",
+        "2003-04"
+      ]
+    },
+    {
+      "playerId": 900000105,
+      "name": "Gerald Glass",
+      "seasons": [
+        "1990-91",
+        "1991-92",
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 101123,
+      "name": "Gerald Green",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 203922,
+      "name": "Glenn Robinson III",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 203476,
+      "name": "Gorgui Dieng",
+      "seasons": [
+        "2013-14",
+        "2014-15",
+        "2015-16",
+        "2016-17",
+        "2017-18",
+        "2018-19",
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 1761,
+      "name": "Greg Buckner",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 900000090,
+      "name": "Greg Foster",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 202328,
+      "name": "Greg Monroe",
+      "seasons": [
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 202962,
+      "name": "Greg Smith",
+      "seasons": [
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 201880,
+      "name": "Greg Stiemsma",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 900000288,
+      "name": "Gundars Vētra",
+      "seasons": [
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 900000082,
+      "name": "Howard Eisley",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 2080,
+      "name": "Igor Rakočević",
+      "seasons": [
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 203477,
+      "name": "Isaiah Canaan",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 900000235,
+      "name": "Isaiah Rider",
+      "seasons": [
+        "1993-94",
+        "1994-95",
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 200826,
+      "name": "J.J. Barea",
+      "seasons": [
+        "2011-12",
+        "2012-13",
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 1628980,
+      "name": "Jacob Evans",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 1630183,
+      "name": "Jaden McDaniels",
+      "seasons": [
+        "2020-21",
+        "2021-22",
+        "2022-23",
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 1627774,
+      "name": "Jake Layman",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 2037,
+      "name": "Jamal Crawford",
+      "seasons": [
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 201949,
+      "name": "James Johnson",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 203263,
+      "name": "James Nunnally",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 381,
+      "name": "James Robinson",
+      "seasons": [
+        "1996-97",
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 1629123,
+      "name": "Jared Terrell",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 1629020,
+      "name": "Jarred Vanderbilt",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 1629633,
+      "name": "Jarrett Culver",
+      "seasons": [
+        "2019-20",
+        "2020-21"
+      ]
+    },
+    {
+      "playerId": 2215,
+      "name": "Jason Collins",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 2078,
+      "name": "Jason Hart",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 1641740,
+      "name": "Jaylen Clark",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 1629669,
+      "name": "Jaylen Nowell",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 202399,
+      "name": "Jeff Adrien",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 201952,
+      "name": "Jeff Teague",
+      "seasons": [
+        "2017-18",
+        "2018-19",
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 900000005,
+      "name": "Jerome Allen",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 201573,
+      "name": "Jerryd Bayless",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 1642399,
+      "name": "Jesse Edwards",
+      "seasons": [
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 900000278,
+      "name": "Jim Thomas",
+      "seasons": [
+        "1990-91"
+      ]
+    },
+    {
+      "playerId": 202710,
+      "name": "Jimmy Butler",
+      "seasons": [
+        "2017-18",
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 1642866,
+      "name": "Joan Beringer",
+      "seasons": [
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 204060,
+      "name": "Joe Ingles",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 693,
+      "name": "Joe Smith",
+      "seasons": [
+        "1998-99",
+        "1999-00",
+        "2001-02",
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 101249,
+      "name": "John Lucas III",
+      "seasons": [
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 1519,
+      "name": "John Thomas",
+      "seasons": [
+        "2004-05"
+      ]
+    },
+    {
+      "playerId": 1630548,
+      "name": "Johnny Juzang",
+      "seasons": [
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 201938,
+      "name": "Jonny Flynn",
+      "seasons": [
+        "2009-10",
+        "2010-11"
+      ]
+    },
+    {
+      "playerId": 1628395,
+      "name": "Jordan Bell",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 201941,
+      "name": "Jordan Hill",
+      "seasons": [
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 1629162,
+      "name": "Jordan McLaughlin",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23",
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 2572,
+      "name": "Josh Howard",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 1631169,
+      "name": "Josh Minott",
+      "seasons": [
+        "2022-23",
+        "2023-24",
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 1629006,
+      "name": "Josh Okogie",
+      "seasons": [
+        "2018-19",
+        "2019-20",
+        "2020-21",
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 1627823,
+      "name": "Juancho Hernangómez",
+      "seasons": [
+        "2019-20",
+        "2020-21"
+      ]
+    },
+    {
+      "playerId": 1641763,
+      "name": "Julian Phillips",
+      "seasons": [
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 203944,
+      "name": "Julius Randle",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 203120,
+      "name": "Justin Hamilton",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 1628382,
+      "name": "Justin Jackson",
+      "seasons": [
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 1628383,
+      "name": "Justin Patton",
+      "seasons": [
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 2770,
+      "name": "Justin Reed",
+      "seasons": [
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 1626157,
+      "name": "Karl-Anthony Towns",
+      "seasons": [
+        "2015-16",
+        "2016-17",
+        "2017-18",
+        "2018-19",
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23",
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 1628966,
+      "name": "Keita Bates-Diop",
+      "seasons": [
+        "2018-19",
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 2693,
+      "name": "Keith McLeod",
+      "seasons": [
+        "2003-04"
+      ]
+    },
+    {
+      "playerId": 1629103,
+      "name": "Kelan Martin",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 383,
+      "name": "Kendall Gill",
+      "seasons": [
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 708,
+      "name": "Kevin Garnett",
+      "seasons": [
+        "1995-96",
+        "1996-97",
+        "1997-98",
+        "1998-99",
+        "1999-00",
+        "2000-01",
+        "2001-02",
+        "2002-03",
+        "2003-04",
+        "2004-05",
+        "2005-06",
+        "2006-07",
+        "2014-15",
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 201567,
+      "name": "Kevin Love",
+      "seasons": [
+        "2008-09",
+        "2009-10",
+        "2010-11",
+        "2011-12",
+        "2012-13",
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 2755,
+      "name": "Kevin Martin",
+      "seasons": [
+        "2013-14",
+        "2014-15",
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 1563,
+      "name": "Kevin Ollie",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 2745,
+      "name": "Kirk Snyder",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 201585,
+      "name": "Kosta Koufos",
+      "seasons": [
+        "2010-11"
+      ]
+    },
+    {
+      "playerId": 1627739,
+      "name": "Kris Dunn",
+      "seasons": [
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 203937,
+      "name": "Kyle Anderson",
+      "seasons": [
+        "2022-23",
+        "2023-24",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 900000022,
+      "name": "Lance Blanks",
+      "seasons": [
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 202362,
+      "name": "Lance Stephenson",
+      "seasons": [
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 111,
+      "name": "LaPhonso Ellis",
+      "seasons": [
+        "2000-01"
+      ]
+    },
+    {
+      "playerId": 84,
+      "name": "Latrell Sprewell",
+      "seasons": [
+        "2003-04",
+        "2004-05"
+      ]
+    },
+    {
+      "playerId": 202351,
+      "name": "Lazar Hayward",
+      "seasons": [
+        "2010-11",
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 1630195,
+      "name": "Leandro Bolmaro",
+      "seasons": [
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 1631159,
+      "name": "Leonard Miller",
+      "seasons": [
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 2254,
+      "name": "Loren Woods",
+      "seasons": [
+        "2001-02",
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 203485,
+      "name": "Lorenzo Brown",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 200811,
+      "name": "Lou Amundson",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 900000165,
+      "name": "Luc Longley",
+      "seasons": [
+        "1991-92",
+        "1992-93",
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 201601,
+      "name": "Luc Mbah a Moute",
+      "seasons": [
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 1630568,
+      "name": "Luka Garza",
+      "seasons": [
+        "2022-23",
+        "2023-24",
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 2557,
+      "name": "Luke Ridnour",
+      "seasons": [
+        "2010-11",
+        "2011-12",
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 2736,
+      "name": "Luol Deng",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 202723,
+      "name": "Malcolm Lee",
+      "seasons": [
+        "2011-12",
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 1627736,
+      "name": "Malik Beasley",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 907,
+      "name": "Malik Sealy",
+      "seasons": [
+        "1998-99",
+        "1999-00"
+      ]
+    },
+    {
+      "playerId": 1531,
+      "name": "Marc Jackson",
+      "seasons": [
+        "2001-02",
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 2556,
+      "name": "Marcus Banks",
+      "seasons": [
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 1627875,
+      "name": "Marcus Georges-Hunt",
+      "seasons": [
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 1548,
+      "name": "Mark Blount",
+      "seasons": [
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 900000066,
+      "name": "Mark Davis",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 2058,
+      "name": "Mark Madsen",
+      "seasons": [
+        "2003-04",
+        "2004-05",
+        "2005-06",
+        "2006-07",
+        "2007-08",
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 900000226,
+      "name": "Mark Randall",
+      "seasons": [
+        "1991-92",
+        "1992-93"
+      ]
+    },
+    {
+      "playerId": 2060,
+      "name": "Marko Jarić",
+      "seasons": [
+        "2005-06",
+        "2006-07",
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 900000176,
+      "name": "Marlon Maxey",
+      "seasons": [
+        "1992-93",
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 900000026,
+      "name": "Marques Bragg",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 101110,
+      "name": "Martell Webster",
+      "seasons": [
+        "2010-11",
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 1630346,
+      "name": "Matt Ryan",
+      "seasons": [
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 200772,
+      "name": "Maurice Ager",
+      "seasons": [
+        "2010-11"
+      ]
+    },
+    {
+      "playerId": 2230,
+      "name": "Maurice Evans",
+      "seasons": [
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 1630593,
+      "name": "McKinley Wright IV",
+      "seasons": [
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 201563,
+      "name": "Michael Beasley",
+      "seasons": [
+        "2010-11",
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 1720,
+      "name": "Michael Doleac",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 1709,
+      "name": "Michael Olowokandi",
+      "seasons": [
+        "2003-04",
+        "2004-05",
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 52,
+      "name": "Micheal Williams",
+      "seasons": [
+        "1992-93",
+        "1993-94",
+        "1994-95",
+        "1995-96",
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 101153,
+      "name": "Mickaël Gelabale",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 900000036,
+      "name": "Mike Brown",
+      "seasons": [
+        "1993-94",
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 201144,
+      "name": "Mike Conley",
+      "seasons": [
+        "2022-23",
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 2229,
+      "name": "Mike James",
+      "seasons": [
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 2034,
+      "name": "Mike Miller",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 2366,
+      "name": "Mike Wilks",
+      "seasons": [
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 203545,
+      "name": "Miroslav Raduljica",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 900000059,
+      "name": "Mitch Creek",
+      "seasons": [
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 2590,
+      "name": "Mo Williams",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 1628420,
+      "name": "Monte Morris",
+      "seasons": [
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 900000037,
+      "name": "Myron Brown",
+      "seasons": [
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 201605,
+      "name": "Nathan Jawai",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 1630233,
+      "name": "Nathan Knight",
+      "seasons": [
+        "2021-22",
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 1629675,
+      "name": "Naz Reid",
+      "seasons": [
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23",
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 2569,
+      "name": "Ndudi Ebi",
+      "seasons": [
+        "2003-04",
+        "2004-05"
+      ]
+    },
+    {
+      "playerId": 202357,
+      "name": "Nemanja Bjelica",
+      "seasons": [
+        "2015-16",
+        "2016-17",
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 1629638,
+      "name": "Nickeil Alexander-Walker",
+      "seasons": [
+        "2022-23",
+        "2023-24",
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 201593,
+      "name": "Nikola Peković",
+      "seasons": [
+        "2010-11",
+        "2011-12",
+        "2012-13",
+        "2013-14",
+        "2014-15",
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 2401,
+      "name": "Nikoloz Tskitishvili",
+      "seasons": [
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 203943,
+      "name": "Noah Vonleh",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 200762,
+      "name": "Oleksiy Pecherov",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 932,
+      "name": "Oliver Miller",
+      "seasons": [
+        "2003-04"
+      ]
+    },
+    {
+      "playerId": 201956,
+      "name": "Omri Casspi",
+      "seasons": [
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 201785,
+      "name": "Othyus Jeffers",
+      "seasons": [
+        "2013-14"
+      ]
+    },
+    {
+      "playerId": 900000078,
+      "name": "Pat Durham",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 201976,
+      "name": "Patrick Beverley",
+      "seasons": [
+        "2021-22"
+      ]
+    },
+    {
+      "playerId": 1514,
+      "name": "Paul Grant",
+      "seasons": [
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 1628408,
+      "name": "PJ Dozier",
+      "seasons": [
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 900000234,
+      "name": "Pooh Richardson",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 1900,
+      "name": "Quincy Lewis",
+      "seasons": [
+        "2003-04"
+      ]
+    },
+    {
+      "playerId": 201196,
+      "name": "Ramon Sessions",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 900000029,
+      "name": "Randy Breuer",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 200751,
+      "name": "Randy Foye",
+      "seasons": [
+        "2006-07",
+        "2007-08",
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 101119,
+      "name": "Rashad McCants",
+      "seasons": [
+        "2005-06",
+        "2006-07",
+        "2007-08",
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 1725,
+      "name": "Rasho Nesterović",
+      "seasons": [
+        "1998-99",
+        "1999-00",
+        "2000-01",
+        "2001-02",
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 674,
+      "name": "Reggie Jordan",
+      "seasons": [
+        "1996-97",
+        "1997-98",
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 1073,
+      "name": "Reggie Slater",
+      "seasons": [
+        "2000-01",
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 900000051,
+      "name": "Richard Coffey",
+      "seasons": [
+        "1990-91"
+      ]
+    },
+    {
+      "playerId": 2499,
+      "name": "Richie Frahm",
+      "seasons": [
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 1729,
+      "name": "Ricky Davis",
+      "seasons": [
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 201937,
+      "name": "Ricky Rubio",
+      "seasons": [
+        "2011-12",
+        "2012-13",
+        "2013-14",
+        "2014-15",
+        "2015-16",
+        "2016-17",
+        "2020-21"
+      ]
+    },
+    {
+      "playerId": 1642265,
+      "name": "Rob Dillingham",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 203133,
+      "name": "Robbie Hummel",
+      "seasons": [
+        "2013-14",
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 203496,
+      "name": "Robert Covington",
+      "seasons": [
+        "2018-19",
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 123,
+      "name": "Robert Pack",
+      "seasons": [
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 1642911,
+      "name": "Rocco Zikarsky",
+      "seasons": [
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 393,
+      "name": "Rod Strickland",
+      "seasons": [
+        "2002-03"
+      ]
+    },
+    {
+      "playerId": 200760,
+      "name": "Rodney Carney",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 2648,
+      "name": "Ronald Dupree",
+      "seasons": [
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 101142,
+      "name": "Ronny Turiaf",
+      "seasons": [
+        "2013-14",
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 203497,
+      "name": "Rudy Gobert",
+      "seasons": [
+        "2022-23",
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 101155,
+      "name": "Ryan Gomes",
+      "seasons": [
+        "2007-08",
+        "2008-09",
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 200797,
+      "name": "Ryan Hollins",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 208,
+      "name": "Sam Cassell",
+      "seasons": [
+        "2003-04",
+        "2004-05"
+      ]
+    },
+    {
+      "playerId": 1734,
+      "name": "Sam Jacobson",
+      "seasons": [
+        "2000-01"
+      ]
+    },
+    {
+      "playerId": 417,
+      "name": "Sam Mitchell",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92",
+        "1995-96",
+        "1996-97",
+        "1997-98",
+        "1998-99",
+        "1999-00",
+        "2000-01",
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 2562,
+      "name": "Sasha Pavlović",
+      "seasons": [
+        "2009-10"
+      ]
+    },
+    {
+      "playerId": 900000032,
+      "name": "Scott Brooks",
+      "seasons": [
+        "1990-91",
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 900000244,
+      "name": "Scott Roth",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 203930,
+      "name": "Sean Kilpatrick",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 900000242,
+      "name": "Sean Rooks",
+      "seasons": [
+        "1994-95",
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 2742,
+      "name": "Sebastian Telfair",
+      "seasons": [
+        "2007-08",
+        "2008-09",
+        "2010-11"
+      ]
+    },
+    {
+      "playerId": 203498,
+      "name": "Shabazz Muhammad",
+      "seasons": [
+        "2013-14",
+        "2014-15",
+        "2015-16",
+        "2016-17",
+        "2017-18"
+      ]
+    },
+    {
+      "playerId": 203894,
+      "name": "Shabazz Napier",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 1629003,
+      "name": "Shake Milton",
+      "seasons": [
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 1049,
+      "name": "Shane Heal",
+      "seasons": [
+        "1996-97"
+      ]
+    },
+    {
+      "playerId": 200749,
+      "name": "Shelden Williams",
+      "seasons": [
+        "2008-09"
+      ]
+    },
+    {
+      "playerId": 900000168,
+      "name": "Sidney Lowe",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 900000293,
+      "name": "Spud Webb",
+      "seasons": [
+        "1995-96"
+      ]
+    },
+    {
+      "playerId": 900000152,
+      "name": "Stacey King",
+      "seasons": [
+        "1993-94",
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 900000135,
+      "name": "Stanley Jackson",
+      "seasons": [
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 914,
+      "name": "Stanley Roberts",
+      "seasons": [
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 950,
+      "name": "Stephon Marbury",
+      "seasons": [
+        "1996-97",
+        "1997-98",
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 900000145,
+      "name": "Steve Johnson",
+      "seasons": [
+        "1989-90"
+      ]
+    },
+    {
+      "playerId": 1037,
+      "name": "Stojko Vranković",
+      "seasons": [
+        "1996-97"
+      ]
+    },
+    {
+      "playerId": 202178,
+      "name": "Sundiata Gaines",
+      "seasons": [
+        "2010-11"
+      ]
+    },
+    {
+      "playerId": 203933,
+      "name": "T.J. Warren",
+      "seasons": [
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 201959,
+      "name": "Taj Gibson",
+      "seasons": [
+        "2017-18",
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 1627752,
+      "name": "Taurean Prince",
+      "seasons": [
+        "2021-22",
+        "2022-23"
+      ]
+    },
+    {
+      "playerId": 2419,
+      "name": "Tayshaun Prince",
+      "seasons": [
+        "2015-16"
+      ]
+    },
+    {
+      "playerId": 900000093,
+      "name": "Tellis Frank",
+      "seasons": [
+        "1991-92",
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 210,
+      "name": "Terrell Brandon",
+      "seasons": [
+        "1998-99",
+        "1999-00",
+        "2000-01",
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 1630545,
+      "name": "Terrence Shannon Jr.",
+      "seasons": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "playerId": 345,
+      "name": "Terry Porter",
+      "seasons": [
+        "1995-96",
+        "1996-97",
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 201152,
+      "name": "Thaddeus Young",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 689,
+      "name": "Theo Ratliff",
+      "seasons": [
+        "2007-08"
+      ]
+    },
+    {
+      "playerId": 900000009,
+      "name": "Thurl Bailey",
+      "seasons": [
+        "1991-92",
+        "1992-93",
+        "1993-94"
+      ]
+    },
+    {
+      "playerId": 900000196,
+      "name": "Tod Murphy",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 103,
+      "name": "Todd Day",
+      "seasons": [
+        "2000-01"
+      ]
+    },
+    {
+      "playerId": 900000099,
+      "name": "Tom Garrick",
+      "seasons": [
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 339,
+      "name": "Tom Gugliotta",
+      "seasons": [
+        "1994-95",
+        "1995-96",
+        "1996-97",
+        "1997-98"
+      ]
+    },
+    {
+      "playerId": 67,
+      "name": "Tom Hammonds",
+      "seasons": [
+        "1997-98",
+        "1998-99",
+        "1999-00",
+        "2000-01"
+      ]
+    },
+    {
+      "playerId": 900000042,
+      "name": "Tony Campbell",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 2239,
+      "name": "Trenton Hassell",
+      "seasons": [
+        "2003-04",
+        "2004-05",
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 1626203,
+      "name": "Treveon Graham",
+      "seasons": [
+        "2019-20"
+      ]
+    },
+    {
+      "playerId": 1868,
+      "name": "Trevor Winter",
+      "seasons": [
+        "1998-99"
+      ]
+    },
+    {
+      "playerId": 1641803,
+      "name": "Tristen Newton",
+      "seasons": [
+        "2024-25"
+      ]
+    },
+    {
+      "playerId": 1628972,
+      "name": "Troy Brown Jr.",
+      "seasons": [
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 203584,
+      "name": "Troy Daniels",
+      "seasons": [
+        "2014-15"
+      ]
+    },
+    {
+      "playerId": 1607,
+      "name": "Troy Hudson",
+      "seasons": [
+        "2002-03",
+        "2003-04",
+        "2004-05",
+        "2005-06",
+        "2006-07"
+      ]
+    },
+    {
+      "playerId": 900000055,
+      "name": "Tyrone Corbin",
+      "seasons": [
+        "1989-90",
+        "1990-91",
+        "1991-92"
+      ]
+    },
+    {
+      "playerId": 1626145,
+      "name": "Tyus Jones",
+      "seasons": [
+        "2015-16",
+        "2016-17",
+        "2017-18",
+        "2018-19"
+      ]
+    },
+    {
+      "playerId": 1887,
+      "name": "Wally Szczerbiak",
+      "seasons": [
+        "1999-00",
+        "2000-01",
+        "2001-02",
+        "2002-03",
+        "2003-04",
+        "2004-05",
+        "2005-06"
+      ]
+    },
+    {
+      "playerId": 201961,
+      "name": "Wayne Ellington",
+      "seasons": [
+        "2009-10",
+        "2010-11",
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 1631111,
+      "name": "Wendell Moore Jr.",
+      "seasons": [
+        "2022-23",
+        "2023-24"
+      ]
+    },
+    {
+      "playerId": 202325,
+      "name": "Wesley Johnson",
+      "seasons": [
+        "2010-11",
+        "2011-12"
+      ]
+    },
+    {
+      "playerId": 101215,
+      "name": "Will Conroy",
+      "seasons": [
+        "2012-13"
+      ]
+    },
+    {
+      "playerId": 1895,
+      "name": "William Avery",
+      "seasons": [
+        "1999-00",
+        "2000-01",
+        "2001-02"
+      ]
+    },
+    {
+      "playerId": 900000096,
+      "name": "Winston Garland",
+      "seasons": [
+        "1994-95"
+      ]
+    },
+    {
+      "playerId": 203897,
+      "name": "Zach LaVine",
+      "seasons": [
+        "2014-15",
+        "2015-16",
+        "2016-17"
+      ]
+    },
+    {
+      "playerId": 1642389,
+      "name": "Zyon Pullin",
+      "seasons": [
+        "2025-26"
+      ]
+    }
   ]
 }
