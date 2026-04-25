@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { EmptyState } from "@/components/PremiumUX";
+
 type StatTableProps = {
   caption?: string;
   columns: string[];
@@ -15,13 +17,15 @@ export function StatTable({
 }: StatTableProps) {
   if (!rows.length) {
     return (
-      <p className="rounded-xl border border-dashed border-zinc-800 bg-zinc-900/30 px-4 py-8 text-center text-sm text-zinc-500">
-        {emptyLabel}
-      </p>
+      <EmptyState title={emptyLabel} className="text-center" />
     );
   }
   return (
-    <div className="overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-950/50 shadow-inner shadow-black/20 ring-1 ring-white/[0.03]">
+    <div className="overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-950/50 shadow-inner shadow-black/20 ring-1 ring-white/[0.03]">
+      <div className="flex items-center justify-between gap-3 border-b border-zinc-800/70 bg-zinc-900/55 px-4 py-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-zinc-500 sm:px-5">
+        <span>{caption ?? "Table"}</span>
+        <span className="text-zinc-600">Swipe for more</span>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full text-left text-sm">
           {caption ? <caption className="sr-only">{caption}</caption> : null}

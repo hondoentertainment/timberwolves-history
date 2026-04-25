@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { PageHeader } from "@/components/PageHeader";
+import { EmptyState, SearchForm, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 
 export const revalidate = 86_400;
@@ -24,39 +25,37 @@ export default async function PlayersPage({ searchParams }: PageProps) {
         description={`${players.length} players have appeared in at least one Timberwolves regular-season game. Use search to filter by name.`}
       />
       {!players.length ? (
-        <p className="mb-6 rounded-2xl border border-amber-500/25 bg-amber-950/25 px-5 py-4 text-sm leading-relaxed text-amber-100/95 ring-1 ring-amber-500/10">
-          The merged roster index could not be built (NBA.com unreachable or timed out). Try again
-          later; the list fills once roster feeds respond.
-        </p>
-      ) : null}
-      <form
-        className="mb-8 flex max-w-lg flex-col gap-3 sm:flex-row sm:items-stretch"
-        action="/players"
-        method="get"
-      >
-        <label htmlFor="q" className="sr-only">
-          Search players
-        </label>
-        <input
-          id="q"
-          name="q"
-          defaultValue={q ?? ""}
-          placeholder="Search by name…"
-          className="w-full flex-1 rounded-xl border border-zinc-700/90 bg-zinc-900/50 px-4 py-3 text-sm text-white shadow-inner shadow-black/20 placeholder:text-zinc-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/25"
+        <EmptyState
+          tone="warning"
+          title="Roster index unavailable"
+          description="The merged roster index could not be built because NBA.com was unreachable or timed out. Try again later; the list fills once roster feeds respond."
+          className="mb-6"
         />
-        <button
-          type="submit"
-          className="rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/40 outline-offset-2 transition hover:from-emerald-400 hover:to-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300/80 active:translate-y-px"
-        >
-          Search
-        </button>
-      </form>
+      ) : null}
+      <SearchForm
+        action="/players"
+        label="Search players"
+        defaultValue={q ?? ""}
+        placeholder="Search by name..."
+        className="mb-4"
+      />
+      <div className="mb-8 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
+        <span className="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1.5">
+          Showing {filtered.length} of {players.length}
+        </span>
+        {query ? (
+          <Link href="/players" className={`font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+            Clear search
+          </Link>
+        ) : null}
+      </div>
+      <SurfaceCard className="p-4 sm:p-5">
       <ul className="columns-1 gap-x-10 text-sm sm:columns-2 md:columns-3">
         {filtered.map((p) => (
           <li key={p.playerId} className="break-inside-avoid py-2">
             <Link
               href={`/players/${p.playerId}`}
-              className="font-medium text-emerald-400/95 decoration-emerald-500/30 underline-offset-2 transition hover:text-emerald-300 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+              className={`font-medium text-emerald-400/95 decoration-emerald-500/30 underline-offset-2 hover:text-emerald-300 hover:underline ${premiumLinkFocus}`}
             >
               {p.name}
             </Link>
@@ -64,10 +63,13 @@ export default async function PlayersPage({ searchParams }: PageProps) {
           </li>
         ))}
       </ul>
+      </SurfaceCard>
       {query && !filtered.length ? (
-        <p className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 text-center text-sm text-zinc-500">
-          No players match that search.
-        </p>
+        <EmptyState
+          title="No players match that search"
+          description="Try a shorter spelling or clear the filter to return to the full roster index."
+          className="mt-8 text-center"
+        />
       ) : null}
     </>
   );

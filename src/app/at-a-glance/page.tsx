@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
+import { StatCard } from "@/components/PremiumUX";
 import { getAllCoaches } from "@/lib/coaches";
 import { getAllEras } from "@/lib/eras";
 import { getAllFigures } from "@/lib/figures";
@@ -35,36 +36,6 @@ function formatRecord(wins: number, losses: number): string {
 function formatPct(value: number | null): string {
   if (value === null || !Number.isFinite(value)) return "-";
   return `${(value * 100).toFixed(1)}%`;
-}
-
-function StatCard({
-  label,
-  value,
-  detail,
-  href,
-}: {
-  label: string;
-  value: string;
-  detail?: string;
-  href?: string;
-}) {
-  const body = (
-    <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/35 p-5 shadow-lg shadow-black/10 transition hover:border-zinc-700/90 hover:bg-zinc-900/50">
-      <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">{label}</p>
-      <p className="mt-3 text-3xl font-semibold tracking-tight text-white">{value}</p>
-      {detail ? <p className="mt-2 text-sm leading-relaxed text-zinc-500">{detail}</p> : null}
-    </div>
-  );
-
-  if (!href) return body;
-  return (
-    <Link
-      href={href}
-      className="block rounded-2xl outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
-    >
-      {body}
-    </Link>
-  );
 }
 
 export default async function AtAGlancePage() {

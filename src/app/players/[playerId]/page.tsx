@@ -162,8 +162,18 @@ export default async function PlayerPage({ params }: PageProps) {
     </p>
   );
 
+  const pageNavItems = [
+    editorialBio ? { href: "#story", label: "Story" } : null,
+    highlightBullets.length ? { href: "#highlights", label: "Highlights" } : null,
+    { href: "#vitals", label: "Vitals" },
+    { href: "#tenure", label: "Seasons" },
+    { href: "#wolves-stats", label: "Wolves stats" },
+    { href: "#career-stats", label: "Career" },
+    relatedLinks.length ? { href: "#related", label: "Related" } : null,
+  ].filter((item): item is { href: string; label: string } => Boolean(item));
+
   return (
-    <ProfileLayout>
+    <ProfileLayout navItems={pageNavItems}>
       <ProfileHero
         role="Player"
         title={name}

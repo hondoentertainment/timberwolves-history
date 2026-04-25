@@ -131,8 +131,15 @@ export default async function SeasonDetailPage({ params }: PageProps) {
     d.note && d.note.length ? d.note : "—",
   ]);
 
+  const pageNavItems = [
+    story ? { href: "#story", label: "Story" } : null,
+    { href: "#draft", label: "Draft" },
+    { href: transactions.length ? "#transactions" : "#curated-transactions", label: "Transactions" },
+    { href: "#roster", label: "Roster" },
+  ].filter((item): item is { href: string; label: string } => Boolean(item));
+
   return (
-    <ProfileLayout>
+    <ProfileLayout navItems={pageNavItems}>
       <ProfileHero title={`${valid} Timberwolves`} role="Season" intro={intro} />
       {story ? (
         <SeasonStoryBlurb

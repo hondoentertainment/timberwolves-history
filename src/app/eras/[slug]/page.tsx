@@ -48,8 +48,15 @@ export default async function EraPage({ params }: PageProps) {
     }
   }
 
+  const pageNavItems = [
+    { href: "#seasons", label: "Seasons" },
+    storyLinks.length ? { href: "#essays", label: "Essays" } : null,
+    { href: "#people", label: "People" },
+    era.sources.length ? { href: "#sources", label: "Sources" } : null,
+  ].filter((item): item is { href: string; label: string } => Boolean(item));
+
   return (
-    <ProfileLayout>
+    <ProfileLayout navItems={pageNavItems}>
       <ProfileHero
         role="Era hub"
         title={era.title}

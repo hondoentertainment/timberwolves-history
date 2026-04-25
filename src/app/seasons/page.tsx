@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { PageHeader } from "@/components/PageHeader";
+import { ChipLink, EmptyState, SurfaceCard } from "@/components/PremiumUX";
 import { StatTable } from "@/components/StatTable";
 import { coachNamesForSeason } from "@/lib/coaches";
 import { getAllEras, getEraBySlug } from "@/lib/eras";
@@ -56,19 +57,9 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
   };
 
   const chip = (label: string, href: string, active: boolean) => (
-    <Link
-      key={href}
-      href={href}
-      aria-current={active ? "true" : undefined}
-      className={[
-        "rounded-full border px-3 py-1.5 text-xs font-medium transition",
-        active
-          ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-100"
-          : "border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200",
-      ].join(" ")}
-    >
+    <ChipLink key={href} href={href} active={active}>
       {label}
-    </Link>
+    </ChipLink>
   );
 
   const rows = list.map((s) => {
@@ -110,15 +101,21 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
     return "Timberwolves seasons";
   })();
 
+  const activeFilters = [
+    playoffsOnly ? "Playoff years" : null,
+    era ? era.title : null,
+    themeSlug ? `Theme: ${humanizeTheme(themeSlug)}` : null,
+  ].filter(Boolean);
+
   return (
     <>
       <PageHeader
         title="Season by season"
-        description="Franchise regular-season records and playoff game wins and losses from NBA.com team year-over-year stats. Coaching names are matched from a static head-coach register when seasons overlap. Optional theme filters use merged season story graphs (blurbs + era highlights)."
+        description="Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, or editorial themes."
       />
       <nav
         aria-label="Season filters"
-        className="mb-6 flex flex-col gap-3 rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-4 sm:flex-row sm:flex-wrap sm:items-center"
+        className="mb-6 flex flex-col gap-3 rounded-2xl border border-zinc-800/85 bg-zinc-900/30 p-4 shadow-lg shadow-black/10 ring-1 ring-white/[0.03]"
       >
         <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Filters</span>
         <div className="flex flex-wrap gap-2">
@@ -132,16 +129,15 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
             ),
           )}
         </div>
-        <p className="text-xs text-zinc-600 sm:ml-auto sm:max-w-md">
-          Era filter uses each hub’s <strong className="text-zinc-500">highlight seasons</strong>{" "}
-          list (editorial subset, not every calendar year in the span). Theme chips match{" "}
-          <code className="text-zinc-500">graph.themes</code> after merge with inferred era-highlight tags.
+        <p className="text-xs leading-relaxed text-zinc-600">
+          Era filters focus on highlight seasons from each hub; theme filters follow recurring story
+          arcs across the archive.
         </p>
       </nav>
       {themeFacets.length ? (
         <nav
           aria-label="Theme facets"
-          className="mb-6 flex flex-col gap-3 rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-4"
+          className="mb-6 flex flex-col gap-3 rounded-2xl border border-zinc-800/85 bg-zinc-900/30 p-4 shadow-lg shadow-black/10 ring-1 ring-white/[0.03]"
         >
           <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Themes</span>
           <div className="flex flex-wrap gap-2">
@@ -157,20 +153,41 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
         </nav>
       ) : null}
       {!seasons.length ? (
-        <p className="mb-6 rounded-2xl border border-amber-500/25 bg-amber-950/25 px-5 py-4 text-sm leading-relaxed text-amber-100/95 ring-1 ring-amber-500/10">
-          NBA.com team stats are temporarily unavailable (build or network). Retry shortly; cached
-          pages fill once the feed responds.
-        </p>
+        <EmptyState
+          tone="warning"
+          title="Season feed temporarily unavailable"
+          description="NBA.com team stats are unavailable right now. Retry shortly; cached pages fill once the feed responds."
+          className="mb-6"
+        />
       ) : null}
       {themeSlug && !list.length ? (
-        <p className="mb-6 rounded-lg border border-amber-500/20 bg-amber-950/20 px-4 py-3 text-sm text-amber-100/90">
-          No seasons matched theme “{humanizeTheme(themeSlug)}” with the current filters.{" "}
+        <EmptyState
+          tone="warning"
+          title={`No seasons matched "${humanizeTheme(themeSlug)}"`}
+          description={
+            <>
+              Try clearing the theme or loosening the current filter set.{" "}
           <Link href={hrefFrom({ theme: "" })} className="font-medium text-emerald-400 hover:text-emerald-300">
             Clear theme
           </Link>
-          .
-        </p>
+              .
+            </>
+          }
+          className="mb-6"
+        />
       ) : null}
+      <SurfaceCard className="mb-4 flex flex-col gap-2 px-4 py-3 text-sm text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
+        <span>
+          Showing <strong className="font-semibold text-zinc-100">{list.length}</strong> of{" "}
+          <strong className="font-semibold text-zinc-100">{seasons.length}</strong> seasons
+          {activeFilters.length ? ` · ${activeFilters.join(" · ")}` : ""}
+        </span>
+        {activeFilters.length ? (
+          <Link href="/seasons" className="font-semibold text-emerald-400 hover:text-emerald-300">
+            Clear all filters
+          </Link>
+        ) : null}
+      </SurfaceCard>
       <StatTable
         caption={tableCaption}
         columns={["Season", "W", "L", "Win%", "Playoffs (W-L)", "Head coach (register)"]}

@@ -26,7 +26,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto max-w-6xl px-4 sm:px-5">
           <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-zinc-500">
             <span className="min-w-0 truncate text-emerald-400/90">Minnesota Timberwolves archive</span>
-            <span className="shrink-0 tabular-nums text-zinc-500">1989–today</span>
+            <span className="shrink-0 tabular-nums text-zinc-500">Story, stats, context</span>
           </div>
           <div className="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-5">
             <Link
@@ -41,11 +41,15 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   Wolves History
                 </span>
                 <span className="mt-0.5 block text-xs font-medium leading-snug tracking-wide text-zinc-500 transition-colors group-hover:text-zinc-400 sm:text-sm">
-                  Seasons, players, eras, stories and timeline
+                  Deep Wolves archive from 1989 to today
                 </span>
               </span>
             </Link>
-            <div className="-mx-4 min-w-0 overflow-x-auto px-4 pb-0.5 lg:mx-0 lg:max-w-none lg:flex-1 lg:overflow-visible lg:px-0 lg:pb-0">
+            <div className="relative -mx-4 min-w-0 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] lg:mx-0 lg:max-w-none lg:flex-1 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-zinc-950/90 to-transparent lg:hidden"
+              />
               <PrimaryNav />
             </div>
           </div>

@@ -11,7 +11,10 @@ type Props = {
 
 export function SeasonStoryBlurb({ blurb, updated, graph, graphPlayerLabels }: Props) {
   return (
-    <aside className="relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-zinc-900/50 to-zinc-950/50 p-6 shadow-lg shadow-black/20 ring-1 ring-white/[0.03]">
+    <aside
+      id="story"
+      className="scroll-mt-28 relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-zinc-900/50 to-zinc-950/50 p-6 shadow-lg shadow-black/20 ring-1 ring-white/[0.03]"
+    >
       <div
         className="pointer-events-none absolute inset-y-4 left-0 w-0.5 rounded-full bg-gradient-to-b from-amber-400/70 to-orange-600/40 sm:w-1"
         aria-hidden

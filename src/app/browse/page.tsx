@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
+import { ChipLink, SectionHeader, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { getAllEras } from "@/lib/eras";
 import { getGuidedPaths } from "@/lib/guided-paths";
 
@@ -33,48 +34,30 @@ export default async function BrowsePage({ searchParams }: PageProps) {
     <>
       <PageHeader
         title="Browse the archive"
-        description="Jump off points for franchise history: eras, every season, people indexes, editorial stories, and transparency pages. Built for wandering, not only search."
+        description="Curated entry points for franchise history: eras, seasons, people, stories, interactives, and trust pages. Built for wandering, not only lookup."
       />
       {themeTags.length ? (
         <nav
-          aria-label="Theme facets from era graphs"
-          className="mb-8 flex flex-col gap-3 rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-4"
+          aria-label="Browse by theme"
+          className="mb-8 flex flex-col gap-3 rounded-2xl border border-zinc-800/85 bg-zinc-900/30 p-4 shadow-lg shadow-black/10 ring-1 ring-white/[0.03]"
         >
           <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
-            Theme facets (DISC-009)
+            Browse by theme
           </span>
           <div className="flex flex-wrap gap-2">
-            <Link
-              href="/browse"
-              className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
-                !needle.length
-                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-100"
-                  : "border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
-              }`}
-            >
-              All eras
-            </Link>
+            <ChipLink href="/browse" active={!needle.length}>All eras</ChipLink>
             {themeTags.slice(0, 24).map((t) => {
               const active = needle && t.toLowerCase().includes(needle);
               return (
-                <Link
-                  key={t}
-                  href={`/browse?theme=${encodeURIComponent(t)}`}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
-                    active
-                      ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-100"
-                      : "border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
-                  }`}
-                >
+                <ChipLink key={t} href={`/browse?theme=${encodeURIComponent(t)}`} active={Boolean(active)}>
                   {t.replace(/-/g, " ")}
-                </Link>
+                </ChipLink>
               );
             })}
           </div>
-          <p className="text-xs text-zinc-600">
-            Filters match <strong className="text-zinc-500">contentGraph.themes</strong> on era hubs
-            (substring match). Add more themes in <code className="text-zinc-500">eras.json</code> to
-            grow this index.
+          <p className="text-xs leading-relaxed text-zinc-600">
+            Themes group related chapters, seasons, and personalities so you can follow a story arc
+            without knowing the exact page title.
           </p>
         </nav>
       ) : null}
@@ -87,40 +70,40 @@ export default async function BrowsePage({ searchParams }: PageProps) {
           .
         </p>
       ) : null}
-      <section className="mb-10 rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-6">
-        <h2 className="text-lg font-semibold text-white">Guided paths</h2>
-        <p className="mt-2 text-sm text-zinc-500">
-          Stable URLs that stack era, playoff, and season-story themes—built for wandering, not only
-          search.
-        </p>
+      <section className="mb-10">
+        <SectionHeader
+          title="Guided paths"
+          description="Hand-picked trails through era, playoff, and season-story themes."
+        />
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {guidedPaths.map((p) => (
-            <li
-              key={p.href}
-              className="rounded-lg border border-zinc-800/80 bg-zinc-950/40 px-4 py-3 text-sm"
-            >
-              <Link href={p.href} className="font-medium text-emerald-400 hover:text-emerald-300">
+            <li key={p.href}>
+              <SurfaceCard className="h-full px-4 py-3 text-sm transition hover:border-zinc-700/90 hover:bg-zinc-900/50">
+              <Link href={p.href} className={`font-medium text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
                 {p.title}
               </Link>
               {p.description ? <p className="mt-1 text-xs leading-relaxed text-zinc-600">{p.description}</p> : null}
+              </SurfaceCard>
             </li>
           ))}
         </ul>
       </section>
       <div className="grid gap-10 md:grid-cols-2">
-        <section className="rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-6">
-          <h2 className="text-lg font-semibold text-white">Era hubs</h2>
-          <p className="mt-2 text-sm text-zinc-500">
-            {needle.length
-              ? `Filtered (${eras.length} hub${eras.length === 1 ? "" : "s"}).`
-              : "Editorial overviews with typed links to seasons and people."}
-          </p>
+        <SurfaceCard className="p-6">
+          <SectionHeader
+            title="Era hubs"
+            description={
+              needle.length
+                ? `Filtered to ${eras.length} hub${eras.length === 1 ? "" : "s"}.`
+                : "Editorial overviews with links to seasons, people, and essays."
+            }
+          />
           <ul className="mt-4 space-y-2 text-sm">
             {eras.map((e) => (
               <li key={e.slug}>
                 <Link
                   href={`/eras/${encodeURIComponent(e.slug)}`}
-                  className="font-medium text-emerald-400 hover:text-emerald-300"
+                  className={`font-medium text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}
                 >
                   {e.title}
                 </Link>
@@ -129,13 +112,13 @@ export default async function BrowsePage({ searchParams }: PageProps) {
             ))}
           </ul>
           <p className="mt-4">
-            <Link href="/eras" className="text-sm text-emerald-400 hover:text-emerald-300">
-              Eras landing →
+            <Link href="/eras" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+              Eras landing
             </Link>
           </p>
-        </section>
-        <section className="rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-6">
-          <h2 className="text-lg font-semibold text-white">Franchise spine</h2>
+        </SurfaceCard>
+        <SurfaceCard className="p-6">
+          <SectionHeader title="Franchise spine" description="The core indexes for stats, people, and chronology." />
           <ul className="mt-4 list-inside list-disc space-y-2 text-sm text-zinc-400">
             <li>
               <Link href="/at-a-glance" className="text-emerald-400 hover:text-emerald-300">
@@ -185,9 +168,37 @@ export default async function BrowsePage({ searchParams }: PageProps) {
               </Link>
             </li>
           </ul>
-        </section>
-        <section className="rounded-xl border border-zinc-800/80 bg-zinc-900/25 p-6 md:col-span-2">
-          <h2 className="text-lg font-semibold text-white">Trust & updates</h2>
+        </SurfaceCard>
+        <SurfaceCard className="p-6 md:col-span-2">
+          <SectionHeader
+            title="Interactive reads"
+            description="Static, cited explainers that turn a transaction arc or playoff return into a guided walkthrough."
+          />
+          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+            <li>
+              <Link href="/explore/2003-04-offseason" className={`block rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
+                2003-04 offseason
+              </Link>
+            </li>
+            <li>
+              <Link href="/explore/2017-18-playoff-return" className={`block rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
+                2017-18 playoff return
+              </Link>
+            </li>
+            <li>
+              <Link href="/explore/2007-garnett-trade" className={`block rounded-xl border border-zinc-800/80 bg-zinc-950/35 px-4 py-3 text-sm font-semibold text-emerald-400 hover:border-zinc-700 hover:text-emerald-300 ${premiumLinkFocus}`}>
+                2007 Garnett trade
+              </Link>
+            </li>
+          </ul>
+          <p className="mt-4">
+            <Link href="/explore" className={`text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+              Open all interactive reads
+            </Link>
+          </p>
+        </SurfaceCard>
+        <SurfaceCard className="p-6 md:col-span-2">
+          <SectionHeader title="Trust & updates" description="How the archive changes, cites data, and handles corrections." />
           <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <li>
               <Link href="/changelog" className="text-emerald-400 hover:text-emerald-300">
@@ -209,23 +220,8 @@ export default async function BrowsePage({ searchParams }: PageProps) {
             <Link href="/seasons?playoffs=1" className="text-emerald-500/90 hover:text-emerald-300">
               Playoff seasons only
             </Link>
-            {" · "}
-            <Link href="/explore/2003-04-offseason" className="text-emerald-500/90 hover:text-emerald-300">
-              2003–04 offseason explorer
-            </Link>
-            {" · "}
-            <Link
-              href="/explore/2017-18-playoff-return"
-              className="text-emerald-500/90 hover:text-emerald-300"
-            >
-              2017–18 playoff return explorer
-            </Link>
-            {" · "}
-            <Link href="/explore/2007-garnett-trade" className="text-emerald-500/90 hover:text-emerald-300">
-              2007 Garnett trade explorer
-            </Link>
           </p>
-        </section>
+        </SurfaceCard>
       </div>
     </>
   );

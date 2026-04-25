@@ -53,6 +53,13 @@ export async function HomeFranchiseFeatureGrid({ flagship }: { flagship: Longrea
         cta="Browse eras"
       />
       <FeatureCard
+        accent="amber"
+        title="Interactive reads"
+        description="Guided explainers for turning points like the 2003-04 offseason, the Garnett trade, and the playoff return."
+        href="/explore"
+        cta="Explore paths"
+      />
+      <FeatureCard
         accent="sky"
         title="Timeline"
         description="Expansion, KG, the 2004 run, rebuild arcs, and the modern resurgence—milestones in one scroll."
