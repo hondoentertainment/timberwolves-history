@@ -9,8 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:data-loading": "vitest run src/lib/nba/data-loading.test.ts",
     "audit:seasons": "vitest run src/lib/season-content-coverage.test.ts",
-    "ci": "npm run lint && npm run typecheck && npm run test && npm run audit:seasons && npm run build"
+    "ci": "npm run lint && npm run typecheck && npm run test && npm run test:data-loading && npm run audit:seasons && npm run build"
   },
   "dependencies": {
     "next": "16.2.4",

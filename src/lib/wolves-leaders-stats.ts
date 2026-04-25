@@ -45,79 +45,81 @@ const BATCH = 4;
  * Top Wolves roster presences enriched with MIN per-game peak scoring and a playoff-era overlap count.
  * Cached to avoid hammering NBA.com on every leaders page view.
  */
-export const getCachedWolvesLeadersAugmented = unstable_cache(
-  async (): Promise<WolvesLeaderAugmented[]> => {
-    const [index, franchise] = await Promise.all([
-      getCachedAllTimeWolvesPlayers().catch(() => [] as { playerId: number; name: string; seasons: string[] }[]),
-      getFranchiseSeasonsOrEmpty().catch(() => []),
-    ]);
+export async function buildWolvesLeadersAugmented(): Promise<WolvesLeaderAugmented[]> {
+  const [index, franchise] = await Promise.all([
+    getCachedAllTimeWolvesPlayers().catch(() => [] as { playerId: number; name: string; seasons: string[] }[]),
+    getFranchiseSeasonsOrEmpty().catch(() => []),
+  ]);
 
-    const playoffSeasons = new Set(
-      franchise
-        .filter((r) => r.playoffWins + r.playoffLosses > 0)
-        .map((r) => r.seasonLabel),
+  const playoffSeasons = new Set(
+    franchise
+      .filter((r) => r.playoffWins + r.playoffLosses > 0)
+      .map((r) => r.seasonLabel),
+  );
+
+  const sorted = [...index].sort((a, b) => b.seasons.length - a.seasons.length).slice(0, TOP_N);
+  const out: WolvesLeaderAugmented[] = [];
+
+  if (!liveNbaStatsEnabled()) {
+    return sorted.map((p) => ({
+      playerId: p.playerId,
+      name: p.name,
+      franchiseSeasons: p.seasons.length,
+      bestMinPpg: null,
+      bestMinPpgSeason: null,
+      bestMinRpg: null,
+      bestMinRpgSeason: null,
+      playoffTeamSeasonOverlap: p.seasons.filter((s) => playoffSeasons.has(s)).length,
+    }));
+  }
+
+  for (let i = 0; i < sorted.length; i += BATCH) {
+    const chunk = sorted.slice(i, i + BATCH);
+    const settled = await Promise.allSettled(
+      chunk.map((p) => fetchPlayerCareerStats(p.playerId).then(parseSeasonTotalsPerGame)),
     );
 
-    const sorted = [...index].sort((a, b) => b.seasons.length - a.seasons.length).slice(0, TOP_N);
-    const out: WolvesLeaderAugmented[] = [];
-
-    if (!liveNbaStatsEnabled()) {
-      return sorted.map((p) => ({
+    chunk.forEach((p, j) => {
+      const res = settled[j];
+      const rows = res.status === "fulfilled" ? filterWolvesSeasons(res.value) : [];
+      let bestPts = -1;
+      let bestPtsSid = "";
+      let bestReb = -1;
+      let bestRebSid = "";
+      for (const r of rows) {
+        const sid = String(r["SEASON_ID"] ?? "");
+        const pts = num(r, "PTS");
+        if (pts > bestPts) {
+          bestPts = pts;
+          bestPtsSid = sid;
+        }
+        const reb = num(r, "REB");
+        if (reb > bestReb) {
+          bestReb = reb;
+          bestRebSid = sid;
+        }
+      }
+      const bestMinPpg = bestPts > 0 ? bestPts : null;
+      const bestMinRpg = bestReb > 0 ? bestReb : null;
+      const playoffTeamSeasonOverlap = p.seasons.filter((s) => playoffSeasons.has(s)).length;
+      out.push({
         playerId: p.playerId,
         name: p.name,
         franchiseSeasons: p.seasons.length,
-        bestMinPpg: null,
-        bestMinPpgSeason: null,
-        bestMinRpg: null,
-        bestMinRpgSeason: null,
-        playoffTeamSeasonOverlap: p.seasons.filter((s) => playoffSeasons.has(s)).length,
-      }));
-    }
-
-    for (let i = 0; i < sorted.length; i += BATCH) {
-      const chunk = sorted.slice(i, i + BATCH);
-      const settled = await Promise.allSettled(
-        chunk.map((p) => fetchPlayerCareerStats(p.playerId).then(parseSeasonTotalsPerGame)),
-      );
-
-      chunk.forEach((p, j) => {
-        const res = settled[j];
-        const rows = res.status === "fulfilled" ? filterWolvesSeasons(res.value) : [];
-        let bestPts = -1;
-        let bestPtsSid = "";
-        let bestReb = -1;
-        let bestRebSid = "";
-        for (const r of rows) {
-          const sid = String(r["SEASON_ID"] ?? "");
-          const pts = num(r, "PTS");
-          if (pts > bestPts) {
-            bestPts = pts;
-            bestPtsSid = sid;
-          }
-          const reb = num(r, "REB");
-          if (reb > bestReb) {
-            bestReb = reb;
-            bestRebSid = sid;
-          }
-        }
-        const bestMinPpg = bestPts > 0 ? bestPts : null;
-        const bestMinRpg = bestReb > 0 ? bestReb : null;
-        const playoffTeamSeasonOverlap = p.seasons.filter((s) => playoffSeasons.has(s)).length;
-        out.push({
-          playerId: p.playerId,
-          name: p.name,
-          franchiseSeasons: p.seasons.length,
-          bestMinPpg,
-          bestMinPpgSeason: bestMinPpg ? bestPtsSid : null,
-          bestMinRpg,
-          bestMinRpgSeason: bestMinRpg ? bestRebSid : null,
-          playoffTeamSeasonOverlap,
-        });
+        bestMinPpg,
+        bestMinPpgSeason: bestMinPpg ? bestPtsSid : null,
+        bestMinRpg,
+        bestMinRpgSeason: bestMinRpg ? bestRebSid : null,
+        playoffTeamSeasonOverlap,
       });
-    }
+    });
+  }
 
-    return out.sort((a, b) => b.franchiseSeasons - a.franchiseSeasons);
-  },
+  return out.sort((a, b) => b.franchiseSeasons - a.franchiseSeasons);
+}
+
+export const getCachedWolvesLeadersAugmented = unstable_cache(
+  buildWolvesLeadersAugmented,
   ["wolves-leaders-augmented-v3"],
   { revalidate: 86_400, tags: ["wolves-players", "nba-team-years"] },
 );
