@@ -4,7 +4,7 @@ import { NBA_STATS_BASE } from "./constants";
 import type { NbaStatsJson } from "./types";
 import { parseNbaStatsJson } from "./parse";
 
-const DEFAULT_TIMEOUT_MS = 20_000;
+const DEFAULT_TIMEOUT_MS = 8_000;
 
 const browserLikeHeaders: Record<string, string> = {
   Accept: "application/json, text/plain, */*",

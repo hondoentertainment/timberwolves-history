@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getFranchiseSeasonsFetchedAtIso, getFranchiseSeasonsOrEmpty } from "@/lib/nba/queries";
+import {
+  getFranchiseSeasonsFetchedAtIso,
+  getFranchiseSeasonsOrEmpty,
+  getFranchiseSeasonsSource,
+} from "@/lib/nba/queries";
 
 /** Allowlisted JSON snapshot for integrations; prefer RSC pages for browsing. */
 export async function GET(req: NextRequest) {
@@ -11,9 +15,10 @@ export async function GET(req: NextRequest) {
       { status: 400 },
     );
   }
-  const [seasons, fetchedAtIso] = await Promise.all([
+  const [seasons, fetchedAtIso, source] = await Promise.all([
     getFranchiseSeasonsOrEmpty(),
     getFranchiseSeasonsFetchedAtIso(),
+    getFranchiseSeasonsSource(),
   ]);
-  return NextResponse.json({ seasons, fetchedAtIso });
+  return NextResponse.json({ seasons, fetchedAtIso, source });
 }

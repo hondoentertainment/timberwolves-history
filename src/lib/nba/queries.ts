@@ -3,6 +3,8 @@ import "server-only";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
 
+import franchiseSeasonSnapshot from "@/data/franchise-seasons.json";
+
 import { NBA_LEAGUE_ID, WOLVES_TEAM_ID } from "./constants";
 import { nbaStatsFetch } from "./client";
 import { getResultSet, rowsToObjects } from "./parse";
@@ -111,6 +113,7 @@ export async function fetchTeamYearByYearJson(): Promise<NbaStatsJson> {
       PerMode: "Totals",
     },
     {
+      timeoutMs: 4_000,
       next: { revalidate: cacheHours, tags: ["nba-team-years"] },
     },
   );
@@ -119,13 +122,59 @@ export async function fetchTeamYearByYearJson(): Promise<NbaStatsJson> {
 type FranchiseSeasonsBundle = {
   seasons: FranchiseSeasonSummary[];
   /** ISO timestamp when this cache entry was populated (HIST-006 transparency). */
-  fetchedAtIso: string;
+  fetchedAtIso: string | null;
+  source: "nba.com" | "snapshot";
 };
 
-async function loadFranchiseSeasonsBundle(): Promise<FranchiseSeasonsBundle> {
+const fallbackFranchiseSeasons: FranchiseSeasonSummary[] = franchiseSeasonSnapshot.map((season) => {
+  const raw: TeamYearRow = {
+    YEAR: season.seasonLabel,
+    SEASON_ID: season.seasonLabel,
+    GP: season.wins + season.losses,
+    WINS: season.wins,
+    LOSSES: season.losses,
+    W_PCT: season.winPct,
+    PO_WINS: season.playoffWins,
+    PO_LOSSES: season.playoffLosses,
+    CONF_RANK: season.confRank,
+    DIV_RANK: season.divRank,
+    NBA_FINALS_APPEARANCE: "",
+  };
   return {
-    seasons: parseFranchiseSeasons(await fetchTeamYearByYearJson()),
-    fetchedAtIso: new Date().toISOString(),
+    seasonLabel: season.seasonLabel,
+    gp: season.wins + season.losses,
+    wins: season.wins,
+    losses: season.losses,
+    winPct: season.winPct,
+    playoffWins: season.playoffWins,
+    playoffLosses: season.playoffLosses,
+    confRank: season.confRank,
+    divRank: season.divRank,
+    raw,
+  };
+});
+
+export function getFallbackFranchiseSeasons(): FranchiseSeasonSummary[] {
+  return fallbackFranchiseSeasons;
+}
+
+async function loadFranchiseSeasonsBundle(): Promise<FranchiseSeasonsBundle> {
+  try {
+    const seasons = parseFranchiseSeasons(await fetchTeamYearByYearJson());
+    if (seasons.length) {
+      return {
+        seasons,
+        fetchedAtIso: new Date().toISOString(),
+        source: "nba.com",
+      };
+    }
+  } catch {
+    // NBA.com can hang or reject Vercel requests; keep franchise pages/API populated.
+  }
+  return {
+    seasons: fallbackFranchiseSeasons,
+    fetchedAtIso: null,
+    source: "snapshot",
   };
 }
 
@@ -150,11 +199,19 @@ export async function getFranchiseSeasonsFetchedAtIso(): Promise<string | null> 
   }
 }
 
+export async function getFranchiseSeasonsSource(): Promise<FranchiseSeasonsBundle["source"]> {
+  try {
+    return (await readFranchiseSeasonsBundle()).source;
+  } catch {
+    return "snapshot";
+  }
+}
+
 async function franchiseSeasonsOrEmptyUncached(): Promise<FranchiseSeasonSummary[]> {
   try {
     return await getCachedFranchiseSeasons();
   } catch {
-    return [];
+    return fallbackFranchiseSeasons;
   }
 }
 
@@ -170,6 +227,7 @@ export async function fetchTeamRoster(seasonId: string): Promise<NbaStatsJson> {
       LeagueID: NBA_LEAGUE_ID,
     },
     {
+      timeoutMs: 6_000,
       next: { revalidate: cacheHours, tags: ["nba-roster", `roster-${seasonId}`] },
     },
   );
@@ -215,6 +273,7 @@ export async function fetchCommonPlayerInfo(playerId: number): Promise<NbaStatsJ
     "commonplayerinfo",
     { PlayerID: playerId },
     {
+      timeoutMs: 6_000,
       next: { revalidate: cacheHours, tags: ["nba-player", `player-${playerId}`] },
     },
   );
@@ -235,6 +294,7 @@ export async function fetchPlayerCareerStats(playerId: number): Promise<NbaStats
       LeagueID: NBA_LEAGUE_ID,
     },
     {
+      timeoutMs: 6_000,
       next: { revalidate: cacheHours, tags: ["nba-player", `player-${playerId}`] },
     },
   );
