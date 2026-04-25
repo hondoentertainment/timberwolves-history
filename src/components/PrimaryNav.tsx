@@ -61,7 +61,10 @@ export function PrimaryNav() {
   }, []);
 
   return (
-    <nav aria-label="Primary" className="flex flex-wrap gap-1 sm:gap-1.5">
+    <nav
+      aria-label="Primary"
+      className="flex min-w-max items-center gap-1 rounded-2xl border border-white/10 bg-white/[0.035] p-1 shadow-inner shadow-white/5 lg:min-w-0 lg:flex-wrap lg:justify-end"
+    >
       {items.map((item) => {
         const active = navItemActive(pathname, item.href);
         return (
@@ -70,14 +73,20 @@ export function PrimaryNav() {
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={[
-              "rounded-lg px-3 py-2 text-sm font-medium outline-offset-2 transition-colors duration-200",
+              "relative rounded-xl px-3 py-2 text-sm font-semibold outline-offset-2 transition duration-200",
               "focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70",
               active
-                ? "bg-emerald-500/15 text-emerald-100 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)]"
-                : "text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100",
+                ? "bg-emerald-400/15 text-emerald-50 shadow-[inset_0_0_0_1px_rgba(110,231,183,0.38),0_8px_22px_-16px_rgba(52,211,153,0.9)]"
+                : "text-zinc-400 hover:bg-white/[0.07] hover:text-zinc-100",
             ].join(" ")}
           >
             {item.label}
+            {active ? (
+              <span
+                aria-hidden
+                className="absolute inset-x-3 -bottom-1 h-px rounded-full bg-emerald-300/80"
+              />
+            ) : null}
           </Link>
         );
       })}
