@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
 
-import { isAdminRequest } from "@/lib/admin";
+import { DataTransparencyPage } from "@/components/DataTransparencyPage";
 
 export const metadata: Metadata = {
-  title: "Admin data",
-  description: "Restricted data-source and cache documentation for Wolves History.",
+  title: "About the data",
+  description:
+    "How Wolves History sources live NBA.com stats, uses caches and tags, and maintains editorial JSON and longreads.",
 };
 
-export default async function AboutDataPage() {
-  if (!(await isAdminRequest())) notFound();
-
-  redirect("/admin");
+export default function AboutDataPage() {
+  return <DataTransparencyPage />;
 }

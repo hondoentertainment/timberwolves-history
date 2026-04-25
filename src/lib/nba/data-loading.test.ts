@@ -60,7 +60,11 @@ describe("snapshot-backed data loading", () => {
     expect(value).toHaveLength(12);
     expect(value[0]?.franchiseSeasons).toBeGreaterThanOrEqual(value.at(-1)?.franchiseSeasons ?? 0);
     expect(value.some((p) => p.name === "Kevin Garnett" && p.playoffTeamSeasonOverlap > 0)).toBe(true);
-    expect(value.every((p) => p.bestMinPpg === null && p.bestMinRpg === null)).toBe(true);
+    expect(
+      value.every(
+        (p) => p.bestMinPpg === null && p.bestMinRpg === null && p.bestMinApg === null,
+      ),
+    ).toBe(true);
     expect(elapsed).toBeLessThan(FAST_SNAPSHOT_MS);
     expect(fetch).not.toHaveBeenCalled();
   });

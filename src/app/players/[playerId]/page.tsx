@@ -34,6 +34,8 @@ import type { Metadata } from "next";
 
 export const revalidate = 3600;
 
+const RECENT_SEASON_HUBS = 6;
+
 type PageProps = { params: Promise<{ playerId: string }> };
 
 function formatPeak(value: number | null, season: string | null, suffix: string): string {
@@ -161,6 +163,28 @@ export default async function PlayerPage({ params }: PageProps) {
       ? playoffTeamSeasonOverlapCount(indexRow.seasons, franchiseSeasons)
       : 0;
 
+  const sortedTenureSeasons = indexRow ? [...indexRow.seasons].sort() : [];
+  const recentSeasonHubs =
+    sortedTenureSeasons.length > RECENT_SEASON_HUBS
+      ? sortedTenureSeasons.slice(-RECENT_SEASON_HUBS).reverse()
+      : [];
+  const showSeasonHubSection = recentSeasonHubs.length > 0;
+
+  const seasonChipLinks = (seasonIds: string[], ariaLabel: string) => (
+    <ol className="mt-4 flex flex-wrap gap-2" aria-label={ariaLabel}>
+      {seasonIds.map((seasonId) => (
+        <li key={seasonId}>
+          <Link
+            href={`/seasons/${seasonId}`}
+            className={`inline-flex min-h-10 items-center rounded-full border border-zinc-800 bg-zinc-950/45 px-3 py-1.5 text-xs font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 ${premiumLinkFocus}`}
+          >
+            {seasonId}
+          </Link>
+        </li>
+      ))}
+    </ol>
+  );
+
   const trackedSeasonCount = indexRow?.seasons.length ?? wolvesStatSummary.seasonCount;
   const statSourceLabel = wolvesRows.length
     ? "NBA.com MIN rows"
@@ -173,19 +197,22 @@ export default async function PlayerPage({ params }: PageProps) {
       <p>
         Appeared for the Wolves in <span className="text-zinc-200">{indexRow.seasons.length}</span>{" "}
         tracked season{indexRow.seasons.length === 1 ? "" : "s"}.
+        {showSeasonHubSection
+          ? " Recent season pages are highlighted above; expand below for the full list."
+          : null}
       </p>
-      <ol className="mt-4 flex flex-wrap gap-2" aria-label={`${name} Timberwolves seasons`}>
-        {indexRow.seasons.map((seasonId) => (
-          <li key={seasonId}>
-            <Link
-              href={`/seasons/${seasonId}`}
-              className={`inline-flex min-h-10 items-center rounded-full border border-zinc-800 bg-zinc-950/45 px-3 py-1.5 text-xs font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 ${premiumLinkFocus}`}
-            >
-              {seasonId}
-            </Link>
-          </li>
-        ))}
-      </ol>
+      {sortedTenureSeasons.length > RECENT_SEASON_HUBS ? (
+        <details className="mt-4 rounded-xl border border-zinc-800/70 bg-zinc-950/25 p-3 open:ring-1 open:ring-white/[0.04]">
+          <summary className="cursor-pointer text-sm font-medium text-zinc-300 outline-none hover:text-zinc-100">
+            All tracked seasons ({sortedTenureSeasons.length})
+          </summary>
+          <div className="mt-3 border-t border-zinc-800/60 pt-3">
+            {seasonChipLinks(sortedTenureSeasons, `${name} Timberwolves seasons`)}
+          </div>
+        </details>
+      ) : (
+        seasonChipLinks(sortedTenureSeasons, `${name} Timberwolves seasons`)
+      )}
       {franchiseSeasons.length ? (
         <p className="mt-3 text-zinc-400">
           <span className="font-medium text-zinc-500">Playoff-era overlap:</span>{" "}
@@ -211,14 +238,32 @@ export default async function PlayerPage({ params }: PageProps) {
     editorialBio ? { href: "#story", label: "Story" } : null,
     highlightBullets.length ? { href: "#highlights", label: "Highlights" } : null,
     { href: "#vitals", label: "Vitals" },
+    showSeasonHubSection ? { href: "#season-hubs", label: "Season hubs" } : null,
     { href: "#tenure", label: "Seasons" },
     { href: "#wolves-stats", label: "Wolves stats" },
     { href: "#career-stats", label: "Career" },
     relatedLinks.length ? { href: "#related", label: "Related" } : null,
   ].filter((item): item is { href: string; label: string } => Boolean(item));
 
+  const siteBase = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ?? "";
+  const personJsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    memberOf: {
+      "@type": "SportsTeam",
+      name: "Minnesota Timberwolves",
+    },
+  };
+  if (siteBase) personJsonLd.url = `${siteBase}/players/${id}`;
+
   return (
-    <ProfileLayout navItems={pageNavItems}>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <ProfileLayout navItems={pageNavItems}>
       <ProfileHero
         role="Player"
         title={name}
@@ -325,6 +370,15 @@ export default async function PlayerPage({ params }: PageProps) {
       <ProfileSection id="vitals" title="Bio & vitals">
         <ProfileMetaGrid rows={metaRows} />
       </ProfileSection>
+      {showSeasonHubSection ? (
+        <ProfileSection
+          id="season-hubs"
+          title="Season hubs"
+          description="Newest Wolves season archive pages from this player's roster footprint."
+        >
+          {seasonChipLinks(recentSeasonHubs, `${name} recent Timberwolves season hubs`)}
+        </ProfileSection>
+      ) : null}
       <ProfileSection id="tenure" title="Wolves seasons" description="Tracked regular-season appearances.">
         <div className="text-sm leading-relaxed text-zinc-400">{tenureNote}</div>
       </ProfileSection>
@@ -359,5 +413,6 @@ export default async function PlayerPage({ params }: PageProps) {
         </Link>
       </p>
     </ProfileLayout>
+    </>
   );
 }

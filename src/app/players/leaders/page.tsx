@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Wolves tenure leaders",
   description:
-    "Wolves-only roster footprint plus MIN per-game scoring and rebound peaks and playoff-era overlap (team made playoffs).",
+    "Wolves-only roster footprint plus MIN per-game scoring, rebound, and assist peaks and playoff-era overlap (team made playoffs).",
 };
 
 function formatPpg(n: number | null): string {
@@ -30,7 +30,7 @@ export default async function WolvesLeadersPage() {
     <>
       <PageHeader
         title="Wolves tenure leaders"
-        description="Top roster presences from the merged NBA.com index, enriched with MIN per-game peaks for scoring and rebounds (regular season rows) plus a simple playoff-era overlap count."
+        description="Top roster presences from the merged NBA.com index, enriched with MIN per-game peaks for scoring, rebounds, and assists (regular season rows) plus a simple playoff-era overlap count."
       />
       <p className="mb-6 text-sm leading-relaxed text-zinc-500">
         <strong className="text-zinc-400">PROF-005:</strong> “Playoff-era overlap” counts Wolves seasons on a player’s
@@ -39,7 +39,7 @@ export default async function WolvesLeadersPage() {
         minutes.
       </p>
       <div className="overflow-x-auto rounded-xl border border-zinc-800/80">
-        <table className="w-full min-w-[36rem] text-left text-sm">
+        <table className="w-full min-w-[40rem] text-left text-sm">
           <thead className="border-b border-zinc-800 bg-zinc-900/60 text-xs font-semibold uppercase tracking-wide text-zinc-500">
             <tr>
               <th className="px-4 py-3">#</th>
@@ -49,6 +49,7 @@ export default async function WolvesLeadersPage() {
                 <>
                   <th className="px-4 py-3">Best MIN PPG</th>
                   <th className="px-4 py-3">Best MIN RPG</th>
+                  <th className="px-4 py-3">Best MIN APG</th>
                   <th className="px-4 py-3">PO-era overlap*</th>
                 </>
               ) : null}
@@ -78,6 +79,12 @@ export default async function WolvesLeadersPage() {
                       {formatPpg(p.bestMinRpg)}
                       {p.bestMinRpgSeason ? (
                         <span className="ml-1 text-xs text-zinc-600">({p.bestMinRpgSeason})</span>
+                      ) : null}
+                    </td>
+                    <td className="px-4 py-3 text-zinc-400">
+                      {formatPpg(p.bestMinApg)}
+                      {p.bestMinApgSeason ? (
+                        <span className="ml-1 text-xs text-zinc-600">({p.bestMinApgSeason})</span>
                       ) : null}
                     </td>
                     <td className="px-4 py-3 tabular-nums text-zinc-400">{p.playoffTeamSeasonOverlap}</td>

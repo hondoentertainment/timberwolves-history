@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { DataCadenceNote } from "@/components/DataCadenceNote";
 import { PageHeader } from "@/components/PageHeader";
 import { EmptyState, SearchForm, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { getCachedAllTimeWolvesPlayers, getFallbackAllTimeWolvesPlayers } from "@/lib/nba/players-index";
@@ -24,6 +25,12 @@ export default async function PlayersPage({ searchParams }: PageProps) {
         title="All-time players"
         description={`${players.length} players have appeared in at least one Timberwolves regular-season game. Use search to filter by name.`}
       />
+      <DataCadenceNote routeRevalidateSeconds={86_400} label="This roster index">
+        <p>
+          Rows merge a shipped all-time snapshot with live season rosters when enabled: entries with
+          the same player ID (or normalized name) collapse into one list row with seasons unioned.
+        </p>
+      </DataCadenceNote>
       {!players.length ? (
         <EmptyState
           tone="warning"

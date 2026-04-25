@@ -12,5 +12,10 @@ export const metadata: Metadata = {
 export default async function AdminPage() {
   if (!(await isAdminRequest())) notFound();
 
-  return <DataTransparencyPage />;
+  return (
+    <DataTransparencyPage
+      title="Admin"
+      description="Wolves History data sources, cache behavior, and editorial files—same page as the public About the data link."
+    />
+  );
 }

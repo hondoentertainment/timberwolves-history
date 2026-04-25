@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { DataCadenceNote } from "@/components/DataCadenceNote";
 import { PageHeader } from "@/components/PageHeader";
 import { ChipLink, EmptyState, SurfaceCard } from "@/components/PremiumUX";
 import { StatTable } from "@/components/StatTable";
@@ -113,6 +114,13 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
         title="Season by season"
         description="Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, or editorial themes."
       />
+      <DataCadenceNote
+        routeRevalidateSeconds={3600}
+        label="This page"
+        includeTeamStatsFetchedAt
+      >
+        <p>Table rows follow the same franchise team-year feed as season hub pages (cached together).</p>
+      </DataCadenceNote>
       <nav
         aria-label="Season filters"
         className="mb-6 flex flex-col gap-3 rounded-2xl border border-zinc-800/85 bg-zinc-900/30 p-4 shadow-lg shadow-black/10 ring-1 ring-white/[0.03]"

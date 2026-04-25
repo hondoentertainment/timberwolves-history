@@ -167,6 +167,7 @@ export default async function SeasonDetailPage({ params }: PageProps) {
         <SeasonStoryBlurb
           blurb={story.blurb}
           updated={story.updated}
+          lastUpdated={story.lastUpdated}
           graph={story.graph}
           graphPlayerLabels={story.graphPlayerLabels}
         />

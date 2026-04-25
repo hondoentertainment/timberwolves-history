@@ -5,11 +5,14 @@ import type { ContentGraph } from "@/types/content-graph";
 type Props = {
   blurb: string;
   updated?: string;
+  /** When set (e.g. from JSON `lastUpdated`), shown in the freshness line. */
+  lastUpdated?: string;
   graph?: ContentGraph;
   graphPlayerLabels?: Record<string, string>;
 };
 
-export function SeasonStoryBlurb({ blurb, updated, graph, graphPlayerLabels }: Props) {
+export function SeasonStoryBlurb({ blurb, updated, lastUpdated, graph, graphPlayerLabels }: Props) {
+  const freshness = (lastUpdated ?? updated)?.trim();
   return (
     <aside
       id="story"
@@ -27,7 +30,7 @@ export function SeasonStoryBlurb({ blurb, updated, graph, graphPlayerLabels }: P
           <p className="mt-4 text-pretty text-base leading-relaxed text-zinc-200">{blurb}</p>
           <p className="mt-4 text-xs leading-relaxed text-zinc-500">
             {seasonStoriesAttribution()}
-            {updated ? ` Last updated ${updated}.` : ""}
+            {freshness ? ` Last updated ${freshness}.` : ""}
           </p>
         </div>
         <ContentGraphRelated

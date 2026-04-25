@@ -7,8 +7,9 @@ type Props = {
 };
 
 export function DataTransparencyPage({
-  title = "Admin data",
-  description = "Data-source transparency, cache notes, and maintenance details for the Wolves History archive.",
+  title = "About the data",
+  description =
+    "How this site combines live NBA.com stats, cached fetches, and hand-maintained project data for Wolves History.",
 }: Props) {
   return (
     <>
@@ -105,6 +106,36 @@ export function DataTransparencyPage({
             <li>
               Longreads ship as typed modules under{" "}
               <code className="text-zinc-300">src/content/longreads/</code> (not live NBA data).
+            </li>
+          </ul>
+        </section>
+        <section id="sitemap-strategy">
+          <h2 className="text-xl font-semibold text-white">Sitemap (search engines)</h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            The XML sitemap is implemented in <code className="text-zinc-300">src/app/sitemap.ts</code>{" "}
+            and is marked <code className="text-zinc-300">force-dynamic</code> so a single build step is
+            not required to materialize the full player URL list alongside other routes (player fan-out
+            plus a cold all-time roster fetch can be heavy).
+          </p>
+          <ul className="mt-3 list-disc space-y-2 ps-5 text-sm text-zinc-400">
+            <li>
+              <strong className="text-zinc-300">Static and hub URLs</strong> — e.g. home, seasons index,
+              browse, memes, explore vignettes, leaders: listed with <code className="text-zinc-300">daily</code>{" "}
+              or <code className="text-zinc-300">weekly</code> change frequency; home uses priority{" "}
+              <code className="text-zinc-300">1</code>, other listed static paths use <code className="text-zinc-300">0.8</code>.
+            </li>
+            <li>
+              <strong className="text-zinc-300">Per-season, coach, era, longread, and figure pages</strong> —{" "}
+              generated from project data; priorities are <code className="text-zinc-300">0.6</code> (seasons),{" "}
+              <code className="text-zinc-300">0.55</code> (eras), <code className="text-zinc-300">0.65</code> (stories),{" "}
+              <code className="text-zinc-300">0.4</code> (coaches), and <code className="text-zinc-300">0.35</code> (figures).
+            </li>
+            <li>
+              <strong className="text-zinc-300">Player pages</strong> — URLs are built from{" "}
+              <code className="text-zinc-300">getCachedAllTimeWolvesPlayers()</code> inside a{" "}
+              <code className="text-zinc-300">try/catch</code> block. If that call throws, the sitemap
+              omits individual player entries for that run (other entries still emit). Default priority
+              for player routes is <code className="text-zinc-300">0.5</code> with a weekly change frequency.
             </li>
           </ul>
         </section>
