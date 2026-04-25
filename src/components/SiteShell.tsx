@@ -33,7 +33,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto max-w-6xl px-4 sm:px-5">
           <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-zinc-500">
             <span className="min-w-0 truncate text-emerald-400/90">Minnesota Timberwolves archive</span>
-            <span className="shrink-0 tabular-nums text-zinc-500">Story, stats, context</span>
+            <span className="shrink-0 text-zinc-500">Go Wolves!</span>
           </div>
           <div className="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-5">
             <Link

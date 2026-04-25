@@ -76,7 +76,7 @@ export async function HomeFranchiseFeatureGrid({ flagship }: { flagship: Longrea
       <FeatureCard
         accent="amber"
         title="Memes & lore"
-        description="Recurring jokes, nicknames, and internet shorthand Wolves fans recognize—curated text list, not image macros."
+        description="Recurring jokes, nicknames, and internet shorthand—the full curated list also appears on the home page; this route adds context links and the disclaimer."
         href="/memes"
         cta="Browse memes"
       />

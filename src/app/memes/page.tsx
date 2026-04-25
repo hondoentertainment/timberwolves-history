@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { WolvesMemeCard } from "@/components/memes/WolvesMemeCard";
 import { PageHeader } from "@/components/PageHeader";
 import { getMemesDisclaimer, getWolvesMemes } from "@/lib/memes";
 
@@ -33,20 +34,14 @@ export default function MemesPage() {
       </p>
       <ul className="list-none space-y-5 p-0">
         {memes.map((m, i) => (
-          <li
+          <WolvesMemeCard
             key={m.id}
-            id={`meme-${m.id}`}
-            className="scroll-mt-24 rounded-xl border border-zinc-800 bg-zinc-900/30 p-5"
-          >
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="text-sm font-medium text-zinc-500" aria-hidden>
-                {i + 1}.
-              </span>
-              <h2 className="text-lg font-semibold text-white">{m.title}</h2>
-              <span className="text-xs text-zinc-500">· {m.era}</span>
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{m.summary}</p>
-          </li>
+            meme={m}
+            headingLevel="h2"
+            index={i}
+            showIndex
+            domId={`meme-${m.id}`}
+          />
         ))}
       </ul>
       <p className="mt-8 text-xs text-zinc-600">

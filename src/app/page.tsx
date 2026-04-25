@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import { HomeFeatureGridSkeleton } from "@/components/home/HomeFeatureGridSkeleton";
 import { HomeFranchiseFeatureGrid } from "@/components/home/HomeFranchiseFeatureGrid";
+import { HomeMemesBand } from "@/components/home/HomeMemesBand";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeader, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { ThisWeekInWolvesHistory } from "@/components/ThisWeekInWolvesHistory";
@@ -71,6 +72,7 @@ export default function HomePage() {
           ))}
         </ul>
       </section>
+      <HomeMemesBand />
       <Suspense fallback={<HomeFeatureGridSkeleton />}>
         <HomeFranchiseFeatureGrid flagship={flagship} />
       </Suspense>
