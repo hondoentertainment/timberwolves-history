@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 
 import { EditorialProse } from "@/components/EditorialProse";
 import { PlayerHeadshot } from "@/components/PlayerHeadshot";
@@ -9,7 +10,7 @@ import {
   ProfileMetaGrid,
   ProfileSection,
 } from "@/components/profile";
-import { SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
+import { EmptyState, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { StatTable } from "@/components/StatTable";
 import { getRelatedStoriesForPlayer } from "@/lib/entity-links";
@@ -17,7 +18,7 @@ import { getAllEraHubsForPlayer } from "@/lib/eras";
 import { getLongreadRelatedLinksForPlayer } from "@/lib/profile-related-from-graph";
 import { formatCareerStatRows } from "@/lib/player-format";
 import { getPlayerBio, playerBiosAttribution } from "@/lib/player-bios";
-import { computeWolvesHighlightBullets } from "@/lib/player-highlights";
+import { computeWolvesHighlightBullets, summarizeWolvesStatRows } from "@/lib/player-highlights";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 import { liveNbaStatsEnabled } from "@/lib/nba/live";
 import {
@@ -34,6 +35,29 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 type PageProps = { params: Promise<{ playerId: string }> };
+
+function formatPeak(value: number | null, season: string | null, suffix: string): string {
+  if (!value || !season) return "—";
+  return `${value.toFixed(1)} ${suffix} (${season})`;
+}
+
+function ProfileStatCard({
+  label,
+  value,
+  detail,
+}: {
+  label: string;
+  value: string;
+  detail?: ReactNode;
+}) {
+  return (
+    <SurfaceCard className="p-4">
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-zinc-500">{label}</p>
+      <p className="mt-2 text-2xl font-semibold tracking-tight text-white">{value}</p>
+      {detail ? <div className="mt-1 text-xs leading-relaxed text-zinc-500">{detail}</div> : null}
+    </SurfaceCard>
+  );
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { playerId: raw } = await params;
@@ -72,6 +96,7 @@ export default async function PlayerPage({ params }: PageProps) {
   const name = String(info?.["DISPLAY_FIRST_LAST"] ?? indexRow?.name ?? `Player ${id}`);
   const careerRows = careerJson ? parseSeasonTotalsPerGame(careerJson) : [];
   const wolvesRows = filterWolvesSeasons(careerRows);
+  const wolvesStatSummary = summarizeWolvesStatRows(wolvesRows);
   const allRows = formatCareerStatRows(careerRows);
   const wolvesTable = formatCareerStatRows(wolvesRows);
   const editorialBio = getPlayerBio(id);
@@ -136,13 +161,31 @@ export default async function PlayerPage({ params }: PageProps) {
       ? playoffTeamSeasonOverlapCount(indexRow.seasons, franchiseSeasons)
       : 0;
 
+  const trackedSeasonCount = indexRow?.seasons.length ?? wolvesStatSummary.seasonCount;
+  const statSourceLabel = wolvesRows.length
+    ? "NBA.com MIN rows"
+    : indexRow
+      ? "Roster index only"
+      : "Career rows only";
+
   const tenureNote = indexRow ? (
     <>
       <p>
-        Appeared for the Wolves in{" "}
-        <span className="text-zinc-200">{indexRow.seasons.length}</span> tracked seasons:{" "}
-        <span className="text-zinc-300">{indexRow.seasons.join(", ")}</span>
+        Appeared for the Wolves in <span className="text-zinc-200">{indexRow.seasons.length}</span>{" "}
+        tracked season{indexRow.seasons.length === 1 ? "" : "s"}.
       </p>
+      <ol className="mt-4 flex flex-wrap gap-2" aria-label={`${name} Timberwolves seasons`}>
+        {indexRow.seasons.map((seasonId) => (
+          <li key={seasonId}>
+            <Link
+              href={`/seasons/${seasonId}`}
+              className={`inline-flex min-h-10 items-center rounded-full border border-zinc-800 bg-zinc-950/45 px-3 py-1.5 text-xs font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 ${premiumLinkFocus}`}
+            >
+              {seasonId}
+            </Link>
+          </li>
+        ))}
+      </ol>
       {franchiseSeasons.length ? (
         <p className="mt-3 text-zinc-400">
           <span className="font-medium text-zinc-500">Playoff-era overlap:</span>{" "}
@@ -164,6 +207,7 @@ export default async function PlayerPage({ params }: PageProps) {
   );
 
   const pageNavItems = [
+    { href: "#overview", label: "Overview" },
     editorialBio ? { href: "#story", label: "Story" } : null,
     highlightBullets.length ? { href: "#highlights", label: "Highlights" } : null,
     { href: "#vitals", label: "Vitals" },
@@ -186,6 +230,46 @@ export default async function PlayerPage({ params }: PageProps) {
         }
         media={<PlayerHeadshot playerId={id} name={name} />}
       />
+      <ProfileSection
+        id="overview"
+        title="At a glance"
+        description="Roster footprint, Wolves stat peaks, and data coverage for this profile."
+      >
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <ProfileStatCard
+            label="Tracked Wolves seasons"
+            value={String(trackedSeasonCount || "—")}
+            detail={indexRow ? "From the merged all-time roster index." : "No roster-index row found."}
+          />
+          <ProfileStatCard
+            label="MIN games in stat rows"
+            value={wolvesStatSummary.totalGames ? String(wolvesStatSummary.totalGames) : "—"}
+            detail={statSourceLabel}
+          />
+          <ProfileStatCard
+            label="Best scoring row"
+            value={formatPeak(wolvesStatSummary.bestPts.value, wolvesStatSummary.bestPts.season, "PPG")}
+            detail="Regular-season per-game rows where team is MIN."
+          />
+          <ProfileStatCard
+            label="Playoff-era overlap"
+            value={String(playoffEraOverlap || "—")}
+            detail="Team playoff seasons only; not proof of postseason minutes."
+          />
+        </div>
+        {!wolvesRows.length ? (
+          <EmptyState
+            tone="warning"
+            title="Wolves stat rows unavailable"
+            description={
+              indexRow
+                ? "This profile is confirmed in the all-time Wolves roster index, but NBA.com did not return MIN per-game rows for the current cache. The tenure and related links remain available."
+                : "NBA.com did not return Wolves-specific rows, and this player was not found in the roster index."
+            }
+            className="mt-4"
+          />
+        ) : null}
+      </ProfileSection>
       <SurfaceCard className="p-5">
         <h2 className="text-lg font-semibold text-white">Why this profile matters</h2>
         <p className="mt-2 text-sm leading-relaxed text-zinc-400">

@@ -106,7 +106,7 @@ export const weightOfTheNorthLongread = {
     "708": "Kevin Garnett",
     "201567": "Kevin Love",
     "201937": "Ricky Rubio",
-    "202704": "Jimmy Butler",
+    "202710": "Jimmy Butler",
     "1630162": "Anthony Edwards",
     "1626157": "Karl-Anthony Towns",
   },
@@ -114,7 +114,7 @@ export const weightOfTheNorthLongread = {
     themes: ["north-market", "continuity-and-rupture", "archive-ethic"],
     eraSlugs: ["expansion", "garnett", "post-kg-rebuild", "butler-era", "finch-modern"],
     seasonIds: ["1989-90", "2003-04", "2017-18"],
-    playerIds: [708, 201567, 202704],
+    playerIds: [708, 201567, 202710],
     coachIds: ["flip-saunders", "rick-adelman", "tom-thibodeau", "chris-finch"],
   },
 } satisfies Longread;

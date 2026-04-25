@@ -146,13 +146,13 @@
       "blurb": "The 14-year playoff drought ended with Jimmy Butler and a rugged identity under Tom Thibodeau—a cathartic return to the postseason after years of near-misses and lottery heartbreak.",
       "updated": "2026-04-24",
       "graph": {
-        "playerIds": [202704],
+        "playerIds": [202710],
         "eraSlugs": ["butler-era"],
         "themes": ["playoff-return", "high-stakes-culture"],
         "gameIds": ["2017-18"]
       },
       "graphPlayerLabels": {
-        "202704": "Jimmy Butler"
+        "202710": "Jimmy Butler"
       }
     },
     "2018-19": {

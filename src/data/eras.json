@@ -86,14 +86,14 @@
         "Historically, it matters because it proved the ceiling could move—and because it reminded fans how fragile chemistry is when stakes rise."
       ],
       "highlightSeasonIds": ["2017-18", "2018-19"],
-      "spotlightPlayers": [{ "playerId": 202704, "label": "Jimmy Butler" }],
+      "spotlightPlayers": [{ "playerId": 202710, "label": "Jimmy Butler" }],
       "relatedCoachIds": ["tom-thibodeau"],
       "relatedStorySlugs": ["weight-of-the-north"],
       "lastReviewed": "2026-04-24",
       "contentGraph": {
         "themes": ["playoff-return", "cultural-fracture", "cite-sources-for-claims"],
         "gameIds": ["2017-18"],
-        "playerIds": [202704],
+        "playerIds": [202710],
         "storySlugs": ["weight-of-the-north"]
       },
       "sources": [
