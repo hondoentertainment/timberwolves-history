@@ -2,8 +2,16 @@ import Link from "next/link";
 
 import { DataFreshness } from "@/components/DataFreshness";
 import { PrimaryNav } from "@/components/PrimaryNav";
+import { getCorrectionMailto } from "@/lib/corrections";
 
-export function SiteShell({ children }: { children: React.ReactNode }) {
+export function SiteShell({
+  children,
+  franchiseStatsFetchedAtIso,
+}: {
+  children: React.ReactNode;
+  /** ISO time when NBA.com team year-over-year stats were last cached (HIST-006). */
+  franchiseStatsFetchedAtIso?: string | null;
+}) {
   return (
     <div className="flex min-h-full flex-col text-zinc-100">
       <a
@@ -14,7 +22,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </a>
       <header
         aria-label="Site"
-        className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/70 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150"
+        className="site-header sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/70 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150"
       >
         <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-4">
           <Link
@@ -37,9 +45,9 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       >
         {children}
       </main>
-      <footer className="mt-auto border-t border-zinc-800/80 bg-zinc-950/80 py-10 text-sm text-zinc-500">
+      <footer className="site-footer mt-auto border-t border-zinc-800/80 bg-zinc-950/80 py-10 text-sm text-zinc-500">
         <div className="mx-auto max-w-6xl space-y-4 px-4">
-          <DataFreshness />
+          <DataFreshness franchiseStatsFetchedAtIso={franchiseStatsFetchedAtIso} />
           <p className="max-w-3xl leading-relaxed">
             Player and team statistics are fetched server-side from{" "}
             <a
@@ -69,6 +77,20 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             >
               Changelog
             </Link>
+            <span className="text-zinc-600"> · </span>
+            <Link
+              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+              href="/feed.xml"
+            >
+              RSS
+            </Link>
+            <span className="text-zinc-600"> · </span>
+            <a
+              className="font-medium text-emerald-400/95 underline decoration-emerald-500/40 underline-offset-2 outline-offset-2 transition hover:text-emerald-300 hover:decoration-emerald-400/60 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400/70"
+              href={getCorrectionMailto()}
+            >
+              Suggest a correction
+            </a>
             <span className="text-zinc-600"> — </span>
             <span className="text-zinc-600">sources, static JSON, caching, and limitations.</span>
           </p>

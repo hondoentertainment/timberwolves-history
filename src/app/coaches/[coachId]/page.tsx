@@ -8,6 +8,7 @@ import { StatTable } from "@/components/StatTable";
 import { coachesFileAttribution, getCoachById } from "@/lib/coaches";
 import { getRelatedStoriesForCoach } from "@/lib/entity-links";
 import { getEraHubsForCoach } from "@/lib/eras";
+import { getLongreadRelatedLinksForCoach } from "@/lib/profile-related-from-graph";
 import type { Metadata } from "next";
 
 type PageProps = { params: Promise<{ coachId: string }> };
@@ -28,11 +29,18 @@ export default async function CoachDetailPage({ params }: PageProps) {
   if (!coach) notFound();
 
   const relatedLinks: RelatedReadingLink[] = [];
+  const pushLink = (link: RelatedReadingLink) => {
+    if (relatedLinks.some((l) => l.href === link.href)) return;
+    relatedLinks.push(link);
+  };
   for (const era of getEraHubsForCoach(coachId)) {
-    relatedLinks.push({ href: `/eras/${era.slug}`, label: era.title, hint: "Era hub" });
+    pushLink({ href: `/eras/${era.slug}`, label: era.title, hint: "Era hub" });
   }
   for (const s of getRelatedStoriesForCoach(coachId)) {
-    relatedLinks.push({ href: `/stories/${s.slug}`, label: s.title, hint: "Editorial essay" });
+    pushLink({ href: `/stories/${s.slug}`, label: s.title, hint: "Editorial essay" });
+  }
+  for (const l of getLongreadRelatedLinksForCoach(coachId)) {
+    pushLink(l);
   }
 
   const rows = coach.tenures.map((t) => [

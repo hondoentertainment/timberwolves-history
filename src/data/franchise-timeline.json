@@ -3,46 +3,55 @@
   "events": [
     {
       "dateLabel": "1989",
+      "occursOn": "1989-04-22",
       "headline": "Expansion birth",
       "body": "The NBA awards Minnesota a franchise; the Timberwolves begin play for the 1989–90 season, initially sharing the Hubert H. Humphrey Metrodome."
     },
     {
       "dateLabel": "1995",
+      "occursOn": "1995-06-28",
       "headline": "Kevin Garnett arrives",
       "body": "The Wolves draft Kevin Garnett fifth overall straight out of Farragut Academy, setting the identity of the franchise for the next decade-plus."
     },
     {
       "dateLabel": "2000",
+      "occursOn": "2000-10-07",
       "headline": "Target Center home",
       "body": "The club’s downtown Minneapolis arena becomes the long-term home after early seasons in the Metrodome."
     },
     {
       "dateLabel": "2004",
+      "occursOn": "2004-05-30",
       "headline": "Western Conference finals",
       "body": "Flip Saunders guides Minnesota to the West’s top seed; Garnett wins MVP and the Wolves reach their only conference finals to date."
     },
     {
       "dateLabel": "2007",
+      "occursOn": "2007-07-31",
       "headline": "Garnett traded to Boston",
       "body": "A blockbuster sends Garnett east; Minnesota pivots into a long rebuild around picks and young talent."
     },
     {
       "dateLabel": "2014",
+      "occursOn": "2014-06-06",
       "headline": "Flip Saunders returns",
       "body": "Saunders comes back to the bench; his death in 2015 remains one of the organization’s most painful off-court chapters."
     },
     {
       "dateLabel": "2018",
+      "occursOn": "2018-04-21",
       "headline": "Playoff drought ends",
       "body": "After 14 seasons without the postseason, the Wolves break through under Tom Thibodeau and Jimmy Butler—then quickly face roster drama."
     },
     {
       "dateLabel": "2020",
+      "occursOn": "2020-02-23",
       "headline": "Chris Finch era begins",
       "body": "Finch takes over midstream and becomes the stabilizing coaching voice into Minnesota’s modern competitive window."
     },
     {
       "dateLabel": "2024",
+      "occursOn": "2024-05-24",
       "headline": "Western Conference finals return",
       "body": "Anthony Edwards and company push deep in the playoffs, giving the franchise its first conference finals trip since 2004."
     }

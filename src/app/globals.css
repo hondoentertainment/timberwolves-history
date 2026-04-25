@@ -69,3 +69,58 @@ body {
     background: rgb(39 39 42);
   }
 }
+
+/* Longform: comfortable measure on large screens */
+@media (min-width: 80rem) {
+  .longread-article {
+    max-width: 42rem;
+  }
+}
+
+.read-mode-active {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.read-mode-active .longread-article {
+  max-width: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    background-image: none !important;
+  }
+
+  .site-header,
+  .site-footer,
+  header[aria-label="Site"] {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .longread-article,
+  .longread-article * {
+    color: #111 !important;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+  }
+
+  .longread-pullquote {
+    background: #f4f4f5 !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

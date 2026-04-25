@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { SiteShell } from "@/components/SiteShell";
+import { getFranchiseSeasonsFetchedAtIso } from "@/lib/nba/queries";
 
 import "./globals.css";
 
@@ -32,17 +33,24 @@ export const metadata: Metadata = {
       "Minnesota Timberwolves franchise history: seasons, players, coaches, and stats.",
     type: "website",
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const franchiseStatsFetchedAtIso = await getFranchiseSeasonsFetchedAtIso().catch(() => null);
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full font-sans antialiased selection:bg-emerald-500/25 selection:text-emerald-50">
-        <SiteShell>{children}</SiteShell>
+        <SiteShell franchiseStatsFetchedAtIso={franchiseStatsFetchedAtIso}>{children}</SiteShell>
       </body>
     </html>
   );

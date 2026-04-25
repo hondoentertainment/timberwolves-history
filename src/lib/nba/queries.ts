@@ -115,11 +115,36 @@ export async function fetchTeamYearByYearJson(): Promise<NbaStatsJson> {
   );
 }
 
-export const getCachedFranchiseSeasons = unstable_cache(
-  async () => parseFranchiseSeasons(await fetchTeamYearByYearJson()),
-  ["wolves-franchise-seasons-v2"],
-  { revalidate: cacheHours, tags: ["nba-team-years"] },
-);
+type FranchiseSeasonsBundle = {
+  seasons: FranchiseSeasonSummary[];
+  /** ISO timestamp when this cache entry was populated (HIST-006 transparency). */
+  fetchedAtIso: string;
+};
+
+async function loadFranchiseSeasonsBundle(): Promise<FranchiseSeasonsBundle> {
+  return {
+    seasons: parseFranchiseSeasons(await fetchTeamYearByYearJson()),
+    fetchedAtIso: new Date().toISOString(),
+  };
+}
+
+const getCachedFranchiseSeasonsBundle = unstable_cache(loadFranchiseSeasonsBundle, ["wolves-franchise-seasons-v3"], {
+  revalidate: cacheHours,
+  tags: ["nba-team-years"],
+});
+
+export async function getCachedFranchiseSeasons(): Promise<FranchiseSeasonSummary[]> {
+  return (await getCachedFranchiseSeasonsBundle()).seasons;
+}
+
+/** Last successful NBA.com team-years bundle refresh (same cache as franchise seasons). */
+export async function getFranchiseSeasonsFetchedAtIso(): Promise<string | null> {
+  try {
+    return (await getCachedFranchiseSeasonsBundle()).fetchedAtIso;
+  } catch {
+    return null;
+  }
+}
 
 /** Same cache as {@link getCachedFranchiseSeasons}, but never throws (empty on upstream failure). */
 export async function getFranchiseSeasonsOrEmpty(): Promise<FranchiseSeasonSummary[]> {

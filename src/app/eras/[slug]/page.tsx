@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ContentGraphRelated } from "@/components/ContentGraphRelated";
 import { ProfileHero, ProfileLayout, ProfileSection } from "@/components/profile";
 import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { getCoachById } from "@/lib/coaches";
@@ -17,6 +18,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: era.title,
     description: `${era.title} (${era.yearsLabel}) — Minnesota Timberwolves historical overview and links.`,
+    openGraph: {
+      title: era.title,
+      description: `${era.title} (${era.yearsLabel}) — Wolves History era hub.`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: era.title,
+      description: `${era.title} (${era.yearsLabel}) — Wolves History.`,
+    },
   };
 }
 
@@ -48,6 +59,9 @@ export default async function EraPage({ params }: PageProps) {
             {era.intro.map((p) => (
               <p key={`${slug}-${p}`}>{p}</p>
             ))}
+            {era.lastReviewed ? (
+              <p className="text-xs text-zinc-500">Hub last reviewed {era.lastReviewed}.</p>
+            ) : null}
             <p className="text-xs text-zinc-500">{erasAttribution()}</p>
           </div>
         }
@@ -110,6 +124,11 @@ export default async function EraPage({ params }: PageProps) {
           })}
         </div>
       </ProfileSection>
+      <ContentGraphRelated
+        graph={era.contentGraph}
+        playerLabels={Object.fromEntries(era.spotlightPlayers.map((p) => [String(p.playerId), p.label]))}
+        idPrefix={`era-graph-${slug}`}
+      />
       {era.sources.length ? (
         <ProfileSection id="sources" title="Sources" description="External references for further reading (editorial hub only).">
           <ul className="list-inside list-disc space-y-2 text-sm text-zinc-400">

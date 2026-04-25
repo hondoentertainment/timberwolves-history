@@ -27,7 +27,15 @@
     },
     "1995-96": {
       "blurb": "Kevin Garnett arrives straight from high school; the franchise’s emotional center of gravity shifts overnight toward a teenager with impossible motor.",
-      "updated": "2026-04-24"
+      "updated": "2026-04-24",
+      "graph": {
+        "playerIds": [708],
+        "eraSlugs": ["garnett"],
+        "themes": ["preps-to-pros", "draft-lottery"]
+      },
+      "graphPlayerLabels": {
+        "708": "Kevin Garnett"
+      }
     },
     "1996-97": {
       "blurb": "KG’s first full season as a nightly force—still raw, already compulsive on defense, and already bending the team’s identity around him.",
@@ -59,7 +67,16 @@
     },
     "2003-04": {
       "blurb": "The breakthrough year: Kevin Garnett’s MVP season powered Minnesota to the West’s top seed and the franchise’s only Western Conference finals trip—still the emotional high-water mark for a generation of fans.",
-      "updated": "2026-04-24"
+      "updated": "2026-04-24",
+      "graph": {
+        "playerIds": [708],
+        "eraSlugs": ["garnett"],
+        "themes": ["western-conference-finals", "mvp-season"],
+        "gameIds": ["2003-04"]
+      },
+      "graphPlayerLabels": {
+        "708": "Kevin Garnett"
+      }
     },
     "2004-05": {
       "blurb": "The hangover after the conference finals loss—roster questions, coaching transitions, and the first cracks in the KG-first window before the eventual rebuild trade.",
@@ -75,7 +92,11 @@
     },
     "2007-08": {
       "blurb": "The first post-Garnett season: a roster learning new roles while the league quietly stopped treating Minnesota as a nightly headline.",
-      "updated": "2026-04-24"
+      "updated": "2026-04-24",
+      "graph": {
+        "eraSlugs": ["post-kg-rebuild"],
+        "themes": ["kg-trade-fallout", "rebuild-anchor"]
+      }
     },
     "2008-09": {
       "blurb": "McHale’s interim return and another lottery finish—symbolic of a franchise stuck between development curves and impatient expectations.",
@@ -107,7 +128,15 @@
     },
     "2015-16": {
       "blurb": "Karl-Anthony Towns debuts as the No. 1 pick—a scoring big who immediately shifted how Wolves fans imagined spacing and late-game offense.",
-      "updated": "2026-04-24"
+      "updated": "2026-04-24",
+      "graph": {
+        "playerIds": [1626157],
+        "eraSlugs": ["post-kg-rebuild"],
+        "themes": ["number-one-pick", "modern-spacing-big"]
+      },
+      "graphPlayerLabels": {
+        "1626157": "Karl-Anthony Towns"
+      }
     },
     "2016-17": {
       "blurb": "Thibodeau’s first season imported defensive vocabulary, but the roster still looked younger than its playoff dreams.",
@@ -115,7 +144,16 @@
     },
     "2017-18": {
       "blurb": "The 14-year playoff drought ended with Jimmy Butler and a rugged identity under Tom Thibodeau—a cathartic return to the postseason after years of near-misses and lottery heartbreak.",
-      "updated": "2026-04-24"
+      "updated": "2026-04-24",
+      "graph": {
+        "playerIds": [202704],
+        "eraSlugs": ["butler-era"],
+        "themes": ["playoff-return", "high-stakes-culture"],
+        "gameIds": ["2017-18"]
+      },
+      "graphPlayerLabels": {
+        "202704": "Jimmy Butler"
+      }
     },
     "2018-19": {
       "blurb": "The Butler chapter unraveled publicly; Minnesota learned again that talent without trust rarely holds in the West spotlight.",

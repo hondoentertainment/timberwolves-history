@@ -12,7 +12,8 @@ import {
 import { RelatedReading, type RelatedReadingLink } from "@/components/RelatedReading";
 import { StatTable } from "@/components/StatTable";
 import { getRelatedStoriesForPlayer } from "@/lib/entity-links";
-import { getEraHubLinkForPlayer } from "@/lib/eras";
+import { getAllEraHubsForPlayer } from "@/lib/eras";
+import { getLongreadRelatedLinksForPlayer } from "@/lib/profile-related-from-graph";
 import { formatCareerStatRows } from "@/lib/player-format";
 import { getPlayerBio, playerBiosAttribution } from "@/lib/player-bios";
 import { computeWolvesHighlightBullets } from "@/lib/player-highlights";
@@ -21,9 +22,11 @@ import {
   fetchCommonPlayerInfo,
   fetchPlayerCareerStats,
   filterWolvesSeasons,
+  getFranchiseSeasonsOrEmpty,
   parseCommonPlayerInfo,
   parseSeasonTotalsPerGame,
 } from "@/lib/nba/queries";
+import { playoffTeamSeasonOverlapCount } from "@/lib/wolves-tenure-snapshot";
 import type { Metadata } from "next";
 
 export const revalidate = 3600;
@@ -48,10 +51,11 @@ export default async function PlayerPage({ params }: PageProps) {
   const id = Number(raw);
   if (!Number.isFinite(id)) notFound();
 
-  const [infoJson, careerJson, index] = await Promise.all([
+  const [infoJson, careerJson, index, franchiseSeasons] = await Promise.all([
     fetchCommonPlayerInfo(id),
     fetchPlayerCareerStats(id),
     getCachedAllTimeWolvesPlayers().catch(() => [] as { playerId: number; seasons: string[] }[]),
+    getFranchiseSeasonsOrEmpty(),
   ]);
 
   const info = parseCommonPlayerInfo(infoJson);
@@ -64,8 +68,9 @@ export default async function PlayerPage({ params }: PageProps) {
   const wolvesTable = formatCareerStatRows(wolvesRows);
   const indexRow = index.find((p) => p.playerId === id);
   const editorialBio = getPlayerBio(id);
-  const eraHub = getEraHubLinkForPlayer(id);
+  const eraHubs = getAllEraHubsForPlayer(id);
   const relatedStories = getRelatedStoriesForPlayer(id);
+  const graphStories = getLongreadRelatedLinksForPlayer(id);
 
   const highlightBullets =
     editorialBio?.highlightBullets?.length && editorialBio.highlightBullets.length > 0
@@ -73,19 +78,26 @@ export default async function PlayerPage({ params }: PageProps) {
       : computeWolvesHighlightBullets(wolvesRows);
 
   const relatedLinks: RelatedReadingLink[] = [];
-  if (eraHub) {
-    relatedLinks.push({
+  const pushLink = (link: RelatedReadingLink) => {
+    if (relatedLinks.some((l) => l.href === link.href)) return;
+    relatedLinks.push(link);
+  };
+  for (const eraHub of eraHubs) {
+    pushLink({
       href: `/eras/${eraHub.slug}`,
       label: eraHub.linkLabel,
       hint: "Era hub",
     });
   }
   for (const s of relatedStories) {
-    relatedLinks.push({
+    pushLink({
       href: `/stories/${s.slug}`,
       label: s.title,
       hint: "Editorial essay",
     });
+  }
+  for (const l of graphStories) {
+    pushLink(l);
   }
 
   const jersey = String(info["JERSEY"] ?? "");
@@ -112,12 +124,31 @@ export default async function PlayerPage({ params }: PageProps) {
     { label: "Listed jersey", value: jersey },
   ];
 
+  const playoffEraOverlap =
+    indexRow && franchiseSeasons.length
+      ? playoffTeamSeasonOverlapCount(indexRow.seasons, franchiseSeasons)
+      : 0;
+
   const tenureNote = indexRow ? (
-    <p>
-      Appeared on a Wolves roster in{" "}
-      <span className="text-zinc-200">{indexRow.seasons.length}</span> tracked seasons:{" "}
-      <span className="text-zinc-300">{indexRow.seasons.join(", ")}</span>
-    </p>
+    <>
+      <p>
+        Appeared on a Wolves roster in{" "}
+        <span className="text-zinc-200">{indexRow.seasons.length}</span> tracked seasons:{" "}
+        <span className="text-zinc-300">{indexRow.seasons.join(", ")}</span>
+      </p>
+      {franchiseSeasons.length ? (
+        <p className="mt-3 text-zinc-400">
+          <span className="font-medium text-zinc-500">Playoff-era overlap:</span>{" "}
+          <span className="tabular-nums text-zinc-200">{playoffEraOverlap}</span> tracked Wolves
+          seasons line up with franchise years when the team had playoff games in our NBA.com team
+          feed—this does <span className="italic">not</span> prove postseason minutes. Compare on{" "}
+          <Link href="/players/leaders" className="text-emerald-400 hover:text-emerald-300">
+            Wolves tenure leaders
+          </Link>
+          .
+        </p>
+      ) : null}
+    </>
   ) : (
     <p className="text-amber-200/90">
       Not found in the merged all-time roster index (may still have career rows if traded

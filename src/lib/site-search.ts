@@ -2,6 +2,7 @@ import { getAllCoaches } from "@/lib/coaches";
 import { getAllFigures } from "@/lib/figures";
 import { getAllEras } from "@/lib/eras";
 import { getAllLongreads } from "@/lib/longreads";
+import { getWolvesMemes } from "@/lib/memes";
 import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 import { getSeasonStory } from "@/lib/season-stories";
 import { getWolvesSeasonIds } from "@/lib/nba/seasons";
@@ -40,7 +41,8 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
   }
 
   for (const e of getAllEras()) {
-    const hay = `${e.title} ${e.slug} ${e.yearsLabel}`.toLowerCase();
+    const themeHay = (e.contentGraph?.themes ?? []).join(" ");
+    const hay = `${e.title} ${e.slug} ${e.yearsLabel} ${e.intro.join(" ")} ${themeHay}`.toLowerCase();
     if (hay.includes(query)) {
       hits.push({
         title: e.title,
@@ -52,13 +54,29 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
   }
 
   for (const s of getAllLongreads()) {
-    const hay = `${s.title} ${s.slug} ${s.dek}`.toLowerCase();
+    const graphHay = [
+      ...(s.contentGraph?.themes ?? []),
+      ...(s.contentGraph?.eraSlugs ?? []),
+    ].join(" ");
+    const hay = `${s.title} ${s.slug} ${s.dek} ${graphHay}`.toLowerCase();
     if (hay.includes(query)) {
       hits.push({
         title: s.title,
         href: `/stories/${s.slug}`,
         kind: "Story",
         snippet: `${s.readTimeMinutes} min read`,
+      });
+    }
+  }
+
+  for (const m of getWolvesMemes()) {
+    const hay = `${m.title} ${m.summary} ${m.era}`.toLowerCase();
+    if (hay.includes(query)) {
+      hits.push({
+        title: m.title,
+        href: `/memes#meme-${encodeURIComponent(m.id)}`,
+        kind: "Meme",
+        snippet: m.era,
       });
     }
   }
@@ -75,19 +93,24 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
     }
   }
 
+  const seasonSeen = new Set<string>();
   if (query.length >= 4) {
     for (const sid of getWolvesSeasonIds()) {
-      if (sid.toLowerCase().includes(query)) {
-        const story = getSeasonStory(sid);
-        hits.push({
-          title: `${sid} season`,
-          href: `/seasons/${encodeURIComponent(sid)}`,
-          kind: "Season",
-          snippet: story?.blurb
-            ? story.blurb.slice(0, 120) + (story.blurb.length > 120 ? "…" : "")
-            : undefined,
-        });
-      }
+      const story = getSeasonStory(sid);
+      const blurbHay = story?.blurb.toLowerCase() ?? "";
+      const sidHit = sid.toLowerCase().includes(query);
+      const blurbHit = blurbHay.includes(query);
+      if (!sidHit && !blurbHit) continue;
+      if (seasonSeen.has(sid)) continue;
+      seasonSeen.add(sid);
+      hits.push({
+        title: `${sid} season`,
+        href: `/seasons/${encodeURIComponent(sid)}`,
+        kind: "Season",
+        snippet: story?.blurb
+          ? story.blurb.slice(0, 120) + (story.blurb.length > 120 ? "…" : "")
+          : undefined,
+      });
     }
   }
 
@@ -97,7 +120,7 @@ export async function siteSearch(raw: string): Promise<SearchHit[]> {
     if (seen.has(h.href)) continue;
     seen.add(h.href);
     deduped.push(h);
-    if (deduped.length >= 45) break;
+    if (deduped.length >= 60) break;
   }
   return deduped;
 }

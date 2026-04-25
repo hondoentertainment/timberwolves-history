@@ -2,6 +2,25 @@
   "attribution": "Substantive site and content updates. Routine dependency bumps are omitted.",
   "entries": [
     {
+      "date": "2026-04-25",
+      "title": "Content graph, browse hub, RSS, corrections, print polish",
+      "items": [
+        "Typed `ContentGraph` on era hubs, pilot season blurbs (`graph` / `graphPlayerLabels`), and flagship longread; `ContentGraphRelated` UI.",
+        "`/browse` index, `/feed.xml` RSS (changelog + stories), site-wide RSS alternate, footer + about-data correction mailto (`NEXT_PUBLIC_CORRECTIONS_EMAIL`).",
+        "Era Open Graph/Twitter cards; longread `lastReviewed` + Article `dateModified`; print stylesheet and longread measure tweak.",
+        "Season blurbs merge **inferred** `ContentGraph` from era highlight seasons for every franchise year; `/seasons` faceted filters (playoffs + per-era highlights).",
+        "**STORY-004:** related reading from longread `contentGraph` on player/coach profiles; **all** era spotlight hubs per player via `getAllEraHubsForPlayer`.",
+        "`/players/leaders` tenure table (roster-season counts), home **This week in Wolves history** (`occursOn` anchors on timeline JSON), `/explore/2003-04-offseason` static stepper (**STORY-008**).",
+        "Longread **read mode** toggle; `mergeContentGraphs`; sitemap + leaders marked `force-dynamic` to avoid cold roster index build timeouts.",
+        "**DISC-002 v2 + DISC-009:** search memes, longread/era themes, season blurbs; `/browse?theme=` facet chips; **PROF-005:** leaders add best MIN PPG + playoff-era overlap via `getCachedWolvesLeadersAugmented`.",
+        "**HIST-003/004 UX:** season pages show an honest empty-state when curated JSON is missing; **STORY-008:** `/explore/2017-18-playoff-return`; **STORY-007 + HIST-006:** about-data policy + cache table + footer anchor; **PERF-001:** `.github/workflows/ci.yml`.",
+        "**DISC-009 (themes):** `/seasons?theme=…` stacked with playoffs/era; `ContentGraphRelated` theme chips link to season index; `/browse` guided paths from `guided-paths.json`.",
+        "**HIST-006:** team-years `unstable_cache` bundle stores `fetchedAtIso`; footer shows last refresh when available.",
+        "**PROF-005:** leaders add **best MIN RPG** (cache key v2); player profiles show playoff-era overlap vs franchise feed.",
+        "**Content + HIST-003/004:** 2007–08 draft rows + transaction note; season graphs for 1995–96, 2007–08, 2015–16; `/explore/2007-garnett-trade`."
+      ]
+    },
+    {
       "date": "2026-04-24",
       "title": "Depth pass: stories, eras, drafts, transactions, search",
       "items": [

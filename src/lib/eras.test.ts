@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getEraHubLinkForPlayer, getEraHubsForCoach } from "./eras";
+import { getAllEraHubsForPlayer, getEraHubLinkForPlayer, getEraHubsForCoach } from "./eras";
 
 describe("getEraHubLinkForPlayer", () => {
   it("returns slug and label for KG from pilot data", () => {
@@ -13,6 +13,13 @@ describe("getEraHubLinkForPlayer", () => {
 
   it("returns undefined when no era spotlights the player", () => {
     expect(getEraHubLinkForPlayer(1)).toBeUndefined();
+  });
+});
+
+describe("getAllEraHubsForPlayer", () => {
+  it("returns every era hub that spotlights the player", () => {
+    const hubs = getAllEraHubsForPlayer(708);
+    expect(hubs.map((h) => h.slug)).toEqual(["garnett"]);
   });
 });
 

@@ -1,5 +1,6 @@
 import { FeatureCard } from "@/components/FeatureCard";
 import { PageHeader } from "@/components/PageHeader";
+import { ThisWeekInWolvesHistory } from "@/components/ThisWeekInWolvesHistory";
 import { getLongreadBySlug } from "@/lib/longreads";
 import { getFranchiseSeasonsOrEmpty } from "@/lib/nba/queries";
 
@@ -16,6 +17,9 @@ export default async function HomePage() {
         title="Minnesota Timberwolves franchise history"
         description="Explore every season since the 1989 expansion, the full all-time roster lineage (from NBA.com team rosters), player profiles with career stats, era hubs, a franchise timeline, a head-coach register, and editorial layers documented on About the data."
       />
+      <div className="mb-10">
+        <ThisWeekInWolvesHistory />
+      </div>
       <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3">
         {flagship ? (
           <FeatureCard

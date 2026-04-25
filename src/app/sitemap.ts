@@ -10,6 +10,9 @@ import { getWolvesSeasonIds } from "@/lib/nba/seasons";
 const base = () =>
   (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 
+/** Player URL fan-out + cold roster index can exceed default static generation budget. */
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const root = base();
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -26,6 +29,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/trivia",
     "/changelog",
     "/figures",
+    "/browse",
+    "/players/leaders",
+    "/explore/2003-04-offseason",
+    "/explore/2017-18-playoff-return",
+    "/explore/2007-garnett-trade",
   ].map((path) => ({
     url: `${root}${path}`,
     lastModified: new Date(),

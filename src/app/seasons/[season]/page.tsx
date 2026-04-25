@@ -109,7 +109,12 @@ export default async function SeasonDetailPage({ params }: PageProps) {
     <ProfileLayout>
       <ProfileHero title={`${valid} Timberwolves`} role="Season" intro={intro} />
       {story ? (
-        <SeasonStoryBlurb blurb={story.blurb} updated={story.updated} />
+        <SeasonStoryBlurb
+          blurb={story.blurb}
+          updated={story.updated}
+          graph={story.graph}
+          graphPlayerLabels={story.graphPlayerLabels}
+        />
       ) : null}
       <div className="flex flex-wrap gap-4 text-sm text-zinc-400">
         <span>
@@ -152,6 +157,25 @@ export default async function SeasonDetailPage({ params }: PageProps) {
               </li>
             ))}
           </ul>
+        </ProfileSection>
+      ) : null}
+      {!draftPicks.length && !transactions.length ? (
+        <ProfileSection
+          id="curated-draft-transactions"
+          title="Curated draft & transactions"
+          description="Honest gap marker — not a substitute for league archives."
+        >
+          <p className="text-sm leading-relaxed text-zinc-400">
+            There are no static editorial rows in{" "}
+            <code className="text-zinc-500">draft-picks-by-season.json</code> or{" "}
+            <code className="text-zinc-500">transactions-by-season.json</code> for this season yet.
+            Roster and standings above still come from NBA.com where available; add curated JSON when
+            you have sourced notes (see{" "}
+            <Link href="/about-data" className="text-emerald-400 hover:text-emerald-300">
+              About the data
+            </Link>
+            ).
+          </p>
         </ProfileSection>
       ) : null}
       <ProfileSection

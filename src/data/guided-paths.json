@@ -1,0 +1,39 @@
+{
+  "paths": [
+    {
+      "title": "MVP season & West finals",
+      "description": "Conference finals run and MVP-tagged blurbs on the season index.",
+      "href": "/seasons?theme=mvp-season"
+    },
+    {
+      "title": "Playoff drought ends",
+      "description": "Butler-era postseason return (theme: playoff-return).",
+      "href": "/seasons?theme=playoff-return"
+    },
+    {
+      "title": "Garnett-era highlight seasons",
+      "description": "Era hub spotlight years (inferred era-highlight tag).",
+      "href": "/seasons?theme=era-highlight:garnett"
+    },
+    {
+      "title": "KG trade fallout",
+      "description": "Curated blurb themes around the post-Garnett pivot.",
+      "href": "/seasons?theme=kg-trade-fallout"
+    },
+    {
+      "title": "All playoff years",
+      "description": "Franchise seasons with any playoff games in the team feed.",
+      "href": "/seasons?playoffs=1"
+    },
+    {
+      "title": "Butler era hub seasons",
+      "description": "Editorial highlight list from the drought’s end era.",
+      "href": "/seasons?era=butler-era"
+    },
+    {
+      "title": "Finch & modern Wolves highlights",
+      "description": "Recent spotlight seasons from the current-era hub.",
+      "href": "/seasons?era=finch-modern"
+    }
+  ]
+}

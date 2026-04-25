@@ -35,7 +35,8 @@ export default function MemesPage() {
         {memes.map((m, i) => (
           <li
             key={m.id}
-            className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-5"
+            id={`meme-${m.id}`}
+            className="scroll-mt-24 rounded-xl border border-zinc-800 bg-zinc-900/30 p-5"
           >
             <div className="flex flex-wrap items-baseline gap-2">
               <span className="text-sm font-medium text-zinc-500" aria-hidden>

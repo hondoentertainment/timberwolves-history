@@ -5,8 +5,10 @@ import { usePathname } from "next/navigation";
 
 const nav = [
   { href: "/", label: "Home" },
+  { href: "/browse", label: "Browse" },
   { href: "/seasons", label: "Seasons" },
   { href: "/players", label: "Players" },
+  { href: "/players/leaders", label: "Leaders" },
   { href: "/coaches", label: "Coaches" },
   { href: "/eras", label: "Eras" },
   { href: "/timeline", label: "Timeline" },
@@ -19,7 +21,10 @@ const nav = [
 
 function navItemActive(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (pathname === href || pathname === `${href}/`) return true;
+  /** `/players` is index-only; detail URLs use `/players/[id]`. */
+  if (href === "/players") return false;
+  return pathname.startsWith(`${href}/`);
 }
 
 export function PrimaryNav() {

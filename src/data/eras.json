@@ -13,6 +13,9 @@
       "spotlightPlayers": [],
       "relatedCoachIds": ["bill-musselman", "jimmy-rodgers"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "contentGraph": {
+        "themes": ["metrodome-home", "expansion-roster-churn", "north-market"]
+      },
       "sources": [
         {
           "label": "Wikipedia — Minnesota Timberwolves",
@@ -32,6 +35,12 @@
       "spotlightPlayers": [{ "playerId": 708, "label": "Kevin Garnett" }],
       "relatedCoachIds": ["flip-saunders"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "contentGraph": {
+        "themes": ["mvp-track", "western-conference-finals", "small-market-superstar"],
+        "gameIds": ["2003-04"],
+        "playerIds": [708],
+        "storySlugs": ["weight-of-the-north"]
+      },
       "sources": [
         {
           "label": "Wikipedia — Minnesota Timberwolves (overview)",
@@ -58,6 +67,9 @@
       ],
       "relatedCoachIds": ["rick-adelman", "flip-saunders"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "contentGraph": {
+        "themes": ["love-rubio-window", "lottery-bursts", "defensive-identity-wait"]
+      },
       "sources": [
         {
           "label": "Basketball-Reference — franchise seasons",
@@ -77,6 +89,13 @@
       "spotlightPlayers": [{ "playerId": 202704, "label": "Jimmy Butler" }],
       "relatedCoachIds": ["tom-thibodeau"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "lastReviewed": "2026-04-24",
+      "contentGraph": {
+        "themes": ["playoff-return", "cultural-fracture", "cite-sources-for-claims"],
+        "gameIds": ["2017-18"],
+        "playerIds": [202704],
+        "storySlugs": ["weight-of-the-north"]
+      },
       "sources": [
         {
           "label": "Wikipedia — Jimmy Butler",
@@ -99,6 +118,9 @@
       ],
       "relatedCoachIds": ["chris-finch"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "contentGraph": {
+        "themes": ["defensive-scheme-clarity", "postseason-repetition", "continuity-argument"]
+      },
       "sources": [
         {
           "label": "NBA.com — Timberwolves team stats (live reference)",

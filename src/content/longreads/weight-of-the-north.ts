@@ -1,5 +1,7 @@
 /** Editorial flagship longread. Stats elsewhere on the site remain NBA.com–sourced. */
 
+import type { ContentGraph } from "@/types/content-graph";
+
 export type LongreadSection = { id: string; heading: string; paragraphs: string[] };
 export type LongreadPullQuote = { quote: string; attribution: string };
 export type LongreadSource = { label: string; url: string };
@@ -14,6 +16,12 @@ export type Longread = {
   sections: LongreadSection[];
   pullQuotes: LongreadPullQuote[];
   sources: LongreadSource[];
+  /** Typed relations for discovery and future “related” surfaces (see `ContentGraphRelated`). */
+  contentGraph?: ContentGraph;
+  /** Display names for `contentGraph.playerIds` links. */
+  contentGraphPlayerLabels?: Record<string, string>;
+  /** Editorial review stamp for flagship essays. */
+  lastReviewed?: string;
 };
 
 export const weightOfTheNorthLongread = {
@@ -93,4 +101,20 @@ export const weightOfTheNorthLongread = {
       url: "https://www.basketball-reference.com/teams/MIN/",
     },
   ],
+  lastReviewed: "2026-04-24",
+  contentGraphPlayerLabels: {
+    "708": "Kevin Garnett",
+    "201567": "Kevin Love",
+    "201937": "Ricky Rubio",
+    "202704": "Jimmy Butler",
+    "1630162": "Anthony Edwards",
+    "1626157": "Karl-Anthony Towns",
+  },
+  contentGraph: {
+    themes: ["north-market", "continuity-and-rupture", "archive-ethic"],
+    eraSlugs: ["expansion", "garnett", "post-kg-rebuild", "butler-era", "finch-modern"],
+    seasonIds: ["1989-90", "2003-04", "2017-18"],
+    playerIds: [708, 201567, 202704],
+    coachIds: ["flip-saunders", "rick-adelman", "tom-thibodeau", "chris-finch"],
+  },
 } satisfies Longread;
