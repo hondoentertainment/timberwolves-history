@@ -15,6 +15,11 @@ export function inferContentGraphForSeason(seasonId: string): ContentGraph | und
       themes.push(`era-highlight:${era.slug}`);
     }
   }
+  const startYear = Number.parseInt(seasonId.slice(0, 4), 10);
+  if (Number.isFinite(startYear) && startYear >= 1900 && startYear < 2100) {
+    const decade = Math.floor(startYear / 10) * 10;
+    themes.push(`decade-${decade}s`);
+  }
   return normalizeContentGraph({ eraSlugs, themes });
 }
 

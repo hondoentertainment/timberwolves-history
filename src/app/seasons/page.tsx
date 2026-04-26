@@ -5,7 +5,7 @@ import { DataCadenceNote } from "@/components/DataCadenceNote";
 import { PageHeader } from "@/components/PageHeader";
 import { ChipLink, EmptyState, SurfaceCard } from "@/components/PremiumUX";
 import { StatTable } from "@/components/StatTable";
-import { coachNamesForSeason } from "@/lib/coaches";
+import { coachCoversSeason, coachNamesForSeason, getAllCoaches, getCoachById } from "@/lib/coaches";
 import { getAllEras, getEraBySlug } from "@/lib/eras";
 import { collectThemeFacetsForSeasons, seasonLabelMatchesThemeParam } from "@/lib/season-theme-facets";
 import { getFranchiseSeasonsOrEmpty } from "@/lib/nba/queries";
@@ -21,7 +21,7 @@ function humanizeTheme(slug: string): string {
   return slug.replace(/-/g, " ");
 }
 
-type SeasonsSearchParams = Promise<{ playoffs?: string; era?: string; theme?: string }>;
+type SeasonsSearchParams = Promise<{ playoffs?: string; era?: string; theme?: string; coach?: string }>;
 
 export async function generateMetadata({
   searchParams,
@@ -31,13 +31,16 @@ export async function generateMetadata({
   const sp = await searchParams;
   const eraSlug = typeof sp.era === "string" ? sp.era.trim() : "";
   const themeSlug = typeof sp.theme === "string" ? sp.theme.trim() : "";
+  const coachSlug = typeof sp.coach === "string" ? sp.coach.trim() : "";
   const era = eraSlug ? getEraBySlug(eraSlug) : undefined;
+  const coachRecord = coachSlug ? getCoachById(coachSlug) : undefined;
   const playoffsOnly = sp.playoffs === "1" || sp.playoffs === "true";
 
   const activeFilters = [
     playoffsOnly ? "Playoff years" : null,
     era ? era.title : null,
     themeSlug ? `Theme: ${humanizeTheme(themeSlug)}` : null,
+    coachRecord ? `Coach: ${coachRecord.name}` : coachSlug ? "Coach filter (unknown id)" : null,
   ].filter(Boolean) as string[];
 
   const title =
@@ -46,7 +49,7 @@ export async function generateMetadata({
   const description =
     activeFilters.length > 0
       ? `${title} — Minnesota Timberwolves franchise regular-season records, playoff results, and coach context on Wolves History.`
-      : "Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, or editorial themes.";
+      : "Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, head coach tenure, or editorial themes.";
 
   return {
     title,
@@ -71,7 +74,9 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
   const seasons = await getFranchiseSeasonsOrEmpty();
   const eraSlug = typeof sp.era === "string" ? sp.era.trim() : "";
   const themeSlug = typeof sp.theme === "string" ? sp.theme.trim() : "";
+  const coachSlug = typeof sp.coach === "string" ? sp.coach.trim() : "";
   const era = eraSlug ? getEraBySlug(eraSlug) : undefined;
+  const coachRecord = coachSlug ? getCoachById(coachSlug) : undefined;
   const playoffsOnly = sp.playoffs === "1" || sp.playoffs === "true";
 
   let list = [...seasons].reverse();
@@ -85,18 +90,24 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
   if (themeSlug) {
     list = list.filter((s) => seasonLabelMatchesThemeParam(s.seasonLabel, themeSlug));
   }
+  if (coachRecord) {
+    list = list.filter((s) => coachCoversSeason(coachSlug, s.seasonLabel));
+  }
 
   const eras = getAllEras();
+  const coachFilterList = [...getAllCoaches()].sort((a, b) => a.name.localeCompare(b.name));
   const themeFacets = collectThemeFacetsForSeasons(seasons.map((s) => s.seasonLabel)).slice(0, 28);
 
-  const hrefFrom = (over: Partial<{ playoffs: boolean; era: string; theme: string }>) => {
+  const hrefFrom = (over: Partial<{ playoffs: boolean; era: string; theme: string; coach: string }>) => {
     const p = "playoffs" in over ? over.playoffs! : playoffsOnly;
     const e = "era" in over ? over.era! : eraSlug;
     const t = "theme" in over ? over.theme! : themeSlug;
+    const c = "coach" in over ? over.coach! : coachSlug;
     const qs = new URLSearchParams();
     if (p) qs.set("playoffs", "1");
     if (e) qs.set("era", e);
     if (t) qs.set("theme", t);
+    if (c) qs.set("coach", c);
     const q = qs.toString();
     return q ? `/seasons?${q}` : "/seasons";
   };
@@ -127,36 +138,38 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
     ];
   });
 
+  const coachCaption = coachRecord ? ` · head coach: ${coachRecord.name}` : "";
   const tableCaption = (() => {
     if (playoffsOnly && era && themeSlug) {
-      return `Timberwolves seasons (${era.title} highlights, playoff years, theme: ${humanizeTheme(themeSlug)})`;
+      return `Timberwolves seasons (${era.title} highlights, playoff years, theme: ${humanizeTheme(themeSlug)})${coachCaption}`;
     }
     if (playoffsOnly && era) {
-      return `Timberwolves seasons (${era.title} highlights, playoff years)`;
+      return `Timberwolves seasons (${era.title} highlights, playoff years)${coachCaption}`;
     }
     if (playoffsOnly && themeSlug) {
-      return `Timberwolves seasons (playoff years, theme: ${humanizeTheme(themeSlug)})`;
+      return `Timberwolves seasons (playoff years, theme: ${humanizeTheme(themeSlug)})${coachCaption}`;
     }
     if (era && themeSlug) {
-      return `Timberwolves seasons (${era.title} highlights, theme: ${humanizeTheme(themeSlug)})`;
+      return `Timberwolves seasons (${era.title} highlights, theme: ${humanizeTheme(themeSlug)})${coachCaption}`;
     }
-    if (playoffsOnly) return "Timberwolves seasons (playoff years)";
-    if (era) return `Timberwolves seasons (${era.title} highlights)`;
-    if (themeSlug) return `Timberwolves seasons (theme: ${humanizeTheme(themeSlug)})`;
-    return "Timberwolves seasons";
+    if (playoffsOnly) return `Timberwolves seasons (playoff years)${coachCaption}`;
+    if (era) return `Timberwolves seasons (${era.title} highlights)${coachCaption}`;
+    if (themeSlug) return `Timberwolves seasons (theme: ${humanizeTheme(themeSlug)})${coachCaption}`;
+    return `Timberwolves seasons${coachCaption}`;
   })();
 
   const activeFilters = [
     playoffsOnly ? "Playoff years" : null,
     era ? era.title : null,
     themeSlug ? `Theme: ${humanizeTheme(themeSlug)}` : null,
+    coachRecord ? `Coach: ${coachRecord.name}` : null,
   ].filter(Boolean);
 
   return (
     <>
       <PageHeader
         title="Season by season"
-        description="Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, or editorial themes."
+        description="Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, head coach tenure, or editorial themes."
       />
       <DataCadenceNote
         routeRevalidateSeconds={3600}
@@ -171,7 +184,11 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
       >
         <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Filters</span>
         <div className="flex flex-wrap gap-2">
-          {chip("All seasons", hrefFrom({ playoffs: false, era: "", theme: "" }), !playoffsOnly && !eraSlug && !themeSlug)}
+          {chip(
+            "All seasons",
+            hrefFrom({ playoffs: false, era: "", theme: "", coach: "" }),
+            !playoffsOnly && !eraSlug && !themeSlug && !coachSlug,
+          )}
           {chip("Playoff years", hrefFrom({ playoffs: !playoffsOnly }), playoffsOnly)}
           {eras.map((e) =>
             chip(
@@ -182,9 +199,25 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
           )}
         </div>
         <p className="text-xs leading-relaxed text-zinc-600">
-          Era filters focus on highlight seasons from each hub; theme filters follow recurring story
-          arcs across the archive.
+          Era filters focus on highlight seasons from each hub; coach chips use the static head-coach
+          register; theme filters follow recurring story arcs across the archive.
         </p>
+      </nav>
+      <nav
+        aria-label="Head coach filters"
+        className="mb-6 flex flex-col gap-3 rounded-2xl border border-zinc-800/85 bg-zinc-900/30 p-4 shadow-lg shadow-black/10 ring-1 ring-white/[0.03]"
+      >
+        <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Head coaches</span>
+        <div className="flex flex-wrap gap-2">
+          {chip("Any coach", hrefFrom({ coach: "" }), !coachSlug)}
+          {coachFilterList.map((c) =>
+            chip(
+              c.name,
+              hrefFrom({ coach: coachSlug === c.id ? "" : c.id }),
+              coachSlug === c.id,
+            ),
+          )}
+        </div>
       </nav>
       {themeFacets.length ? (
         <nav
@@ -228,6 +261,22 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
           className="mb-6"
         />
       ) : null}
+      {coachRecord && !list.length ? (
+        <EmptyState
+          tone="warning"
+          title={`No seasons matched head coach ${coachRecord.name}`}
+          description={
+            <>
+              Try clearing the coach filter or combining with fewer other constraints.{" "}
+              <Link href={hrefFrom({ coach: "" })} className="font-medium text-emerald-400 hover:text-emerald-300">
+                Clear coach
+              </Link>
+              .
+            </>
+          }
+          className="mb-6"
+        />
+      ) : null}
       <SurfaceCard className="mb-4 flex flex-col gap-2 px-4 py-3 text-sm text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
         <span>
           Showing <strong className="font-semibold text-zinc-100">{list.length}</strong> of{" "}
@@ -235,7 +284,10 @@ export default async function SeasonsPage({ searchParams }: PageProps) {
           {activeFilters.length ? ` · ${activeFilters.join(" · ")}` : ""}
         </span>
         {activeFilters.length ? (
-          <Link href="/seasons" className="font-semibold text-emerald-400 hover:text-emerald-300">
+          <Link
+            href={hrefFrom({ playoffs: false, era: "", theme: "", coach: "" })}
+            className="font-semibold text-emerald-400 hover:text-emerald-300"
+          >
             Clear all filters
           </Link>
         ) : null}

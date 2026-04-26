@@ -50,6 +50,16 @@ export function coachNamesForSeason(seasonId: string): string[] {
   return [...names];
 }
 
+/** True when `coachId` has at least one tenure overlapping `seasonId` (canonical slug). */
+export function coachCoversSeason(coachId: string, seasonId: string): boolean {
+  const c = getCoachById(coachId);
+  if (!c) return false;
+  for (const t of c.tenures) {
+    if (between(seasonId, t.from, t.to)) return true;
+  }
+  return false;
+}
+
 export function coachesFileAttribution(): string {
   return coachesFile.attribution;
 }
