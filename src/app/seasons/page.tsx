@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { DataCadenceNote } from "@/components/DataCadenceNote";
 import { PageHeader } from "@/components/PageHeader";
@@ -20,7 +21,50 @@ function humanizeTheme(slug: string): string {
   return slug.replace(/-/g, " ");
 }
 
-type PageProps = { searchParams: Promise<{ playoffs?: string; era?: string; theme?: string }> };
+type SeasonsSearchParams = Promise<{ playoffs?: string; era?: string; theme?: string }>;
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: SeasonsSearchParams;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const eraSlug = typeof sp.era === "string" ? sp.era.trim() : "";
+  const themeSlug = typeof sp.theme === "string" ? sp.theme.trim() : "";
+  const era = eraSlug ? getEraBySlug(eraSlug) : undefined;
+  const playoffsOnly = sp.playoffs === "1" || sp.playoffs === "true";
+
+  const activeFilters = [
+    playoffsOnly ? "Playoff years" : null,
+    era ? era.title : null,
+    themeSlug ? `Theme: ${humanizeTheme(themeSlug)}` : null,
+  ].filter(Boolean) as string[];
+
+  const title =
+    activeFilters.length > 0 ? `Season by season · ${activeFilters.join(" · ")}` : "Season by season";
+
+  const description =
+    activeFilters.length > 0
+      ? `${title} — Minnesota Timberwolves franchise regular-season records, playoff results, and coach context on Wolves History.`
+      : "Franchise regular-season records, playoff results, and coach context. Filter by playoff years, era highlights, or editorial themes.";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
+
+type PageProps = { searchParams: SeasonsSearchParams };
 
 export default async function SeasonsPage({ searchParams }: PageProps) {
   const sp = await searchParams;

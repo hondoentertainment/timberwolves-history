@@ -45,6 +45,13 @@ export function WolvesMemeCard({
         <span className="text-xs text-zinc-500">· {meme.era}</span>
       </div>
       <p className="mt-2 text-sm leading-relaxed text-zinc-400">{meme.summary}</p>
+      {meme.related ? (
+        <p className="mt-3">
+          <Link href={meme.related.href} className={`text-sm text-emerald-400 hover:text-emerald-300 ${premiumLinkFocus}`}>
+            {meme.related.label} →
+          </Link>
+        </p>
+      ) : null}
     </li>
   );
 }

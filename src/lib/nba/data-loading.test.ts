@@ -62,7 +62,11 @@ describe("snapshot-backed data loading", () => {
     expect(value.some((p) => p.name === "Kevin Garnett" && p.playoffTeamSeasonOverlap > 0)).toBe(true);
     expect(
       value.every(
-        (p) => p.bestMinPpg === null && p.bestMinRpg === null && p.bestMinApg === null,
+        (p) =>
+          p.bestMinPpg === null &&
+          p.bestMinRpg === null &&
+          p.bestMinApg === null &&
+          p.wolvesRegSeasonGp === null,
       ),
     ).toBe(true);
     expect(elapsed).toBeLessThan(FAST_SNAPSHOT_MS);

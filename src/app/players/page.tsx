@@ -1,9 +1,28 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { DataCadenceNote } from "@/components/DataCadenceNote";
 import { PageHeader } from "@/components/PageHeader";
 import { EmptyState, SearchForm, SurfaceCard, premiumLinkFocus } from "@/components/PremiumUX";
 import { getCachedAllTimeWolvesPlayers, getFallbackAllTimeWolvesPlayers } from "@/lib/nba/players-index";
+
+const playersIndexDescription =
+  "Players who appeared in at least one Timberwolves regular-season game. Search the merged all-time roster index on Wolves History.";
+
+export const metadata: Metadata = {
+  title: "All-time players",
+  description: playersIndexDescription,
+  openGraph: {
+    title: "All-time players",
+    description: playersIndexDescription,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "All-time players",
+    description: playersIndexDescription,
+  },
+};
 
 export const revalidate = 86_400;
 

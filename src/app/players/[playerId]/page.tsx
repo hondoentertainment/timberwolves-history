@@ -72,9 +72,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const row = infoJson ? parseCommonPlayerInfo(infoJson) : null;
   const indexRow = index.find((p) => p.playerId === id);
   const name = row ? String(row["DISPLAY_FIRST_LAST"] ?? indexRow?.name ?? `Player ${id}`) : (indexRow?.name ?? `Player ${id}`);
+  const description = `${name} — Minnesota Timberwolves career splits and NBA.com player profile.`;
   return {
     title: name,
-    description: `${name} — Minnesota Timberwolves career splits and NBA.com player profile.`,
+    description,
+    openGraph: {
+      title: name,
+      description,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: name,
+      description,
+    },
   };
 }
 
@@ -273,7 +284,7 @@ export default async function PlayerPage({ params }: PageProps) {
             the team abbreviation is MIN.
           </p>
         }
-        media={<PlayerHeadshot playerId={id} name={name} />}
+        media={<PlayerHeadshot playerId={id} name={name} priority />}
       />
       <ProfileSection
         id="overview"

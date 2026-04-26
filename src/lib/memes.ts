@@ -5,6 +5,7 @@ export type WolvesMeme = {
   title: string;
   era: string;
   summary: string;
+  related?: { href: string; label: string };
 };
 
 export function getWolvesMemes(): WolvesMeme[] {

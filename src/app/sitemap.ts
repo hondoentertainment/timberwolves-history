@@ -39,6 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/players/leaders",
     "/explore/2003-04-offseason",
     "/explore/2017-18-playoff-return",
+    "/explore/playoff-drought-clock",
     "/explore/2007-garnett-trade",
   ].map((path) => ({
     url: `${root}${path}`,

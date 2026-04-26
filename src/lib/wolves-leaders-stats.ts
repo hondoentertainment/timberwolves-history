@@ -36,9 +36,11 @@ export type WolvesLeaderAugmented = {
   bestMinApgSeason: string | null;
   /**
    * Count of Wolves roster seasons that overlap a franchise year when the team made the playoffs
-   * (PO wins + losses &gt; 0). Does not prove the player appeared in playoff games.
+   * (PO wins + losses > 0). Does not prove the player appeared in playoff games.
    */
   playoffTeamSeasonOverlap: number;
+  /** Sum of regular-season GP from per-game rows for Wolves seasons only (null when live stats off or no rows). */
+  wolvesRegSeasonGp: number | null;
 };
 
 const TOP_N = 12;
@@ -75,6 +77,7 @@ export async function buildWolvesLeadersAugmented(): Promise<WolvesLeaderAugment
       bestMinApg: null,
       bestMinApgSeason: null,
       playoffTeamSeasonOverlap: p.seasons.filter((s) => playoffSeasons.has(s)).length,
+      wolvesRegSeasonGp: null,
     }));
   }
 
@@ -93,8 +96,10 @@ export async function buildWolvesLeadersAugmented(): Promise<WolvesLeaderAugment
       let bestRebSid = "";
       let bestAst = -1;
       let bestAstSid = "";
+      let wolvesRegSeasonGpSum = 0;
       for (const r of rows) {
         const sid = String(r["SEASON_ID"] ?? "");
+        wolvesRegSeasonGpSum += num(r, "GP");
         const pts = num(r, "PTS");
         if (pts > bestPts) {
           bestPts = pts;
@@ -115,6 +120,8 @@ export async function buildWolvesLeadersAugmented(): Promise<WolvesLeaderAugment
       const bestMinRpg = bestReb > 0 ? bestReb : null;
       const bestMinApg = bestAst > 0 ? bestAst : null;
       const playoffTeamSeasonOverlap = p.seasons.filter((s) => playoffSeasons.has(s)).length;
+      const wolvesRegSeasonGp =
+        rows.length > 0 ? Math.round(wolvesRegSeasonGpSum) : null;
       out.push({
         playerId: p.playerId,
         name: p.name,
@@ -126,6 +133,7 @@ export async function buildWolvesLeadersAugmented(): Promise<WolvesLeaderAugment
         bestMinApg,
         bestMinApgSeason: bestMinApg ? bestAstSid : null,
         playoffTeamSeasonOverlap,
+        wolvesRegSeasonGp,
       });
     });
   }
@@ -135,6 +143,6 @@ export async function buildWolvesLeadersAugmented(): Promise<WolvesLeaderAugment
 
 export const getCachedWolvesLeadersAugmented = unstable_cache(
   buildWolvesLeadersAugmented,
-  ["wolves-leaders-augmented-v4"],
+  ["wolves-leaders-augmented-v5"],
   { revalidate: 86_400, tags: ["wolves-players", "nba-team-years"] },
 );

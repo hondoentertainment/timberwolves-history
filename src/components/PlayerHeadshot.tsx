@@ -16,12 +16,15 @@ export function PlayerHeadshot({
   width = 208,
   height = 156,
   className = "",
+  /** Hint LCP when this headshot is above the fold (e.g. player profile hero). */
+  priority = false,
 }: {
   playerId: number;
   name: string;
   width?: number;
   height?: number;
   className?: string;
+  priority?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const initials = useMemo(() => initialsFromName(name), [name]);
@@ -45,6 +48,7 @@ export function PlayerHeadshot({
       alt={`Headshot of ${name}`}
       width={width}
       height={height}
+      priority={priority}
       className={`rounded-xl border border-zinc-700/80 bg-zinc-900 object-cover shadow-lg shadow-black/40 ring-1 ring-white/10 ${className}`}
       unoptimized
       onError={onError}

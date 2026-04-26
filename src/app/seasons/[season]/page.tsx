@@ -54,9 +54,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seasonId = decodeURIComponent(raw);
   const valid = parseSeasonSlug(seasonId);
   if (!valid) return { title: "Season" };
+  const title = `${valid} season`;
+  const description = `Minnesota Timberwolves roster, record, and postseason snapshot for the ${valid} NBA season.`;
   return {
-    title: `${valid} season`,
-    description: `Minnesota Timberwolves roster, record, and postseason snapshot for the ${valid} NBA season.`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

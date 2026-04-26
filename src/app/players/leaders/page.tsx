@@ -8,15 +8,32 @@ import { getCachedAllTimeWolvesPlayers } from "@/lib/nba/players-index";
 /** Full roster index can exceed static build timeouts; render on demand (cached via unstable_cache). */
 export const dynamic = "force-dynamic";
 
+const leadersDescription =
+  "Wolves-only roster footprint, summed regular-season games played in MIN rows, per-game scoring/rebound/assist peaks, and playoff-era overlap (team made playoffs).";
+
 export const metadata: Metadata = {
   title: "Wolves tenure leaders",
-  description:
-    "Wolves-only roster footprint plus MIN per-game scoring, rebound, and assist peaks and playoff-era overlap (team made playoffs).",
+  description: leadersDescription,
+  openGraph: {
+    title: "Wolves tenure leaders",
+    description: leadersDescription,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wolves tenure leaders",
+    description: leadersDescription,
+  },
 };
 
 function formatPpg(n: number | null): string {
   if (n === null || !Number.isFinite(n)) return "—";
   return n.toFixed(1);
+}
+
+function formatGp(n: number | null): string {
+  if (n === null || !Number.isFinite(n)) return "—";
+  return String(Math.round(n));
 }
 
 export default async function WolvesLeadersPage() {
@@ -30,7 +47,7 @@ export default async function WolvesLeadersPage() {
     <>
       <PageHeader
         title="Wolves tenure leaders"
-        description="Top roster presences from the merged NBA.com index, enriched with MIN per-game peaks for scoring, rebounds, and assists (regular season rows) plus a simple playoff-era overlap count."
+        description="Top roster presences from the merged NBA.com index, enriched with summed Wolves regular-season games from MIN per-game rows, single-season peaks for scoring, rebounds, and assists, plus a simple playoff-era overlap count."
       />
       <p className="mb-6 text-sm leading-relaxed text-zinc-500">
         <strong className="text-zinc-400">PROF-005:</strong> “Playoff-era overlap” counts Wolves seasons on a player’s
@@ -44,10 +61,11 @@ export default async function WolvesLeadersPage() {
             <tr>
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Player</th>
-              <th className="px-4 py-3">Franchise seasons</th>
-              {useAugmented ? (
-                <>
-                  <th className="px-4 py-3">Best MIN PPG</th>
+                  <th className="px-4 py-3">Franchise seasons</th>
+                  {useAugmented ? (
+                    <>
+                      <th className="px-4 py-3">Wolves RS GP</th>
+                      <th className="px-4 py-3">Best MIN PPG</th>
                   <th className="px-4 py-3">Best MIN RPG</th>
                   <th className="px-4 py-3">Best MIN APG</th>
                   <th className="px-4 py-3">PO-era overlap*</th>
@@ -69,6 +87,7 @@ export default async function WolvesLeadersPage() {
                       </Link>
                     </td>
                     <td className="px-4 py-3 tabular-nums text-zinc-400">{p.franchiseSeasons}</td>
+                    <td className="px-4 py-3 tabular-nums text-zinc-400">{formatGp(p.wolvesRegSeasonGp)}</td>
                     <td className="px-4 py-3 text-zinc-400">
                       {formatPpg(p.bestMinPpg)}
                       {p.bestMinPpgSeason ? (
