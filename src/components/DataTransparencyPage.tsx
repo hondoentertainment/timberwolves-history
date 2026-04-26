@@ -149,7 +149,9 @@ export function DataTransparencyPage({
             </li>
             <li>
               Coaching names on season tables are matched from the static register and may
-              overlap in odd interim years.
+              overlap in odd interim years. The <code className="text-zinc-300">/seasons?coach=…</code>{" "}
+              filter uses the same register (coach <code className="text-zinc-300">id</code> slugs from{" "}
+              <code className="text-zinc-300">wolves-coaches.json</code>), not a live NBA coaching feed.
             </li>
             <li>
               Season rosters prefer NBA.com live roster rows. If a roster feed times out or returns

@@ -66,7 +66,8 @@ describe("snapshot-backed data loading", () => {
           p.bestMinPpg === null &&
           p.bestMinRpg === null &&
           p.bestMinApg === null &&
-          p.wolvesRegSeasonGp === null,
+          p.wolvesRegSeasonGp === null &&
+          p.meanWolvesMpg === null,
       ),
     ).toBe(true);
     expect(elapsed).toBeLessThan(FAST_SNAPSHOT_MS);

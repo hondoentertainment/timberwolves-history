@@ -67,6 +67,7 @@
       ],
       "relatedCoachIds": ["rick-adelman", "flip-saunders"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "lastReviewed": "2026-04-26",
       "contentGraph": {
         "themes": ["love-rubio-window", "lottery-bursts", "defensive-identity-wait"]
       },
@@ -118,6 +119,7 @@
       ],
       "relatedCoachIds": ["chris-finch"],
       "relatedStorySlugs": ["weight-of-the-north"],
+      "lastReviewed": "2026-04-26",
       "contentGraph": {
         "themes": ["defensive-scheme-clarity", "postseason-repetition", "continuity-argument"]
       },

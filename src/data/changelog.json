@@ -2,6 +2,17 @@
   "attribution": "Substantive site and content updates. Routine dependency bumps are omitted.",
   "entries": [
     {
+      "date": "2026-04-26",
+      "title": "Coach facets, decade themes, leaders workload, default social images",
+      "items": [
+        "**DISC-009 v2:** `/seasons?coach={id}` head-coach filter chips (static register) stacked with playoffs, era, and theme filters.",
+        "**STORY-006:** inferred `decade-YYYYs` theme on every season via merged content graph (facet + search surface without hand-editing every blurb).",
+        "**PROF-005:** leaders add **mean Wolves MPG** across MIN per-game rows; cache key **v6**.",
+        "**DISC-006:** root `opengraph-image` / `twitter-image` (1200×630) for default share previews.",
+        "**STORY-007:** `lastReviewed` stamps on **post-KG rebuild** and **Finch modern** era hubs alongside Butler-era maintenance."
+      ]
+    },
+    {
       "date": "2026-04-25",
       "title": "Content graph, browse hub, RSS, corrections, print polish",
       "items": [
